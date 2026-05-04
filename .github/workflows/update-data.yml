@@ -1,0 +1,54 @@
+name: Update Radar B3 data
+
+on:
+  workflow_dispatch:
+  schedule:
+    # 22:30 UTC = 19:30 America/Sao_Paulo. Ajuste se quiser outro horario.
+    - cron: "30 22 * * 1-5"
+
+permissions:
+  contents: write
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: python -m pip install --upgrade pip && pip install -r requirements.txt
+
+      - name: Update market data
+        env:
+          PYTHONIOENCODING: utf-8
+        run: python get_b3_data.py
+
+      - name: Generate backtest
+        env:
+          PYTHONIOENCODING: utf-8
+        run: python backtest_model.py
+
+      - name: Generate next-session predictions
+        env:
+          PYTHONIOENCODING: utf-8
+        run: python predict_tomorrow.py
+
+      - name: Commit updated data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/raw/*.csv backtest_results.json backtest_directional_results.json backtest_directional_summary.json predictions_tomorrow.json
+          if git diff --cached --quiet; then
+            echo "No data changes to commit."
+          else
+            git commit -m "Update market data and predictions"
+            git push
+          fi
