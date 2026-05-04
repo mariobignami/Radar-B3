@@ -540,6 +540,102 @@ def _load_year_to_date_history():
     return history.sort_values(['stockCodeCompany', 'datetime']).reset_index(drop=True)
 
 
+def _build_candidate_range_table(history_df, candidates_df, entry_lookback_days, hold_days_list):
+    if history_df is None or history_df.empty or candidates_df is None or candidates_df.empty:
+        return pd.DataFrame()
+
+    hold_days_list = [int(day) for day in hold_days_list if int(day) > 0]
+    if not hold_days_list:
+        return pd.DataFrame()
+
+    all_dates = pd.DatetimeIndex(sorted(pd.to_datetime(history_df['datetime'].dropna().unique())))
+    if len(all_dates) == 0:
+        return pd.DataFrame()
+
+    latest_date = all_dates.max()
+    entry_date = _nearest_trading_date(
+        all_dates,
+        latest_date - pd.offsets.BDay(int(entry_lookback_days) + max(hold_days_list) + 1)
+    )
+
+    rows = []
+    for _, candidate in candidates_df.iterrows():
+        stock_code = str(candidate.get('stock_code', '')).strip()
+        if not stock_code:
+            continue
+
+        company_history = history_df[history_df['stockCodeCompany'] == stock_code].sort_values('datetime').reset_index(drop=True)
+        eligible_history = company_history[company_history['datetime'] <= entry_date]
+        if eligible_history.empty:
+            continue
+
+        entry_pos = int(eligible_history.index[-1])
+        entry_row = company_history.iloc[entry_pos]
+        entry_close = float(entry_row['closeValueStock'])
+        if entry_close <= 0:
+            continue
+
+        investment = float(candidate.get('Valor sugerido (R$)', 0) or 0)
+        if investment <= 0:
+            continue
+
+        scenario_rows = []
+        for hold_days in hold_days_list:
+            exit_pos = min(entry_pos + int(hold_days), len(company_history) - 1)
+            if exit_pos <= entry_pos:
+                continue
+
+            exit_row = company_history.iloc[exit_pos]
+            exit_close = float(exit_row['closeValueStock'])
+            if exit_close <= 0:
+                continue
+
+            return_percent = ((exit_close / entry_close) - 1) * 100
+            profit = investment * return_percent / 100
+            scenario_rows.append({
+                'Empresa': candidate.get('company', stock_code),
+                'Ticker': stock_code,
+                'Entrada simulada': pd.Timestamp(entry_row['datetime']).date(),
+                'Saída após (pregões)': int(hold_days),
+                'Saída': pd.Timestamp(exit_row['datetime']).date(),
+                'Preço Entrada': entry_close,
+                'Preço Saída': exit_close,
+                'Retorno (%)': return_percent,
+                'Lucro/Prejuízo (R$)': profit,
+                'Capital usado (R$)': investment,
+                'Cenário': f'{int(hold_days)} pregões',
+            })
+
+        if not scenario_rows:
+            continue
+
+        scenario_frame = pd.DataFrame(scenario_rows)
+        return_values = scenario_frame['Retorno (%)']
+        profit_values = scenario_frame['Lucro/Prejuízo (R$)']
+        best_idx = int(return_values.idxmax())
+        worst_idx = int(return_values.idxmin())
+
+        rows.append({
+            'Empresa': candidate.get('company', stock_code),
+            'Ticker': stock_code,
+            'Entrada simulada': pd.Timestamp(entry_row['datetime']).date(),
+            'Faixa de retorno (%)': f"{return_values.min():+.2f}% a {return_values.max():+.2f}%",
+            'Faixa de lucro (R$)': f"R$ {profit_values.min():,.2f} a R$ {profit_values.max():,.2f}",
+            'Pior cenário': scenario_frame.loc[worst_idx, 'Cenário'],
+            'Melhor cenário': scenario_frame.loc[best_idx, 'Cenário'],
+            'Capital usado (R$)': float(scenario_frame['Capital usado (R$)'].iloc[0]),
+            '_retorno_min': float(return_values.min()),
+            '_retorno_max': float(return_values.max()),
+            '_detail': scenario_frame,
+        })
+
+    result = pd.DataFrame(rows)
+    if result.empty:
+        return result
+
+    return result.sort_values('_retorno_max', ascending=False).reset_index(drop=True)
+
+
 def _build_swing_frame_from_history(history_df, asof_date, lookback_days=45):
     if history_df is None or history_df.empty:
         return pd.DataFrame()
@@ -1098,6 +1194,72 @@ if page_section == "Caminho guiado":
         use_container_width=True,
         hide_index=True,
     )
+
+    st.subheader("📈 Faixa histórica estimada")
+    st.caption(
+        "Aqui você vê um exemplo de compra e venda com base no histórico consolidado: quando a entrada aconteceu e quanto teria rendido em diferentes saídas."
+    )
+
+    history_df = _load_year_to_date_history()
+    if history_df.empty:
+        st.info("Não consegui carregar o histórico consolidado para calcular a faixa de lucro por candidata.")
+    else:
+        range_col1, range_col2 = st.columns(2)
+        with range_col1:
+            range_entry_lookback = st.selectbox(
+                "Entrada simulada (pregões antes do último dado)",
+                [5, 10, 21, 30],
+                index=2,
+                help="Quanto menor o número, mais perto do pregão atual a simulação começa."
+            )
+        with range_col2:
+            range_hold_days = st.multiselect(
+                "Saída após (pregões)",
+                [5, 10, 21],
+                default=[5, 10, 21],
+                help="Esses prazos formam a faixa de retorno e lucro estimada para cada candidata."
+            )
+
+        candidate_range = _build_candidate_range_table(
+            history_df,
+            guided_portfolio,
+            int(range_entry_lookback),
+            range_hold_days,
+        )
+
+        if candidate_range.empty:
+            st.warning("Não foi possível montar a faixa histórica com os dados disponíveis.")
+        else:
+            summary_range = candidate_range[[
+                'Empresa', 'Ticker', 'Entrada simulada', 'Faixa de retorno (%)',
+                'Faixa de lucro (R$)', 'Pior cenário', 'Melhor cenário', 'Capital usado (R$)'
+            ]].copy()
+            summary_range['Entrada simulada'] = summary_range['Entrada simulada'].map(_format_date_br)
+            st.dataframe(
+                summary_range.style.format({
+                    'Capital usado (R$)': 'R$ {:,.2f}',
+                }),
+                use_container_width=True,
+                hide_index=True,
+            )
+
+            with st.expander("Ver cenários detalhados de compra e venda"):
+                detail_frames = [row['_detail'] for _, row in candidate_range.iterrows() if '_detail' in row and isinstance(row['_detail'], pd.DataFrame)]
+                if detail_frames:
+                    detailed_range = pd.concat(detail_frames, ignore_index=True)
+                    detailed_range['Entrada simulada'] = detailed_range['Entrada simulada'].map(_format_date_br)
+                    detailed_range['Saída'] = detailed_range['Saída'].map(_format_date_br)
+                    st.dataframe(
+                        detailed_range.style.format({
+                            'Preço Entrada': 'R$ {:.2f}',
+                            'Preço Saída': 'R$ {:.2f}',
+                            'Retorno (%)': '{:+.2f}',
+                            'Lucro/Prejuízo (R$)': 'R$ {:,.2f}',
+                            'Capital usado (R$)': 'R$ {:,.2f}',
+                        }),
+                        use_container_width=True,
+                        hide_index=True,
+                    )
 
     st.subheader("✅ Caminho das pedras")
     st.markdown(
