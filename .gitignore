@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+.env
+
+# Dados
+# data/raw fica versionado porque o deploy do Streamlit precisa da base local.
+data/processed/*.csv
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# Modelos
+# Os .pkl pequenos ficam versionados porque o formulario manual usa esses artefatos.
+models/*.h5
+models/*.keras
+!models/.gitkeep
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
