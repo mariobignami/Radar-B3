@@ -4,7 +4,7 @@ Gera CSVs no formato esperado pelo projeto
 """
 import pandas as pd
 import numpy as np
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 
 # Primeiro, vamos instalar yfinance se necessário
@@ -21,9 +21,8 @@ data_raw = Path("data/raw")
 data_raw.mkdir(parents=True, exist_ok=True)
 
 # Configuracao de periodo e filtros
-YEAR_START = datetime.now().replace(month=1, day=1)
-HISTORY_START = YEAR_START.strftime("%Y-%m-%d")
-UNIVERSE_LIMIT = 40
+HISTORY_START = (datetime.now() - timedelta(days=183)).strftime("%Y-%m-%d")
+UNIVERSE_LIMIT = 100
 
 # Tickers principais (liquidos + swing trade)
 BASE_TICKERS = {
@@ -129,6 +128,82 @@ ADDITIONAL_SWING_TICKERS = {
     'YDUQ3.SA': {'name': 'Yduqs', 'sector': 'Educacao', 'segment': 'Educacao'},
 }
 
+# Universo amplo para o Radar B3. A lista mistura ativos de maior liquidez
+# presentes em indices amplos como Ibovespa/IBrX e nomes setoriais relevantes.
+BROAD_UNIVERSE_TICKERS = {
+    'AALR3.SA': {'name': 'Alliar', 'sector': 'Saude', 'segment': 'Diagnosticos'},
+    'AERI3.SA': {'name': 'Aerís', 'sector': 'Industria', 'segment': 'Energia eolica'},
+    'AESB3.SA': {'name': 'AES Brasil', 'sector': 'Energia', 'segment': 'Energia'},
+    'AGRO3.SA': {'name': 'BrasilAgro', 'sector': 'Agro', 'segment': 'Terras agricolas'},
+    'ALOS3.SA': {'name': 'Allos', 'sector': 'Imobiliario', 'segment': 'Shopping'},
+    'ANIM3.SA': {'name': 'Anima', 'sector': 'Educacao', 'segment': 'Educacao'},
+    'ARML3.SA': {'name': 'Armac', 'sector': 'Industria', 'segment': 'Locacao'},
+    'AURE3.SA': {'name': 'Auren', 'sector': 'Energia', 'segment': 'Energia'},
+    'BEEF3.SA': {'name': 'Minerva', 'sector': 'Alimentos', 'segment': 'Proteinas'},
+    'BHIA3.SA': {'name': 'Casas Bahia', 'sector': 'Comercio', 'segment': 'Varejo'},
+    'BMGB4.SA': {'name': 'Banco BMG', 'sector': 'Financeiro', 'segment': 'Banco'},
+    'BMOB3.SA': {'name': 'Bemobi', 'sector': 'Tecnologia', 'segment': 'Software'},
+    'BOVA11.SA': {'name': 'iShares Ibovespa', 'sector': 'ETF', 'segment': 'Indice'},
+    'BPAN4.SA': {'name': 'Banco Pan', 'sector': 'Financeiro', 'segment': 'Banco'},
+    'BBSE3.SA': {'name': 'BB Seguridade', 'sector': 'Financeiro', 'segment': 'Seguros'},
+    'BRAP4.SA': {'name': 'Bradespar', 'sector': 'Mineracao', 'segment': 'Holding'},
+    'BRKM5.SA': {'name': 'Braskem', 'sector': 'Industria', 'segment': 'Quimicos'},
+    'CBAV3.SA': {'name': 'CBA', 'sector': 'Industria', 'segment': 'Aluminio'},
+    'CCRO3.SA': {'name': 'CCR', 'sector': 'Infraestrutura', 'segment': 'Concessoes'},
+    'CMIN3.SA': {'name': 'CSN Mineracao', 'sector': 'Mineracao', 'segment': 'Minerio'},
+    'CPLE6.SA': {'name': 'Copel', 'sector': 'Energia', 'segment': 'Energia'},
+    'CRFB3.SA': {'name': 'Carrefour', 'sector': 'Comercio', 'segment': 'Varejo'},
+    'CXSE3.SA': {'name': 'Caixa Seguridade', 'sector': 'Financeiro', 'segment': 'Seguros'},
+    'DIRR3.SA': {'name': 'Direcional', 'sector': 'Construcao', 'segment': 'Construcao'},
+    'DXCO3.SA': {'name': 'Dexco', 'sector': 'Industria', 'segment': 'Materiais'},
+    'ECOR3.SA': {'name': 'Ecorodovias', 'sector': 'Infraestrutura', 'segment': 'Concessoes'},
+    'EMBR3.SA': {'name': 'Embraer', 'sector': 'Industria', 'segment': 'Aeroespacial'},
+    'ENAT3.SA': {'name': 'Enauta', 'sector': 'Energia', 'segment': 'Petroleo'},
+    'ENGI11.SA': {'name': 'Energisa Unit', 'sector': 'Energia', 'segment': 'Energia'},
+    'EQTL3.SA': {'name': 'Equatorial', 'sector': 'Energia', 'segment': 'Energia'},
+    'EVEN3.SA': {'name': 'Even', 'sector': 'Construcao', 'segment': 'Incorporacao'},
+    'EZTC3.SA': {'name': 'EZTEC', 'sector': 'Construcao', 'segment': 'Incorporacao'},
+    'FESA4.SA': {'name': 'Ferbasa', 'sector': 'Industria', 'segment': 'Siderurgia'},
+    'FLRY3.SA': {'name': 'Fleury', 'sector': 'Saude', 'segment': 'Diagnosticos'},
+    'GFSA3.SA': {'name': 'Gafisa', 'sector': 'Construcao', 'segment': 'Incorporacao'},
+    'GRND3.SA': {'name': 'Grendene', 'sector': 'Consumo', 'segment': 'Calcados'},
+    'HBSA3.SA': {'name': 'Hidrovias do Brasil', 'sector': 'Logistica', 'segment': 'Transporte'},
+    'IGTI11.SA': {'name': 'Iguatemi Unit', 'sector': 'Imobiliario', 'segment': 'Shopping'},
+    'INTB3.SA': {'name': 'Intelbras', 'sector': 'Tecnologia', 'segment': 'Hardware'},
+    'IRBR3.SA': {'name': 'IRB Brasil', 'sector': 'Financeiro', 'segment': 'Seguros'},
+    'JALL3.SA': {'name': 'Jalles Machado', 'sector': 'Agro', 'segment': 'Acucar e etanol'},
+    'KEPL3.SA': {'name': 'Kepler Weber', 'sector': 'Agro', 'segment': 'Equipamentos'},
+    'LEVE3.SA': {'name': 'Mahle Metal Leve', 'sector': 'Industria', 'segment': 'Autopecas'},
+    'LOGG3.SA': {'name': 'Log CP', 'sector': 'Imobiliario', 'segment': 'Galpoes'},
+    'MDIA3.SA': {'name': 'M Dias Branco', 'sector': 'Alimentos', 'segment': 'Alimentos'},
+    'MEAL3.SA': {'name': 'IMC', 'sector': 'Consumo', 'segment': 'Restaurantes'},
+    'MOVI3.SA': {'name': 'Movida', 'sector': 'Transporte', 'segment': 'Locacao'},
+    'NEOE3.SA': {'name': 'Neoenergia', 'sector': 'Energia', 'segment': 'Energia'},
+    'NTCO3.SA': {'name': 'Natura', 'sector': 'Consumo', 'segment': 'Cosmeticos'},
+    'ONCO3.SA': {'name': 'Oncoclínicas', 'sector': 'Saude', 'segment': 'Hospitais'},
+    'ODPV3.SA': {'name': 'Odontoprev', 'sector': 'Saude', 'segment': 'Planos odontologicos'},
+    'ORVR3.SA': {'name': 'Orizon', 'sector': 'Saneamento', 'segment': 'Residuos'},
+    'PETZ3.SA': {'name': 'Petz', 'sector': 'Consumo', 'segment': 'Pets'},
+    'POMO4.SA': {'name': 'Marcopolo', 'sector': 'Industria', 'segment': 'Autopecas'},
+    'PORT3.SA': {'name': 'Wilson Sons', 'sector': 'Logistica', 'segment': 'Portos'},
+    'QUAL3.SA': {'name': 'Qualicorp', 'sector': 'Saude', 'segment': 'Planos'},
+    'RAPT4.SA': {'name': 'Randoncorp', 'sector': 'Industria', 'segment': 'Autopecas'},
+    'RANI3.SA': {'name': 'Irani', 'sector': 'Papel e Celulose', 'segment': 'Papel'},
+    'RCSL3.SA': {'name': 'Recrusul', 'sector': 'Industria', 'segment': 'Equipamentos'},
+    'RENT3.SA': {'name': 'Localiza', 'sector': 'Transporte', 'segment': 'Locacao'},
+    'ROMI3.SA': {'name': 'Industrias Romi', 'sector': 'Industria', 'segment': 'Maquinas'},
+    'SLCE3.SA': {'name': 'SLC Agricola', 'sector': 'Agro', 'segment': 'Agricultura'},
+    'SMFT3.SA': {'name': 'Smart Fit', 'sector': 'Consumo', 'segment': 'Academias'},
+    'SMTO3.SA': {'name': 'Sao Martinho', 'sector': 'Agro', 'segment': 'Acucar e etanol'},
+    'SOJA3.SA': {'name': 'Boa Safra', 'sector': 'Agro', 'segment': 'Sementes'},
+    'STBP3.SA': {'name': 'Santos Brasil', 'sector': 'Logistica', 'segment': 'Portos'},
+    'TAEE11.SA': {'name': 'Taesa Unit', 'sector': 'Energia', 'segment': 'Transmissao'},
+    'TRIS3.SA': {'name': 'Trisul', 'sector': 'Construcao', 'segment': 'Incorporacao'},
+    'TTEN3.SA': {'name': '3tentos', 'sector': 'Agro', 'segment': 'Insumos'},
+    'VULC3.SA': {'name': 'Vulcabras', 'sector': 'Consumo', 'segment': 'Calcados'},
+    'WIZC3.SA': {'name': 'Wiz', 'sector': 'Financeiro', 'segment': 'Corretagem'},
+}
+
 def compute_volatility(close_series):
     series = close_series.dropna()
     if len(series) < 2:
@@ -148,7 +223,7 @@ def compute_liquidity_score(df_hist):
         return 0.0
     return float(close_series.tail(60).mean() * volume_series.tail(60).mean())
 
-ALL_TICKERS = {**CHEAP_CANDIDATES, **BASE_TICKERS, **ADDITIONAL_SWING_TICKERS}
+ALL_TICKERS = {**CHEAP_CANDIDATES, **BASE_TICKERS, **ADDITIONAL_SWING_TICKERS, **BROAD_UNIVERSE_TICKERS}
 
 # Sugestões adicionais para expandir o universo (serão mescladas se não existirem)
 SUGGESTED_EXTRA = [

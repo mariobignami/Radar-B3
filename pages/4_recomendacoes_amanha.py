@@ -177,6 +177,138 @@ def _build_horizon_candidates(frame):
     }
 
 
+SECTOR_MIXES = {
+    "Defensiva e dividendos": {
+        "sectors": ["Energia", "Saneamento", "Financeiro", "Bebidas", "Papel e Celulose"],
+        "description": "Busca estabilidade relativa, empresas maduras e menor giro. Mais natural para médio/longo prazo.",
+    },
+    "Crescimento e tecnologia": {
+        "sectors": ["Tecnologia", "Saude", "Consumo", "Comercio", "Educacao"],
+        "description": "Aceita mais oscilação para tentar capturar crescimento. Exige entrada parcelada e revisão frequente.",
+    },
+    "Cíclica agressiva": {
+        "sectors": ["Comercio", "Construcao", "Industria", "Transporte", "Turismo"],
+        "description": "Foco em recuperação e movimento. Pode render bem no curto/médio prazo, mas carrega risco maior.",
+    },
+    "Commodities e dólar": {
+        "sectors": ["Energia", "Mineracao", "Agro", "Alimentos", "Papel e Celulose"],
+        "description": "Mistura petróleo, mineração, agro e exportadoras. Ajuda a diversificar contra ciclos domésticos.",
+    },
+    "Brasil diversificado": {
+        "sectors": ["Financeiro", "Energia", "Comercio", "Industria", "Saude", "Tecnologia", "Mineracao"],
+        "description": "Carteira ampla para quem quer uma primeira peneira com vários motores de retorno.",
+    },
+}
+
+
+def _goal_score(frame, goal):
+    working = frame.copy()
+    risk = working['risk_score'].fillna(100)
+    prob_up = working['probability_up'].fillna(0)
+    trend = working['trend_20days'].fillna(0)
+    accuracy = working['accuracy_mean'].fillna(0)
+    confidence = working['confidence_score'].fillna(0) * 100
+    volatility = working['volatility'].fillna(0)
+    drawdown = working['max_drawdown_percent'].abs().fillna(0)
+    rsi = working['rsi_14'].fillna(50)
+    variation = working['variation_percent'].fillna(0)
+
+    if goal == "Curto prazo":
+        return (
+            prob_up * 0.32
+            + variation.clip(-4, 4) * 6.5
+            + trend.clip(-15, 15) * 0.80
+            + np.where(rsi.between(30, 62), 8.0, 0.0)
+            - risk * 0.25
+            - np.where(working['recommendation'].eq('VENDA'), 20.0, 0.0)
+        )
+    if goal == "Longo prazo":
+        return (
+            confidence * 0.28
+            + accuracy * 0.24
+            + prob_up * 0.12
+            + np.where(working['trend_regime'].eq('Alta'), 8.0, 0.0)
+            + np.where(rsi.between(35, 65), 5.0, 0.0)
+            - risk * 0.34
+            - drawdown.clip(0, 80) * 0.10
+            - volatility * 0.70
+        )
+    return (
+        prob_up * 0.23
+        + confidence * 0.22
+        + accuracy * 0.16
+        + trend.clip(-20, 20) * 0.90
+        + np.where(working['trend_regime'].isin(['Alta', 'Lateral']), 5.0, 0.0)
+        - risk * 0.26
+        - volatility * 1.10
+    )
+
+
+def _risk_limit_for_profile(profile):
+    return {
+        "Conservador": 45,
+        "Moderado": 62,
+        "Agressivo": 82,
+    }.get(profile, 62)
+
+
+def _load_directional_backtest():
+    path = Path("backtest_directional_results.json")
+    if not path.exists():
+        return pd.DataFrame()
+    try:
+        frame = pd.read_json(path)
+    except Exception:
+        return pd.DataFrame()
+    if frame.empty:
+        return frame
+    frame['date'] = pd.to_datetime(frame['date'], errors='coerce')
+    return frame
+
+
+def _build_guided_portfolio(frame, goal, sectors, risk_profile, budget, positions):
+    if frame.empty:
+        return frame.copy()
+
+    working = frame.copy()
+    if sectors:
+        working = working[working['sector'].isin(sectors)].copy()
+    if working.empty:
+        return working
+
+    risk_limit = _risk_limit_for_profile(risk_profile)
+    filtered = working[working['risk_score'].fillna(100) <= risk_limit].copy()
+    if filtered.empty:
+        filtered = working.sort_values('risk_score', ascending=True).head(max(positions, 3)).copy()
+
+    filtered['radar_score'] = _goal_score(filtered, goal)
+    filtered = filtered.sort_values(['radar_score', 'probability_up', 'risk_score'], ascending=[False, False, True])
+    portfolio = filtered.head(int(positions)).copy()
+    if portfolio.empty:
+        return portfolio
+
+    raw_weight = portfolio['radar_score'] - portfolio['radar_score'].min() + 1
+    if raw_weight.sum() <= 0:
+        portfolio['Peso sugerido (%)'] = 100 / len(portfolio)
+    else:
+        portfolio['Peso sugerido (%)'] = raw_weight / raw_weight.sum() * 100
+    portfolio['Valor sugerido (R$)'] = portfolio['Peso sugerido (%)'] / 100 * float(budget)
+    portfolio['Por que entrou'] = np.select(
+        [
+            portfolio['recommendation'].eq('COMPRA'),
+            portfolio['probability_up'].fillna(0) >= portfolio['probability_down'].fillna(100),
+            portfolio['risk_score'].fillna(100) <= 45,
+        ],
+        [
+            'Sinal de compra no modelo e score relativo alto.',
+            'Probabilidade de alta maior que queda dentro da mescla escolhida.',
+            'Risco baixo em relação ao universo selecionado.',
+        ],
+        default='Melhor combinação disponível de score, risco e tendência.'
+    )
+    return portfolio
+
+
 def _compute_portfolio_score(frame):
     accuracy = frame['accuracy_mean'].fillna(0)
     directional_accuracy = frame['directional_accuracy_global'].fillna(accuracy)
@@ -823,6 +955,7 @@ recommendation_filter = st.sidebar.multiselect(
 page_section = st.sidebar.radio(
     "Área da página",
     [
+        "Caminho guiado",
         "Ofertas por prazo",
         "Resumo rápido",
         "Radar swing trade",
@@ -849,6 +982,135 @@ if pred_date:
         )
     else:
         st.info(f"📅 Esta análise projeta o pregão de {_format_date_br(pred_date)} com base nos dados históricos mais recentes disponíveis.")
+
+if page_section == "Caminho guiado":
+    st.header("🧭 Caminho Guiado para Decidir uma Compra")
+    st.caption(
+        "A ideia é sair de uma intenção vaga para uma lista pequena de ações candidatas. "
+        "O sistema cruza setor, prazo, risco, previsão, tendência e histórico de acerto do modelo."
+    )
+
+    guide_col1, guide_col2, guide_col3 = st.columns(3)
+    with guide_col1:
+        goal = st.selectbox("Objetivo", ["Curto prazo", "Médio prazo", "Longo prazo"], index=1)
+        risk_profile = st.selectbox("Perfil de risco", ["Conservador", "Moderado", "Agressivo"], index=1)
+    with guide_col2:
+        mix_name = st.selectbox("Mescla sugerida", list(SECTOR_MIXES.keys()), index=4)
+        use_manual_sector = st.checkbox("Escolher setores manualmente", value=False)
+    with guide_col3:
+        guide_budget = st.number_input("Capital disponível (R$)", min_value=100.0, value=3000.0, step=100.0, format="%.2f")
+        guide_positions = st.selectbox("Quantidade de ações", [3, 5, 8, 10], index=1)
+
+    available_sectors = sorted(df_filtered['sector'].dropna().unique().tolist())
+    default_sectors = [sector for sector in SECTOR_MIXES[mix_name]["sectors"] if sector in available_sectors]
+    selected_sectors = default_sectors
+    if use_manual_sector:
+        selected_sectors = st.multiselect("Setores para considerar", available_sectors, default=default_sectors or available_sectors[:5])
+
+    st.info(SECTOR_MIXES[mix_name]["description"])
+
+    universe = df_filtered[df_filtered['sector'].isin(selected_sectors)].copy() if selected_sectors else df_filtered.copy()
+    guided_portfolio = _build_guided_portfolio(
+        df_filtered,
+        goal,
+        selected_sectors,
+        risk_profile,
+        guide_budget,
+        guide_positions,
+    )
+
+    bt_directional = _load_directional_backtest()
+    universe_codes = set(universe['stock_code'].dropna().astype(str))
+    bt_universe = bt_directional[bt_directional['company'].astype(str).isin(universe_codes)].copy() if not bt_directional.empty else pd.DataFrame()
+
+    m1, m2, m3, m4 = st.columns(4)
+    with m1:
+        st.metric("Ações no universo", len(universe))
+    with m2:
+        st.metric("Setores escolhidos", len(selected_sectors))
+    with m3:
+        avg_risk = universe['risk_score'].mean() if not universe.empty else np.nan
+        st.metric("Risco médio", "n/d" if pd.isna(avg_risk) else f"{avg_risk:.1f}/100")
+    with m4:
+        if not bt_universe.empty and 'direction_hit' in bt_universe.columns:
+            st.metric("Assertividade recente", f"{bt_universe['direction_hit'].mean() * 100:.1f}%")
+        else:
+            st.metric("Assertividade recente", "n/d")
+
+    if not bt_universe.empty:
+        sector_map = universe[['stock_code', 'sector']].drop_duplicates().rename(columns={'stock_code': 'company'})
+        bt_sector = bt_universe.merge(sector_map, on='company', how='left')
+        sector_accuracy = (
+            bt_sector.groupby('sector')
+            .agg(
+                Testes=('direction_hit', 'count'),
+                Assertividade=('direction_hit', lambda s: float(s.mean() * 100)),
+                Erro_Medio=('absolute_error_percent', 'mean'),
+            )
+            .reset_index()
+            .sort_values('Assertividade', ascending=False)
+        )
+        st.subheader("📌 Leitura do universo escolhido")
+        st.dataframe(
+            sector_accuracy.rename(columns={'sector': 'Setor', 'Erro_Medio': 'Erro médio (%)'}).style.format({
+                'Assertividade': '{:.1f}%',
+                'Erro médio (%)': '{:.2f}',
+            }),
+            use_container_width=True,
+            hide_index=True,
+        )
+
+    st.subheader("🎯 Carteira candidata")
+    if guided_portfolio.empty:
+        st.warning("Não encontrei candidatos com esses filtros. Tente ampliar setores ou usar perfil moderado/agressivo.")
+        st.stop()
+
+    portfolio_view = guided_portfolio[[
+        'company', 'stock_code', 'sector', 'recommendation', 'probability_up',
+        'variation_percent', 'trend_20days', 'rsi_14', 'risk_score', 'accuracy_mean',
+        'radar_score', 'Peso sugerido (%)', 'Valor sugerido (R$)', 'Por que entrou'
+    ]].rename(columns={
+        'company': 'Empresa',
+        'stock_code': 'Ticker',
+        'sector': 'Setor',
+        'recommendation': 'Sinal',
+        'probability_up': 'Prob. Alta (%)',
+        'variation_percent': 'Variação D+1 (%)',
+        'trend_20days': 'Tendência 20d (%)',
+        'rsi_14': 'RSI',
+        'risk_score': 'Risco',
+        'accuracy_mean': 'Assertividade ação (%)',
+        'radar_score': 'Score Radar',
+    })
+
+    st.dataframe(
+        portfolio_view.style.format({
+            'Prob. Alta (%)': '{:.1f}',
+            'Variação D+1 (%)': '{:+.2f}',
+            'Tendência 20d (%)': '{:+.2f}',
+            'RSI': '{:.1f}',
+            'Risco': '{:.1f}',
+            'Assertividade ação (%)': '{:.1f}',
+            'Score Radar': '{:.1f}',
+            'Peso sugerido (%)': '{:.2f}',
+            'Valor sugerido (R$)': 'R$ {:,.2f}',
+        }),
+        use_container_width=True,
+        hide_index=True,
+    )
+
+    st.subheader("✅ Caminho das pedras")
+    st.markdown(
+        f"""
+        1. **Comece pelo objetivo:** {goal} muda o peso entre previsão, tendência, risco e histórico.
+        2. **Use a mescla:** {mix_name} reduz o universo para setores coerentes com a tese.
+        3. **Cheque assertividade:** prefira setores/ações com mais testes e acerto direcional melhor.
+        4. **Entre fracionado:** use o valor sugerido como teto inicial, não como obrigação.
+        5. **Revise no próximo pregão:** se a probabilidade virar contra ou o risco subir, reduza ou espere.
+        """
+    )
+    st.warning("Isto é uma triagem educacional. Para longo prazo, confira fundamentos, dívida, lucros e diversificação antes de comprar.")
+    st.stop()
 
 if page_section == "Ofertas por prazo":
     st.header("🟢 Candidatos de Compra por Prazo")
