@@ -73,19 +73,27 @@ class StockPredictor:
             normalized["max_drawdown_percent"] = float(drawdown_percent)
             normalized["drawdown_20d"] = float(drawdown_percent) / 100
 
-        open_gap_percent = indicators.get(
-            "open_gap_percent", indicators.get("open_gap_pct")
-        )
+        open_gap_percent = indicators.get("open_gap_percent")
+        open_gap_ratio = indicators.get("open_gap_pct")
         if open_gap_percent is not None:
-            normalized["open_gap_percent"] = float(open_gap_percent)
-            normalized["open_gap_pct"] = float(open_gap_percent) / 100
+            open_gap_percent = float(open_gap_percent)
+            normalized["open_gap_percent"] = open_gap_percent
+            normalized["open_gap_pct"] = open_gap_percent / 100
+        elif open_gap_ratio is not None:
+            open_gap_ratio = float(open_gap_ratio)
+            normalized["open_gap_pct"] = open_gap_ratio
+            normalized["open_gap_percent"] = open_gap_ratio * 100
 
         volume_rel_percent = indicators.get("volume_rel_20d_percent")
-        if volume_rel_percent is None:
-            volume_rel_percent = indicators.get("volume_rel_20d")
+        volume_rel_ratio = indicators.get("volume_rel_20d")
         if volume_rel_percent is not None:
-            normalized["volume_rel_20d_percent"] = float(volume_rel_percent)
-            normalized["volume_rel_20d"] = (float(volume_rel_percent) / 100) - 1
+            volume_rel_percent = float(volume_rel_percent)
+            normalized["volume_rel_20d_percent"] = volume_rel_percent
+            normalized["volume_rel_20d"] = (volume_rel_percent / 100) - 1
+        elif volume_rel_ratio is not None:
+            volume_rel_ratio = float(volume_rel_ratio)
+            normalized["volume_rel_20d"] = volume_rel_ratio
+            normalized["volume_rel_20d_percent"] = (volume_rel_ratio + 1) * 100
 
         return normalized
 
