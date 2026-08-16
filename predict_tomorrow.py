@@ -241,7 +241,7 @@ def make_direction_model() -> Pipeline:
     return Pipeline(steps=[("preprocess", preprocessor), ("model", model)])
 
 
-def directional_backtest(dataset: pd.DataFrame, test_days: int = 80, min_train_days: int = 500):
+def directional_backtest(dataset: pd.DataFrame, test_days: int = 80, min_train_days: int = 40):
     valid_dates = sorted(pd.to_datetime(dataset["datetime"].dropna().unique()))
     if len(valid_dates) <= min_train_days + 1:
         return pd.DataFrame(), {}
@@ -252,7 +252,7 @@ def directional_backtest(dataset: pd.DataFrame, test_days: int = 80, min_train_d
     for test_date in test_dates:
         train = dataset[dataset["datetime"] < test_date].copy()
         test = dataset[dataset["datetime"] == test_date].copy()
-        if len(train) < min_train_days or test.empty:
+        if train["datetime"].nunique() < min_train_days or test.empty:
             continue
 
         train["target_up"] = (train["target_return_next_day"] > 0).astype(int)
