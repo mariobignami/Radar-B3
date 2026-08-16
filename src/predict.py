@@ -7,7 +7,6 @@ import numpy as np
 import joblib
 from pathlib import Path
 from .config import Config
-from sklearn.preprocessing import MinMaxScaler, LabelEncoder
 
 class StockPredictor:
     """Classe para fazer predições de preços de ações."""
@@ -199,11 +198,36 @@ class StockPredictor:
             return None
 
     def predict(self, input_data):
-        prepared_data = self._prepare_input(input_data)
-        prediction = self.model.predict(prepared_data, verbose=0)
-        
-        # Retorno tratado conforme o tipo de modelo
-        return float(prediction[0][0]) if self.model_type == 'neural_network' else float(prediction[0])
+        """
+        Interface única de predição para manter compatibilidade com chamadas legadas.
+
+        Espera um dicionário com os campos:
+        open_price, high_price, low_price, quantity (obrigatórios)
+        e campos opcionais equivalentes aos parâmetros de predict_single.
+        """
+        if not isinstance(input_data, dict):
+            raise ValueError("input_data deve ser um dicionário com os campos de entrada.")
+
+        required = ["open_price", "high_price", "low_price", "quantity"]
+        missing = [field for field in required if field not in input_data]
+        if missing:
+            raise ValueError(f"Campos obrigatórios ausentes: {', '.join(missing)}")
+
+        result = self.predict_single(
+            open_price=input_data["open_price"],
+            high_price=input_data["high_price"],
+            low_price=input_data["low_price"],
+            quantity=input_data["quantity"],
+            stock_code=input_data.get("stock_code"),
+            sector=input_data.get("sector", "Energia"),
+            segment=input_data.get("segment", "Petróleo"),
+            month=int(input_data.get("month", 4)),
+            day_week=int(input_data.get("day_week", 0)),
+            technical_indicators=input_data.get("technical_indicators"),
+        )
+        if result.get("status") != "Sucesso" or result.get("predicted_price") is None:
+            raise ValueError(result.get("error", "Falha ao gerar predição."))
+        return float(result["predicted_price"])
 
 if __name__ == "__main__":
     # Exemplo de uso com dados fictícios de uma ação

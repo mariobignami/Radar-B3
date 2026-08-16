@@ -266,6 +266,17 @@ def _load_directional_backtest():
     return frame
 
 
+def _load_directional_summary():
+    path = Path("backtest_directional_summary.json")
+    if not path.exists():
+        return {}
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+    return data if isinstance(data, dict) else {}
+
+
 def _build_guided_portfolio(frame, goal, sectors, risk_profile, budget, positions):
     if frame.empty:
         return frame.copy()
@@ -1004,6 +1015,7 @@ if not predictions:
     st.stop()
 
 df_pred = pd.DataFrame(predictions)
+directional_summary = _load_directional_summary()
 
 analysis_date = None
 if not df_pred.empty and 'analysis_base_date' in df_pred.columns:
@@ -1078,6 +1090,19 @@ if pred_date:
         )
     else:
         st.info(f"📅 Esta análise projeta o pregão de {_format_date_br(pred_date)} com base nos dados históricos mais recentes disponíveis.")
+
+if directional_summary:
+    recent_20d = directional_summary.get("recent_accuracy_20d")
+    recent_60d = directional_summary.get("recent_accuracy_60d")
+    overall_acc = directional_summary.get("directional_accuracy")
+    mae_percent = directional_summary.get("mae_percent")
+    tests = directional_summary.get("tests")
+    c1, c2, c3, c4, c5 = st.columns(5)
+    c1.metric("Assertividade direcional (global)", "n/d" if overall_acc is None else f"{float(overall_acc):.1f}%")
+    c2.metric("Assertividade recente (20 pregões)", "n/d" if recent_20d is None else f"{float(recent_20d):.1f}%")
+    c3.metric("Assertividade recente (60 pregões)", "n/d" if recent_60d is None else f"{float(recent_60d):.1f}%")
+    c4.metric("Erro médio absoluto", "n/d" if mae_percent is None else f"{float(mae_percent):.2f}%")
+    c5.metric("Amostras de backtest", "n/d" if tests is None else str(int(tests)))
 
 if page_section == "Caminho guiado":
     st.header("🧭 Caminho Guiado para Decidir uma Compra")
@@ -1155,6 +1180,34 @@ if page_section == "Caminho guiado":
             use_container_width=True,
             hide_index=True,
         )
+
+    if directional_summary:
+        with st.expander("📊 Métricas publicadas por regime/ação/setor"):
+            regime_metrics = pd.DataFrame(directional_summary.get("regime_metrics", []))
+            company_metrics = pd.DataFrame(directional_summary.get("company_metrics", []))
+            sector_metrics = pd.DataFrame(directional_summary.get("sector_metrics", []))
+
+            if not regime_metrics.empty:
+                st.caption("Regimes de mercado")
+                st.dataframe(
+                    regime_metrics.rename(columns={"trend_regime": "Regime", "tests": "Testes", "directional_accuracy": "Assertividade (%)", "mae_percent": "Erro médio (%)"}),
+                    use_container_width=True,
+                    hide_index=True,
+                )
+            if not company_metrics.empty:
+                st.caption("Por ação (ticker)")
+                st.dataframe(
+                    company_metrics.rename(columns={"company": "Ticker", "tests": "Testes", "directional_accuracy": "Assertividade (%)", "mae_percent": "Erro médio (%)"}),
+                    use_container_width=True,
+                    hide_index=True,
+                )
+            if not sector_metrics.empty:
+                st.caption("Por setor")
+                st.dataframe(
+                    sector_metrics.rename(columns={"sector": "Setor", "tests": "Testes", "directional_accuracy": "Assertividade (%)", "mae_percent": "Erro médio (%)"}),
+                    use_container_width=True,
+                    hide_index=True,
+                )
 
     st.subheader("🎯 Carteira candidata")
     if guided_portfolio.empty:
@@ -1720,6 +1773,17 @@ if not focused_df.empty:
     if pd.notna(focus_row.get('analysis_base_date')):
         st.write(f"**Base da análise:** {_format_date_br(focus_row.get('analysis_base_date'))}  ")
     st.write(f"**O que fazer:** {decision_text}")
+    st.info(
+        " | ".join(
+            [
+                f"Prob. Alta: {focus_row.get('probability_up', np.nan):.1f}%",
+                f"Prob. Queda: {focus_row.get('probability_down', np.nan):.1f}%",
+                f"Risco: {focus_row.get('risk_score', np.nan):.1f}/100",
+                f"Confiança: {focus_row.get('confidence_score', 0.0) * 100:.0f}%",
+                f"Motivo: {focus_row.get('no_trade_reason', 'n/d')}",
+            ]
+        )
+    )
 
     detail_cols = st.columns(3)
     with detail_cols[0]:
@@ -1731,6 +1795,17 @@ if not focused_df.empty:
     with detail_cols[2]:
         st.metric("RSI", f"{focus_row['rsi_14']:.1f}")
         st.metric("Tendência 20d", f"{focus_row['trend_20days']:+.2f}%")
+        st.metric("Edge mín. exigido", f"{focus_row.get('min_edge_required_percent', 0):.1f}%")
+
+    if bool(focus_row.get('no_trade_flag', False)):
+        st.warning(f"⚠️ Regra de NÃO OPERAR acionada: {focus_row.get('no_trade_reason', 'Sem vantagem estatística suficiente.')}")
+    else:
+        st.success("✅ Critérios mínimos de operação atendidos para este ativo.")
+
+    st.caption(
+        "Não operar quando: probabilidade ficar na zona neutra, edge histórico ficar abaixo do mínimo "
+        "ou a tendência estiver contra o sinal com baixa convicção."
+    )
 
     if pd.notna(focus_row.get('analysis_base_date')):
         st.caption("A leitura acima compara uma previsão de D+1 com o histórico disponível até a data-base mostrada.")
