@@ -93,17 +93,15 @@
 
 ## 🎯 CONCLUSÕES
 
-✅ **Modelo Validado**
-- 99.46% de acurácia em 30 predições
-- Erro menor que R$ 0.50 em 95% dos casos
-- Consistente em todas as 5 ações
-- Robusto em diferentes períodos
+✅ **Leitura histórica do período testado**
+- Este resultado é um recorte do backtest do período indicado
+- A assertividade pode variar por janela de mercado e por ativo
+- Use como referência educacional, não como garantia de acerto futuro
 
-✅ **Pronto para Produção**
-- Dados validados: 1.248 dias (5 anos)
-- R² = 0.9998 (excelente fit)
-- Sem overfitting (treino vs teste similares)
-- Desempenho estável
+⚠️ **Não é pronto para produção financeira**
+- O modelo depende de padrões históricos que podem quebrar
+- Eventos exógenos (notícias, política, crises) não entram no sinal
+- Toda decisão real exige validação adicional e gestão de risco
 
 ✅ **Casos de Sucesso**
 - VALE3: 100% de acurácia em 20/04
@@ -179,7 +177,7 @@ Sempre consulte um profissional de mercado antes de tomar decisões financeiras.
 
 ---
 
-**Status:** ✅ Projeto Completo  
+**Status:** ✅ Snapshot histórico (educacional)  
 **Data:** 29 de Abril de 2026  
 **Versão:** 1.0  
 **Projeto:** Radar B3

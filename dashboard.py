@@ -514,7 +514,7 @@ elif page == "ℹ️ Sobre":
     ### Limitações Críticas:
     
     1. **Backtesting ≠ Futuro Real**
-       - Acurácia de 99.46% é com **dados históricos já conhecidos**
+       - A assertividade em backtest é calculada em dados históricos e pode variar bastante por janela
        - O futuro é desconhecido e pode ser COMPLETAMENTE diferente
        - Eventos inesperados podem quebrar o modelo
     
@@ -532,7 +532,7 @@ elif page == "ℹ️ Sobre":
        - ❌ Uma notícia ruim muda tudo
        - ❌ Correlações históricas podem não se repetir
     
-    ### Por que ainda assim 99.46% de acurácia?
+    ### Por que o backtest pode parecer forte?
     
     - ✓ Os dados históricos passados tendem a se repetir
     - ✓ Padrões curtos são previsíveis

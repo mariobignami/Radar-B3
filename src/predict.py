@@ -5,9 +5,9 @@ Utiliza o modelo treinado para fazer predições de preços de fechamento
 import pandas as pd
 import numpy as np
 import joblib
+from datetime import datetime, date
 from pathlib import Path
 from .config import Config
-from sklearn.preprocessing import MinMaxScaler, LabelEncoder
 
 class StockPredictor:
     """Classe para fazer predições de preços de ações."""
@@ -89,23 +89,49 @@ class StockPredictor:
 
         return normalized
 
+    @staticmethod
+    def _resolve_temporal_features(month=None, day_week=None, year=None, reference_date=None):
+        if reference_date is not None:
+            if isinstance(reference_date, str):
+                base_date = datetime.fromisoformat(reference_date).date()
+            elif isinstance(reference_date, datetime):
+                base_date = reference_date.date()
+            elif isinstance(reference_date, date):
+                base_date = reference_date
+            else:
+                raise ValueError("reference_date deve ser date, datetime ou string ISO (YYYY-MM-DD).")
+        else:
+            base_date = datetime.now().date()
+
+        resolved_month = int(month) if month is not None else int(base_date.month)
+        resolved_day_week = int(day_week) if day_week is not None else int(base_date.weekday())
+        resolved_year = int(year) if year is not None else int(base_date.year)
+        return resolved_month, resolved_day_week, resolved_year
+
     def predict_single(self, open_price, high_price, low_price, quantity, 
                       stock_code=None, sector='Energia', segment='Petróleo',
-                      month=4, day_week=0, technical_indicators=None):
+                      month=None, day_week=None, year=None, reference_date=None,
+                      technical_indicators=None):
         """
         Faz uma predição para um único ponto de dados.
         """
         try:
             # Criar DataFrame com TODAS as colunas esperadas, na ordem correta
+            month_value, day_week_value, year_value = self._resolve_temporal_features(
+                month=month,
+                day_week=day_week,
+                year=year,
+                reference_date=reference_date,
+            )
             normalized_indicators = self._normalize_technical_indicators(technical_indicators)
             input_values = {
                 'stockCodeCompany': [stock_code] if stock_code else ["UNKNOWN"],
                 'sectorCompany': [sector],
                 'segmentCompany': [segment],
                 'dayTime': [15],
-                'dayWeekTime': [day_week],
-                'monthTime': [month],
-                'yearTime': [2026],
+                'dayWeekTime': [day_week_value],
+                'monthTime': [month_value],
+                'yearTime': [year_value],
                 'openValueStock': [float(open_price)],
                 'highValueStock': [float(high_price)],
                 'lowValueStock': [float(low_price)],
@@ -199,11 +225,38 @@ class StockPredictor:
             return None
 
     def predict(self, input_data):
-        prepared_data = self._prepare_input(input_data)
-        prediction = self.model.predict(prepared_data, verbose=0)
-        
-        # Retorno tratado conforme o tipo de modelo
-        return float(prediction[0][0]) if self.model_type == 'neural_network' else float(prediction[0])
+        """
+        Interface única de predição para manter compatibilidade com chamadas legadas.
+
+        Espera um dicionário com os campos:
+        open_price, high_price, low_price, quantity (obrigatórios)
+        e campos opcionais equivalentes aos parâmetros de predict_single.
+        """
+        if not isinstance(input_data, dict):
+            raise ValueError("input_data deve ser um dicionário com os campos de entrada.")
+
+        required = ["open_price", "high_price", "low_price", "quantity"]
+        missing = [field for field in required if field not in input_data]
+        if missing:
+            raise ValueError(f"Campos obrigatórios ausentes: {', '.join(missing)}")
+
+        result = self.predict_single(
+            open_price=input_data["open_price"],
+            high_price=input_data["high_price"],
+            low_price=input_data["low_price"],
+            quantity=input_data["quantity"],
+            stock_code=input_data.get("stock_code"),
+            sector=input_data.get("sector", "Energia"),
+            segment=input_data.get("segment", "Petróleo"),
+            month=input_data.get("month"),
+            day_week=input_data.get("day_week"),
+            year=input_data.get("year"),
+            reference_date=input_data.get("reference_date"),
+            technical_indicators=input_data.get("technical_indicators"),
+        )
+        if result.get("status") != "Sucesso" or result.get("predicted_price") is None:
+            raise ValueError(result.get("error", "Falha ao gerar predição."))
+        return float(result["predicted_price"])
 
 if __name__ == "__main__":
     # Exemplo de uso com dados fictícios de uma ação

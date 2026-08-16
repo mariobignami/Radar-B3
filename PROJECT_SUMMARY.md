@@ -74,11 +74,11 @@ ROOT/
 - **Erro Médio:** R$ 0.21 por ação
 - **Predições Testadas:** 30 (em 6 dias)
 
-### 🏆 Destaques
+### 🏆 Destaques históricos (não garantem futuro)
 - VALE3: 100% de acurácia em 20/04
 - MGLU3: 100% de acurácia em 27/04
 - Nenhuma predição com menos de 98% de acurácia
-- Modelo robusto e confiável
+- Modelo útil para estudo, com risco real em uso financeiro
 
 ### 📊 Dados
 - 1.248 dias de histórico
@@ -268,9 +268,9 @@ Qualquer dúvida, verifique os arquivos DASHBOARD_GUIDE.md e BACKTEST_SUMMARY.md
 
 ---
 
-**Status do Projeto:** ✅ CONCLUÍDO  
+**Status do Projeto:** ✅ CONCLUÍDO (uso educacional)  
 **Data:** 29 de Abril de 2026  
 **Versão:** 1.0  
 **Projeto:** Radar B3  
 
-🎉 **Projeto 100% funcional e testado!**
+🎉 **Projeto funcional para estudo e monitoramento de sinais.**
