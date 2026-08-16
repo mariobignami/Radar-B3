@@ -5,6 +5,7 @@ Utiliza o modelo treinado para fazer predições de preços de fechamento
 import pandas as pd
 import numpy as np
 import joblib
+from datetime import datetime, date
 from pathlib import Path
 from .config import Config
 
@@ -88,23 +89,49 @@ class StockPredictor:
 
         return normalized
 
+    @staticmethod
+    def _resolve_temporal_features(month=None, day_week=None, year=None, reference_date=None):
+        if reference_date is not None:
+            if isinstance(reference_date, str):
+                base_date = datetime.fromisoformat(reference_date).date()
+            elif isinstance(reference_date, datetime):
+                base_date = reference_date.date()
+            elif isinstance(reference_date, date):
+                base_date = reference_date
+            else:
+                raise ValueError("reference_date deve ser date, datetime ou string ISO (YYYY-MM-DD).")
+        else:
+            base_date = datetime.now().date()
+
+        resolved_month = int(month) if month is not None else int(base_date.month)
+        resolved_day_week = int(day_week) if day_week is not None else int(base_date.weekday())
+        resolved_year = int(year) if year is not None else int(base_date.year)
+        return resolved_month, resolved_day_week, resolved_year
+
     def predict_single(self, open_price, high_price, low_price, quantity, 
                       stock_code=None, sector='Energia', segment='Petróleo',
-                      month=4, day_week=0, technical_indicators=None):
+                      month=None, day_week=None, year=None, reference_date=None,
+                      technical_indicators=None):
         """
         Faz uma predição para um único ponto de dados.
         """
         try:
             # Criar DataFrame com TODAS as colunas esperadas, na ordem correta
+            month_value, day_week_value, year_value = self._resolve_temporal_features(
+                month=month,
+                day_week=day_week,
+                year=year,
+                reference_date=reference_date,
+            )
             normalized_indicators = self._normalize_technical_indicators(technical_indicators)
             input_values = {
                 'stockCodeCompany': [stock_code] if stock_code else ["UNKNOWN"],
                 'sectorCompany': [sector],
                 'segmentCompany': [segment],
                 'dayTime': [15],
-                'dayWeekTime': [day_week],
-                'monthTime': [month],
-                'yearTime': [2026],
+                'dayWeekTime': [day_week_value],
+                'monthTime': [month_value],
+                'yearTime': [year_value],
                 'openValueStock': [float(open_price)],
                 'highValueStock': [float(high_price)],
                 'lowValueStock': [float(low_price)],
@@ -221,8 +248,10 @@ class StockPredictor:
             stock_code=input_data.get("stock_code"),
             sector=input_data.get("sector", "Energia"),
             segment=input_data.get("segment", "Petróleo"),
-            month=int(input_data.get("month", 4)),
-            day_week=int(input_data.get("day_week", 0)),
+            month=input_data.get("month"),
+            day_week=input_data.get("day_week"),
+            year=input_data.get("year"),
+            reference_date=input_data.get("reference_date"),
             technical_indicators=input_data.get("technical_indicators"),
         )
         if result.get("status") != "Sucesso" or result.get("predicted_price") is None:
