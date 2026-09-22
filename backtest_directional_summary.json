@@ -1,1020 +1,1020 @@
 {
-  "tests": 3501,
+  "tests": 3600,
   "test_days": 36,
-  "directional_accuracy": 48.61468151956584,
-  "mae_percent": 2.0618137244019037,
-  "buy_precision_55": 50.3,
-  "sell_precision_45": 45.210494203782794,
-  "buy_signals_55": 1000,
-  "sell_signals_45": 1639,
-  "mean_predicted_return_percent": -0.13910207417012815,
-  "mean_real_return_percent": 0.24554002960286664,
-  "recent_accuracy_20d": 43.924250394529196,
-  "recent_accuracy_60d": 48.61468151956584,
+  "directional_accuracy": 49.22222222222222,
+  "mae_percent": 2.080803736478612,
+  "buy_precision_55": 49.3570722057369,
+  "sell_precision_45": 48.41823056300268,
+  "buy_signals_55": 1011,
+  "sell_signals_45": 1865,
+  "mean_predicted_return_percent": -0.15491015381986611,
+  "mean_real_return_percent": 0.23422558254798587,
+  "recent_accuracy_20d": 49.55,
+  "recent_accuracy_60d": 49.22222222222222,
   "regime_metrics": [
     {
-      "trend_regime": "Lateral",
-      "tests": 614,
-      "directional_accuracy": 50.3257328990228,
-      "mae_percent": 2.1182584847878103,
-      "mean_probability_up": 0.5061447979075553,
-      "mean_real_return_percent": 0.47239630777676805
+      "trend_regime": "Baixa",
+      "tests": 1213,
+      "directional_accuracy": 50.45342126957956,
+      "mae_percent": 2.1736670630485024,
+      "mean_probability_up": 0.4248714805165732,
+      "mean_real_return_percent": 0.056855969369111845
     },
     {
       "trend_regime": "Alta",
-      "tests": 1655,
-      "directional_accuracy": 49.003021148036254,
-      "mae_percent": 1.9161940841212577,
-      "mean_probability_up": 0.5046673714657258,
-      "mean_real_return_percent": 0.25317483894098813
+      "tests": 1762,
+      "directional_accuracy": 49.659477866061295,
+      "mae_percent": 1.9705579630802588,
+      "mean_probability_up": 0.49975651389400383,
+      "mean_real_return_percent": 0.2753692827621435
     },
     {
-      "trend_regime": "Baixa",
-      "tests": 1232,
-      "directional_accuracy": 47.24025974025974,
-      "mae_percent": 2.2293002680606073,
-      "mean_probability_up": 0.4221426037806878,
-      "mean_real_return_percent": 0.12222398718941985
+      "trend_regime": "Lateral",
+      "tests": 625,
+      "directional_accuracy": 45.6,
+      "mae_percent": 2.2113794766364068,
+      "mean_probability_up": 0.48965071010560424,
+      "mean_real_return_percent": 0.4624722081617915
     }
   ],
   "company_metrics": [
     {
-      "company": "GOAU4",
-      "tests": 35,
-      "directional_accuracy": 71.42857142857143,
-      "mae_percent": 1.614316468358034,
-      "mean_probability_up": 0.4809201984708498,
-      "mean_real_return_percent": 0.22424278963758723
-    },
-    {
-      "company": "GGBR4",
-      "tests": 35,
-      "directional_accuracy": 68.57142857142857,
-      "mae_percent": 1.707258621097779,
-      "mean_probability_up": 0.49265563292739123,
-      "mean_real_return_percent": 0.11843053339449254
-    },
-    {
-      "company": "VAMO3",
-      "tests": 35,
-      "directional_accuracy": 65.71428571428571,
-      "mae_percent": 3.100672977330665,
-      "mean_probability_up": 0.44519038093321545,
-      "mean_real_return_percent": 0.2157620240127276
-    },
-    {
-      "company": "USIM5",
-      "tests": 35,
-      "directional_accuracy": 65.71428571428571,
-      "mae_percent": 2.318562435878038,
-      "mean_probability_up": 0.47224466208836385,
-      "mean_real_return_percent": -0.47360938206644787
-    },
-    {
-      "company": "YDUQ3",
-      "tests": 35,
-      "directional_accuracy": 62.857142857142854,
-      "mae_percent": 2.206098504607452,
-      "mean_probability_up": 0.47031503369120436,
-      "mean_real_return_percent": 0.8087531211378506
-    },
-    {
-      "company": "CMIN3",
-      "tests": 35,
-      "directional_accuracy": 60.0,
-      "mae_percent": 2.7160084096063923,
-      "mean_probability_up": 0.46593459203360277,
-      "mean_real_return_percent": -0.19732571696087417
-    },
-    {
-      "company": "PCAR3",
-      "tests": 35,
-      "directional_accuracy": 60.0,
-      "mae_percent": 3.094043142770107,
-      "mean_probability_up": 0.45247638198591794,
-      "mean_real_return_percent": 0.2977439954595645
-    },
-    {
-      "company": "BRKM5",
-      "tests": 35,
-      "directional_accuracy": 60.0,
-      "mae_percent": 4.595343589734141,
-      "mean_probability_up": 0.45686794502740746,
-      "mean_real_return_percent": -0.5132238937937965
-    },
-    {
-      "company": "COGN3",
-      "tests": 35,
-      "directional_accuracy": 57.14285714285714,
-      "mae_percent": 2.0711951677067377,
-      "mean_probability_up": 0.4582083132341234,
-      "mean_real_return_percent": 0.12608979992757594
-    },
-    {
-      "company": "CURY3",
-      "tests": 35,
-      "directional_accuracy": 57.14285714285714,
-      "mae_percent": 2.2216119894101176,
-      "mean_probability_up": 0.4903398266363443,
-      "mean_real_return_percent": 0.11762858727004608
-    },
-    {
-      "company": "BHIA3",
-      "tests": 35,
-      "directional_accuracy": 57.14285714285714,
-      "mae_percent": 8.74421380712861,
-      "mean_probability_up": 0.44269156979971297,
-      "mean_real_return_percent": 1.18501581204387
-    },
-    {
-      "company": "SMFT3",
-      "tests": 35,
-      "directional_accuracy": 57.14285714285714,
-      "mae_percent": 1.4714284371544617,
-      "mean_probability_up": 0.4842799532972883,
-      "mean_real_return_percent": -0.37051930135591604
-    },
-    {
-      "company": "IRBR3",
-      "tests": 35,
-      "directional_accuracy": 57.14285714285714,
-      "mae_percent": 1.8214238756362795,
-      "mean_probability_up": 0.49984538513029336,
-      "mean_real_return_percent": 0.4571862622896706
-    },
-    {
-      "company": "POMO4",
-      "tests": 35,
-      "directional_accuracy": 57.14285714285714,
-      "mae_percent": 2.041113430001119,
-      "mean_probability_up": 0.4642081140476544,
-      "mean_real_return_percent": -0.4905591617260027
-    },
-    {
-      "company": "BMOB3",
-      "tests": 35,
-      "directional_accuracy": 57.14285714285714,
-      "mae_percent": 1.760796977741509,
-      "mean_probability_up": 0.4862618591856916,
-      "mean_real_return_percent": 0.566614109034731
-    },
-    {
-      "company": "CEAB3",
-      "tests": 35,
-      "directional_accuracy": 54.285714285714285,
-      "mae_percent": 2.425514434187863,
-      "mean_probability_up": 0.46743046109439357,
-      "mean_real_return_percent": -0.009600480790791023
-    },
-    {
-      "company": "CMIG4",
-      "tests": 35,
-      "directional_accuracy": 54.285714285714285,
-      "mae_percent": 1.3106361940422349,
-      "mean_probability_up": 0.4747190372705864,
-      "mean_real_return_percent": 0.06696426320510294
-    },
-    {
-      "company": "BBDC4",
-      "tests": 35,
-      "directional_accuracy": 54.285714285714285,
-      "mae_percent": 1.1802442496063306,
-      "mean_probability_up": 0.4866550198147074,
-      "mean_real_return_percent": -0.03379629934819915
-    },
-    {
-      "company": "BEEF3",
-      "tests": 35,
-      "directional_accuracy": 54.285714285714285,
-      "mae_percent": 2.453804959903251,
-      "mean_probability_up": 0.4661130514014228,
-      "mean_real_return_percent": 0.44144745231576854
-    },
-    {
-      "company": "ALPA4",
-      "tests": 35,
-      "directional_accuracy": 54.285714285714285,
-      "mae_percent": 2.31397832930631,
-      "mean_probability_up": 0.46090923116180765,
-      "mean_real_return_percent": 0.3569440632850349
-    },
-    {
-      "company": "WEGE3",
-      "tests": 35,
-      "directional_accuracy": 54.285714285714285,
-      "mae_percent": 1.1208192392904557,
-      "mean_probability_up": 0.4821324995411674,
-      "mean_real_return_percent": 0.3683041337711049
+      "company": "SLCE3",
+      "tests": 36,
+      "directional_accuracy": 66.66666666666666,
+      "mae_percent": 1.7399130362012376,
+      "mean_probability_up": 0.4790750328425607,
+      "mean_real_return_percent": 0.807990847555721
     },
     {
       "company": "KEPL3",
-      "tests": 35,
-      "directional_accuracy": 54.285714285714285,
-      "mae_percent": 1.3197968954572217,
-      "mean_probability_up": 0.4835634746752096,
-      "mean_real_return_percent": 0.05391501874840846
-    },
-    {
-      "company": "FESA4",
-      "tests": 35,
-      "directional_accuracy": 54.285714285714285,
-      "mae_percent": 2.096241559316299,
-      "mean_probability_up": 0.47856680576244504,
-      "mean_real_return_percent": -0.1496756442590311
-    },
-    {
-      "company": "GRND3",
-      "tests": 35,
-      "directional_accuracy": 54.285714285714285,
-      "mae_percent": 1.1576706160816612,
-      "mean_probability_up": 0.4729537994532739,
-      "mean_real_return_percent": 0.048225125122086814
-    },
-    {
-      "company": "TEND3",
-      "tests": 35,
-      "directional_accuracy": 54.285714285714285,
-      "mae_percent": 2.3537433550651103,
-      "mean_probability_up": 0.49126851366372537,
-      "mean_real_return_percent": 0.1947920068965514
-    },
-    {
-      "company": "TIMS3",
-      "tests": 35,
-      "directional_accuracy": 54.285714285714285,
-      "mae_percent": 1.0752556474691923,
-      "mean_probability_up": 0.49958439002861305,
-      "mean_real_return_percent": 0.005071578797218709
-    },
-    {
-      "company": "AURE3",
-      "tests": 35,
-      "directional_accuracy": 54.285714285714285,
-      "mae_percent": 1.5316765102613155,
-      "mean_probability_up": 0.4790302599912401,
-      "mean_real_return_percent": 0.3220446219680631
-    },
-    {
-      "company": "HAPV3",
-      "tests": 35,
-      "directional_accuracy": 51.42857142857142,
-      "mae_percent": 4.070985142974589,
-      "mean_probability_up": 0.45202563789807143,
-      "mean_real_return_percent": -1.2390541358883667
-    },
-    {
-      "company": "ALOS3",
-      "tests": 35,
-      "directional_accuracy": 51.42857142857142,
-      "mae_percent": 1.264065656376009,
-      "mean_probability_up": 0.48531891383901443,
-      "mean_real_return_percent": 0.28114479778414553
-    },
-    {
-      "company": "ASAI3",
-      "tests": 35,
-      "directional_accuracy": 51.42857142857142,
-      "mae_percent": 2.2688126839251135,
-      "mean_probability_up": 0.45300834104551035,
-      "mean_real_return_percent": 0.6541480231712926
-    },
-    {
-      "company": "RENT3",
-      "tests": 35,
-      "directional_accuracy": 51.42857142857142,
-      "mae_percent": 1.8447193862304707,
-      "mean_probability_up": 0.48337089365897906,
-      "mean_real_return_percent": -0.06715099211928828
+      "tests": 36,
+      "directional_accuracy": 66.66666666666666,
+      "mae_percent": 1.2563344063486097,
+      "mean_probability_up": 0.4741293115964232,
+      "mean_real_return_percent": 0.039438329849949806
     },
     {
       "company": "PRIO3",
-      "tests": 35,
-      "directional_accuracy": 51.42857142857142,
-      "mae_percent": 1.914762438109973,
-      "mean_probability_up": 0.4733535744511557,
-      "mean_real_return_percent": 0.25678460958653754
+      "tests": 36,
+      "directional_accuracy": 63.888888888888886,
+      "mae_percent": 1.8207840642735382,
+      "mean_probability_up": 0.46948511199953935,
+      "mean_real_return_percent": 0.07976949611973504
     },
     {
-      "company": "SBSP3",
-      "tests": 35,
-      "directional_accuracy": 51.42857142857142,
-      "mae_percent": 1.3859617190917364,
-      "mean_probability_up": 0.496689771152679,
-      "mean_real_return_percent": 0.09335469623651109
+      "company": "BBDC4",
+      "tests": 36,
+      "directional_accuracy": 61.111111111111114,
+      "mae_percent": 1.1598126001878761,
+      "mean_probability_up": 0.4844136234877714,
+      "mean_real_return_percent": -0.012744086332681155
     },
     {
-      "company": "MOVI3",
-      "tests": 35,
-      "directional_accuracy": 51.42857142857142,
-      "mae_percent": 2.9460769741130717,
-      "mean_probability_up": 0.4581964193582768,
-      "mean_real_return_percent": 0.08126731431607867
+      "company": "GOAU4",
+      "tests": 36,
+      "directional_accuracy": 61.111111111111114,
+      "mae_percent": 1.8056560193894464,
+      "mean_probability_up": 0.46780810819452806,
+      "mean_real_return_percent": 0.18019037959577222
     },
     {
-      "company": "LEVE3",
-      "tests": 35,
-      "directional_accuracy": 51.42857142857142,
-      "mae_percent": 1.1187840383488836,
-      "mean_probability_up": 0.4932778788497695,
-      "mean_real_return_percent": 0.1556619446298207
+      "company": "USIM5",
+      "tests": 36,
+      "directional_accuracy": 61.111111111111114,
+      "mae_percent": 2.1378701365995942,
+      "mean_probability_up": 0.461570936154322,
+      "mean_real_return_percent": -0.19871473441641085
     },
     {
-      "company": "IGTI11",
-      "tests": 35,
-      "directional_accuracy": 51.42857142857142,
-      "mae_percent": 1.5196311154004358,
-      "mean_probability_up": 0.48058914946151543,
-      "mean_real_return_percent": 0.21859502926835486
+      "company": "GGBR4",
+      "tests": 36,
+      "directional_accuracy": 58.333333333333336,
+      "mae_percent": 1.8400328284268488,
+      "mean_probability_up": 0.47643879287877966,
+      "mean_real_return_percent": 0.11459847741312723
     },
     {
-      "company": "ITUB4",
-      "tests": 35,
-      "directional_accuracy": 51.42857142857142,
-      "mae_percent": 1.2628485328445245,
-      "mean_probability_up": 0.48446547964472625,
-      "mean_real_return_percent": 0.049850516452094276
+      "company": "HAPV3",
+      "tests": 36,
+      "directional_accuracy": 58.333333333333336,
+      "mae_percent": 4.00982249734885,
+      "mean_probability_up": 0.45369129919230705,
+      "mean_real_return_percent": -1.1033044037111033
     },
     {
       "company": "FLRY3",
-      "tests": 35,
-      "directional_accuracy": 51.42857142857142,
-      "mae_percent": 1.4408766195365537,
-      "mean_probability_up": 0.48010475906003547,
-      "mean_real_return_percent": 0.7700420673356849
+      "tests": 36,
+      "directional_accuracy": 58.333333333333336,
+      "mae_percent": 1.4636818085266274,
+      "mean_probability_up": 0.4766561826820818,
+      "mean_real_return_percent": 0.8035424583405877
     },
     {
-      "company": "ENGI11",
-      "tests": 35,
-      "directional_accuracy": 51.42857142857142,
-      "mae_percent": 1.2942209018822495,
-      "mean_probability_up": 0.48364762673875866,
-      "mean_real_return_percent": 0.25345608777985434
-    },
-    {
-      "company": "MOTV3",
-      "tests": 35,
-      "directional_accuracy": 51.42857142857142,
-      "mae_percent": 1.3981108932734063,
-      "mean_probability_up": 0.4675726083212294,
-      "mean_real_return_percent": 0.5181043625303694
+      "company": "CMIG4",
+      "tests": 36,
+      "directional_accuracy": 58.333333333333336,
+      "mae_percent": 1.2536051712253242,
+      "mean_probability_up": 0.4752970988465056,
+      "mean_real_return_percent": 0.026755796814487143
     },
     {
       "company": "VIVT3",
-      "tests": 35,
-      "directional_accuracy": 51.42857142857142,
-      "mae_percent": 0.867846663363635,
-      "mean_probability_up": 0.4958604418939722,
-      "mean_real_return_percent": -0.12770200864041886
+      "tests": 36,
+      "directional_accuracy": 58.333333333333336,
+      "mae_percent": 0.8206539877275703,
+      "mean_probability_up": 0.4924056240383535,
+      "mean_real_return_percent": -0.15161061021386046
     },
     {
-      "company": "TAEE11",
-      "tests": 35,
-      "directional_accuracy": 51.42857142857142,
-      "mae_percent": 1.0039363569404944,
-      "mean_probability_up": 0.4944417642128749,
-      "mean_real_return_percent": 0.25556739650936633
+      "company": "TIMS3",
+      "tests": 36,
+      "directional_accuracy": 58.333333333333336,
+      "mae_percent": 0.8567719175227811,
+      "mean_probability_up": 0.49059194543261175,
+      "mean_real_return_percent": 0.03058353080916028
+    },
+    {
+      "company": "BHIA3",
+      "tests": 36,
+      "directional_accuracy": 58.333333333333336,
+      "mae_percent": 8.71017627310641,
+      "mean_probability_up": 0.44199032073091316,
+      "mean_real_return_percent": 1.3542530447150822
+    },
+    {
+      "company": "CSNA3",
+      "tests": 36,
+      "directional_accuracy": 58.333333333333336,
+      "mae_percent": 3.872774579515703,
+      "mean_probability_up": 0.4439387589589119,
+      "mean_real_return_percent": 0.73772658603501
     },
     {
       "company": "BOVA11",
       "tests": 36,
-      "directional_accuracy": 50.0,
-      "mae_percent": 0.8587897510839861,
-      "mean_probability_up": 0.4878985207469922,
-      "mean_real_return_percent": 0.19366766882264957
+      "directional_accuracy": 55.55555555555556,
+      "mae_percent": 0.8168014743798304,
+      "mean_probability_up": 0.48841264445302035,
+      "mean_real_return_percent": 0.15495825424199977
     },
     {
-      "company": "LREN3",
-      "tests": 35,
-      "directional_accuracy": 48.57142857142857,
-      "mae_percent": 1.9335756454203883,
-      "mean_probability_up": 0.4694427955672294,
-      "mean_real_return_percent": -0.4798137460697381
-    },
-    {
-      "company": "VBBR3",
-      "tests": 35,
-      "directional_accuracy": 48.57142857142857,
-      "mae_percent": 1.4744658183594948,
-      "mean_probability_up": 0.47584413250382157,
-      "mean_real_return_percent": 0.4042870230868778
-    },
-    {
-      "company": "SLCE3",
-      "tests": 35,
-      "directional_accuracy": 48.57142857142857,
-      "mae_percent": 1.8371447724976937,
-      "mean_probability_up": 0.4783185973659614,
-      "mean_real_return_percent": 0.8870475875516748
-    },
-    {
-      "company": "PETR3",
-      "tests": 35,
-      "directional_accuracy": 48.57142857142857,
-      "mae_percent": 1.7537164974737027,
-      "mean_probability_up": 0.47860890487356905,
-      "mean_real_return_percent": 0.43578343380008255
-    },
-    {
-      "company": "MDIA3",
-      "tests": 35,
-      "directional_accuracy": 48.57142857142857,
-      "mae_percent": 0.8821376417047767,
-      "mean_probability_up": 0.4886234932343965,
-      "mean_real_return_percent": -0.02353158995096725
-    },
-    {
-      "company": "MRVE3",
-      "tests": 35,
-      "directional_accuracy": 48.57142857142857,
-      "mae_percent": 2.8107984687275622,
-      "mean_probability_up": 0.46771517539217056,
-      "mean_real_return_percent": 0.4432446175828168
-    },
-    {
-      "company": "ORVR3",
-      "tests": 35,
-      "directional_accuracy": 48.57142857142857,
-      "mae_percent": 1.2013637152989871,
-      "mean_probability_up": 0.5068514729250517,
-      "mean_real_return_percent": -0.027683797523108743
-    },
-    {
-      "company": "CSAN3",
-      "tests": 35,
-      "directional_accuracy": 48.57142857142857,
-      "mae_percent": 2.988172629539666,
-      "mean_probability_up": 0.4605254302949895,
-      "mean_real_return_percent": -0.12119729525999955
-    },
-    {
-      "company": "ECOR3",
-      "tests": 35,
-      "directional_accuracy": 48.57142857142857,
-      "mae_percent": 2.705085916532855,
-      "mean_probability_up": 0.4630708506900522,
-      "mean_real_return_percent": 0.5733075334819738
-    },
-    {
-      "company": "BBSE3",
-      "tests": 35,
-      "directional_accuracy": 48.57142857142857,
-      "mae_percent": 1.230549362689969,
-      "mean_probability_up": 0.4935911710996249,
-      "mean_real_return_percent": 0.14942487510791178
-    },
-    {
-      "company": "B3SA3",
-      "tests": 35,
-      "directional_accuracy": 48.57142857142857,
-      "mae_percent": 1.4494784623211343,
-      "mean_probability_up": 0.46569467147826893,
-      "mean_real_return_percent": 0.41254380925699613
-    },
-    {
-      "company": "BRAP4",
-      "tests": 35,
-      "directional_accuracy": 48.57142857142857,
-      "mae_percent": 1.5252820266750597,
-      "mean_probability_up": 0.4939986911832125,
-      "mean_real_return_percent": -0.04583830858579274
-    },
-    {
-      "company": "DIRR3",
-      "tests": 35,
-      "directional_accuracy": 48.57142857142857,
-      "mae_percent": 1.9080508877123752,
-      "mean_probability_up": 0.47832746128339076,
-      "mean_real_return_percent": -0.2520223188596644
-    },
-    {
-      "company": "AMER3",
-      "tests": 35,
-      "directional_accuracy": 48.57142857142857,
-      "mae_percent": 3.2730051113437924,
-      "mean_probability_up": 0.4432306095268877,
-      "mean_real_return_percent": 0.2609875268332404
-    },
-    {
-      "company": "RECV3",
-      "tests": 35,
-      "directional_accuracy": 48.57142857142857,
-      "mae_percent": 1.7380574192068532,
-      "mean_probability_up": 0.4748373904944448,
-      "mean_real_return_percent": 0.3012455213785468
-    },
-    {
-      "company": "RAPT4",
-      "tests": 35,
-      "directional_accuracy": 48.57142857142857,
-      "mae_percent": 1.8463221230837787,
-      "mean_probability_up": 0.46458936079920404,
-      "mean_real_return_percent": 0.06525679217947082
-    },
-    {
-      "company": "EGIE3",
-      "tests": 35,
-      "directional_accuracy": 48.57142857142857,
-      "mae_percent": 1.0115004708139155,
-      "mean_probability_up": 0.5038295946621262,
-      "mean_real_return_percent": 0.17059808001962576
-    },
-    {
-      "company": "MGLU3",
-      "tests": 35,
-      "directional_accuracy": 48.57142857142857,
-      "mae_percent": 4.032297482234797,
-      "mean_probability_up": 0.45023233343424396,
-      "mean_real_return_percent": 0.7141431835181158
-    },
-    {
-      "company": "SUZB3",
-      "tests": 35,
-      "directional_accuracy": 45.714285714285715,
-      "mae_percent": 1.4003977802513503,
-      "mean_probability_up": 0.4811027983137478,
-      "mean_real_return_percent": 0.3750759371190223
-    },
-    {
-      "company": "PETR4",
-      "tests": 35,
-      "directional_accuracy": 45.714285714285715,
-      "mae_percent": 1.6335290194634313,
-      "mean_probability_up": 0.4791272204961954,
-      "mean_real_return_percent": 0.5181391546389718
-    },
-    {
-      "company": "SIMH3",
-      "tests": 35,
-      "directional_accuracy": 45.714285714285715,
-      "mae_percent": 3.13179346099388,
-      "mean_probability_up": 0.4641362068058835,
-      "mean_real_return_percent": 0.11573074253088496
-    },
-    {
-      "company": "HYPE3",
-      "tests": 35,
-      "directional_accuracy": 45.714285714285715,
-      "mae_percent": 1.3581705181711659,
-      "mean_probability_up": 0.4731984965610322,
-      "mean_real_return_percent": 0.36716189598515175
-    },
-    {
-      "company": "ANIM3",
-      "tests": 35,
-      "directional_accuracy": 45.714285714285715,
-      "mae_percent": 3.173149250742432,
-      "mean_probability_up": 0.46426896852517197,
-      "mean_real_return_percent": 0.7253602517173047
-    },
-    {
-      "company": "ABEV3",
-      "tests": 35,
-      "directional_accuracy": 42.857142857142854,
-      "mae_percent": 0.9254209443413894,
-      "mean_probability_up": 0.4910840749412332,
-      "mean_real_return_percent": -0.08933179502873502
-    },
-    {
-      "company": "CVCB3",
-      "tests": 35,
-      "directional_accuracy": 42.857142857142854,
-      "mae_percent": 4.195627227997706,
-      "mean_probability_up": 0.4523824228793968,
-      "mean_real_return_percent": 0.3557861220215752
-    },
-    {
-      "company": "VULC3",
-      "tests": 35,
-      "directional_accuracy": 42.857142857142854,
-      "mae_percent": 1.2140776727737812,
-      "mean_probability_up": 0.4866368776486702,
-      "mean_real_return_percent": -0.12835753891492685
-    },
-    {
-      "company": "VIVA3",
-      "tests": 35,
-      "directional_accuracy": 42.857142857142854,
-      "mae_percent": 1.5127107888473572,
-      "mean_probability_up": 0.48292335425541344,
-      "mean_real_return_percent": 0.045856614573619274
-    },
-    {
-      "company": "RDOR3",
-      "tests": 35,
-      "directional_accuracy": 42.857142857142854,
-      "mae_percent": 1.5044964403073016,
-      "mean_probability_up": 0.4744577383087847,
-      "mean_real_return_percent": 0.29146095041900055
-    },
-    {
-      "company": "SANB11",
-      "tests": 35,
-      "directional_accuracy": 42.857142857142854,
-      "mae_percent": 1.6154660735454651,
-      "mean_probability_up": 0.4774370155868105,
-      "mean_real_return_percent": 0.42849890033397914
-    },
-    {
-      "company": "INTB3",
-      "tests": 35,
-      "directional_accuracy": 42.857142857142854,
-      "mae_percent": 2.034791661138639,
-      "mean_probability_up": 0.46635029335229355,
-      "mean_real_return_percent": 0.40071433582725685
-    },
-    {
-      "company": "CSNA3",
-      "tests": 35,
-      "directional_accuracy": 42.857142857142854,
-      "mae_percent": 4.054268578635346,
-      "mean_probability_up": 0.444042964583356,
-      "mean_real_return_percent": 0.44179387694144723
-    },
-    {
-      "company": "CSMG3",
-      "tests": 35,
-      "directional_accuracy": 42.857142857142854,
-      "mae_percent": 1.431068317015259,
-      "mean_probability_up": 0.49775959906616785,
-      "mean_real_return_percent": -0.23963634479940227
-    },
-    {
-      "company": "CPFE3",
-      "tests": 35,
-      "directional_accuracy": 42.857142857142854,
-      "mae_percent": 1.2739364742319796,
-      "mean_probability_up": 0.4908568739329143,
-      "mean_real_return_percent": 0.05495258366606834
-    },
-    {
-      "company": "BPAC11",
-      "tests": 35,
-      "directional_accuracy": 42.857142857142854,
-      "mae_percent": 1.6139811954981678,
-      "mean_probability_up": 0.47640601593830223,
-      "mean_real_return_percent": 0.3943197796310351
-    },
-    {
-      "company": "BMGB4",
-      "tests": 35,
-      "directional_accuracy": 42.857142857142854,
-      "mae_percent": 1.7201388869367074,
-      "mean_probability_up": 0.4767213921869916,
-      "mean_real_return_percent": 0.5063073005884183
-    },
-    {
-      "company": "CASH3",
-      "tests": 35,
-      "directional_accuracy": 42.857142857142854,
-      "mae_percent": 3.175122474829385,
-      "mean_probability_up": 0.4521665057746501,
-      "mean_real_return_percent": 0.8740820576806446
-    },
-    {
-      "company": "GMAT3",
-      "tests": 35,
-      "directional_accuracy": 42.857142857142854,
-      "mae_percent": 2.0667878709048932,
-      "mean_probability_up": 0.47160127758439296,
-      "mean_real_return_percent": 0.6967912331593046
-    },
-    {
-      "company": "LOGG3",
-      "tests": 35,
-      "directional_accuracy": 42.857142857142854,
-      "mae_percent": 1.8472474178892542,
-      "mean_probability_up": 0.5029540035621424,
-      "mean_real_return_percent": -0.019669564438865108
+      "company": "CMIN3",
+      "tests": 36,
+      "directional_accuracy": 55.55555555555556,
+      "mae_percent": 2.641347875210745,
+      "mean_probability_up": 0.4594017124763736,
+      "mean_real_return_percent": -0.11934877136872012
     },
     {
       "company": "RADL3",
-      "tests": 35,
-      "directional_accuracy": 42.857142857142854,
-      "mae_percent": 2.1752005205004123,
-      "mean_probability_up": 0.4708628691356934,
-      "mean_real_return_percent": 0.4109736743671115
+      "tests": 36,
+      "directional_accuracy": 55.55555555555556,
+      "mae_percent": 2.0739915753180895,
+      "mean_probability_up": 0.47058975949121756,
+      "mean_real_return_percent": 0.37517820290888054
     },
     {
-      "company": "MULT3",
-      "tests": 35,
-      "directional_accuracy": 42.857142857142854,
-      "mae_percent": 1.3111187712807972,
-      "mean_probability_up": 0.48521673590787495,
-      "mean_real_return_percent": 0.3190103355850051
+      "company": "RECV3",
+      "tests": 36,
+      "directional_accuracy": 55.55555555555556,
+      "mae_percent": 1.7221622696941294,
+      "mean_probability_up": 0.47008973802343246,
+      "mean_real_return_percent": 0.18892564387516705
     },
     {
-      "company": "BBAS3",
-      "tests": 35,
-      "directional_accuracy": 40.0,
-      "mae_percent": 1.806873201778435,
-      "mean_probability_up": 0.4811722025332534,
-      "mean_real_return_percent": 0.3540436439299208
+      "company": "CASH3",
+      "tests": 36,
+      "directional_accuracy": 55.55555555555556,
+      "mae_percent": 2.9033069551459167,
+      "mean_probability_up": 0.46056449852877257,
+      "mean_real_return_percent": 0.7055691683251128
     },
     {
-      "company": "RAIL3",
-      "tests": 35,
-      "directional_accuracy": 40.0,
-      "mae_percent": 1.7462761543521648,
-      "mean_probability_up": 0.4689567814574436,
-      "mean_real_return_percent": 0.21976892690253205
+      "company": "PCAR3",
+      "tests": 36,
+      "directional_accuracy": 55.55555555555556,
+      "mae_percent": 3.1029196098741374,
+      "mean_probability_up": 0.45678668667731664,
+      "mean_real_return_percent": 0.22269830877792968
     },
     {
-      "company": "EQTL3",
-      "tests": 35,
-      "directional_accuracy": 40.0,
-      "mae_percent": 1.229056191382933,
-      "mean_probability_up": 0.48745744101016636,
-      "mean_real_return_percent": 0.14068034891132047
+      "company": "GRND3",
+      "tests": 36,
+      "directional_accuracy": 55.55555555555556,
+      "mae_percent": 1.1895660522104246,
+      "mean_probability_up": 0.47755906259507785,
+      "mean_real_return_percent": 0.08505873425659123
     },
     {
-      "company": "DXCO3",
-      "tests": 35,
-      "directional_accuracy": 40.0,
-      "mae_percent": 1.68934141271476,
-      "mean_probability_up": 0.46786865447561304,
-      "mean_real_return_percent": 0.33554995168789653
+      "company": "EGIE3",
+      "tests": 36,
+      "directional_accuracy": 55.55555555555556,
+      "mae_percent": 0.9672945857135807,
+      "mean_probability_up": 0.49305581683266364,
+      "mean_real_return_percent": 0.09340604525506317
     },
     {
-      "company": "CBAV3",
-      "tests": 35,
-      "directional_accuracy": 40.0,
-      "mae_percent": 0.2929339719698476,
-      "mean_probability_up": 0.48672806262489976,
-      "mean_real_return_percent": 0.07000859159043392
+      "company": "IGTI11",
+      "tests": 36,
+      "directional_accuracy": 55.55555555555556,
+      "mae_percent": 1.6348762566686394,
+      "mean_probability_up": 0.48247734385286,
+      "mean_real_return_percent": 0.21566908855013614
     },
     {
-      "company": "EZTC3",
-      "tests": 35,
-      "directional_accuracy": 40.0,
-      "mae_percent": 2.525792543577744,
-      "mean_probability_up": 0.4700368389364233,
-      "mean_real_return_percent": 0.6134775971683878
+      "company": "PETR3",
+      "tests": 36,
+      "directional_accuracy": 55.55555555555556,
+      "mae_percent": 1.656159020073512,
+      "mean_probability_up": 0.47744791928828906,
+      "mean_real_return_percent": 0.33540368776839485
     },
     {
-      "company": "ONCO3",
-      "tests": 35,
-      "directional_accuracy": 40.0,
-      "mae_percent": 10.49184784734357,
-      "mean_probability_up": 0.4456803755089088,
-      "mean_real_return_percent": 3.0322666597900945
-    },
-    {
-      "company": "UGPA3",
-      "tests": 35,
-      "directional_accuracy": 40.0,
-      "mae_percent": 1.5835424479215636,
-      "mean_probability_up": 0.4788780730362606,
-      "mean_real_return_percent": 0.6784847068784775
+      "company": "VAMO3",
+      "tests": 36,
+      "directional_accuracy": 55.55555555555556,
+      "mae_percent": 3.275349324122066,
+      "mean_probability_up": 0.45004533265990637,
+      "mean_real_return_percent": 0.2860398066051505
     },
     {
       "company": "SMTO3",
-      "tests": 35,
-      "directional_accuracy": 37.142857142857146,
-      "mae_percent": 2.6924886564980444,
-      "mean_probability_up": 0.4768268095957125,
-      "mean_real_return_percent": 0.8666018573100587
+      "tests": 36,
+      "directional_accuracy": 55.55555555555556,
+      "mae_percent": 2.625176731094471,
+      "mean_probability_up": 0.46938563116215687,
+      "mean_real_return_percent": 0.7530561641198554
     },
     {
-      "company": "TOTS3",
-      "tests": 35,
-      "directional_accuracy": 37.142857142857146,
-      "mae_percent": 1.9984748619768977,
-      "mean_probability_up": 0.47288061455712044,
-      "mean_real_return_percent": 0.46557091445032484
+      "company": "CEAB3",
+      "tests": 36,
+      "directional_accuracy": 52.77777777777778,
+      "mae_percent": 2.5424356600305478,
+      "mean_probability_up": 0.45447225717277945,
+      "mean_real_return_percent": 0.08012612035804746
     },
     {
-      "company": "TTEN3",
-      "tests": 35,
-      "directional_accuracy": 37.142857142857146,
-      "mae_percent": 2.683490259023266,
-      "mean_probability_up": 0.46200870564853097,
-      "mean_real_return_percent": -0.4453462546985537
+      "company": "ALOS3",
+      "tests": 36,
+      "directional_accuracy": 52.77777777777778,
+      "mae_percent": 1.329884022540194,
+      "mean_probability_up": 0.48766351242054334,
+      "mean_real_return_percent": 0.286651358450161
     },
     {
-      "company": "ENEV3",
-      "tests": 35,
-      "directional_accuracy": 37.142857142857146,
-      "mae_percent": 1.3191885987360779,
-      "mean_probability_up": 0.470861226816093,
-      "mean_real_return_percent": 0.1473858349074951
+      "company": "BEEF3",
+      "tests": 36,
+      "directional_accuracy": 52.77777777777778,
+      "mae_percent": 2.7314774572320086,
+      "mean_probability_up": 0.4683156316186674,
+      "mean_real_return_percent": 0.2971349182119942
     },
     {
-      "company": "KLBN11",
-      "tests": 35,
-      "directional_accuracy": 37.142857142857146,
-      "mae_percent": 0.9548334673886972,
-      "mean_probability_up": 0.4871211674898819,
-      "mean_real_return_percent": 0.17947818040429583
+      "company": "CSAN3",
+      "tests": 36,
+      "directional_accuracy": 52.77777777777778,
+      "mae_percent": 2.801365071929298,
+      "mean_probability_up": 0.4588294743971972,
+      "mean_real_return_percent": -0.11305243097269724
+    },
+    {
+      "company": "RENT3",
+      "tests": 36,
+      "directional_accuracy": 52.77777777777778,
+      "mae_percent": 1.9255169196846498,
+      "mean_probability_up": 0.47709875167374094,
+      "mean_real_return_percent": -0.02847779951713912
+    },
+    {
+      "company": "TEND3",
+      "tests": 36,
+      "directional_accuracy": 52.77777777777778,
+      "mae_percent": 2.4899307301036404,
+      "mean_probability_up": 0.47054578386397794,
+      "mean_real_return_percent": 0.02066158543819384
+    },
+    {
+      "company": "HYPE3",
+      "tests": 36,
+      "directional_accuracy": 52.77777777777778,
+      "mae_percent": 1.3321651900245537,
+      "mean_probability_up": 0.4766855915581194,
+      "mean_real_return_percent": 0.3123759661408092
+    },
+    {
+      "company": "BBAS3",
+      "tests": 36,
+      "directional_accuracy": 52.77777777777778,
+      "mae_percent": 1.7429572566129556,
+      "mean_probability_up": 0.4824711610715402,
+      "mean_real_return_percent": 0.26410051628316666
+    },
+    {
+      "company": "CPFE3",
+      "tests": 36,
+      "directional_accuracy": 52.77777777777778,
+      "mae_percent": 1.2522516840417337,
+      "mean_probability_up": 0.4893581038622031,
+      "mean_real_return_percent": -0.040654289765842656
+    },
+    {
+      "company": "BRKM5",
+      "tests": 36,
+      "directional_accuracy": 52.77777777777778,
+      "mae_percent": 4.491630549326974,
+      "mean_probability_up": 0.4415510351356871,
+      "mean_real_return_percent": -0.5759030420813183
+    },
+    {
+      "company": "LEVE3",
+      "tests": 36,
+      "directional_accuracy": 52.77777777777778,
+      "mae_percent": 1.0801000163521637,
+      "mean_probability_up": 0.48646218437885264,
+      "mean_real_return_percent": 0.11903457549930899
+    },
+    {
+      "company": "MDIA3",
+      "tests": 36,
+      "directional_accuracy": 52.77777777777778,
+      "mae_percent": 0.8932662395291726,
+      "mean_probability_up": 0.48740028370720634,
+      "mean_real_return_percent": -0.02763976571996242
+    },
+    {
+      "company": "LREN3",
+      "tests": 36,
+      "directional_accuracy": 52.77777777777778,
+      "mae_percent": 1.9941461824327729,
+      "mean_probability_up": 0.456334228175342,
+      "mean_real_return_percent": -0.3950719303004684
+    },
+    {
+      "company": "MOTV3",
+      "tests": 36,
+      "directional_accuracy": 52.77777777777778,
+      "mae_percent": 1.3093958191325024,
+      "mean_probability_up": 0.4699187179201446,
+      "mean_real_return_percent": 0.4225209235892387
+    },
+    {
+      "company": "FESA4",
+      "tests": 36,
+      "directional_accuracy": 52.77777777777778,
+      "mae_percent": 2.1102635875900204,
+      "mean_probability_up": 0.4655507561761821,
+      "mean_real_return_percent": -0.16498352599217792
+    },
+    {
+      "company": "POMO4",
+      "tests": 36,
+      "directional_accuracy": 52.77777777777778,
+      "mae_percent": 2.105464826078329,
+      "mean_probability_up": 0.46260726016951076,
+      "mean_real_return_percent": -0.5257329365235921
+    },
+    {
+      "company": "IRBR3",
+      "tests": 36,
+      "directional_accuracy": 52.77777777777778,
+      "mae_percent": 1.8052986718587312,
+      "mean_probability_up": 0.4884886481351926,
+      "mean_real_return_percent": 0.4568263854783264
+    },
+    {
+      "company": "SMFT3",
+      "tests": 36,
+      "directional_accuracy": 50.0,
+      "mae_percent": 1.5921179543761719,
+      "mean_probability_up": 0.4806888250872538,
+      "mean_real_return_percent": -0.3402932023385781
     },
     {
       "company": "VALE3",
-      "tests": 35,
-      "directional_accuracy": 37.142857142857146,
-      "mae_percent": 1.3363646690048838,
-      "mean_probability_up": 0.4891882798838583,
-      "mean_real_return_percent": 0.026961003583943568
+      "tests": 36,
+      "directional_accuracy": 50.0,
+      "mae_percent": 1.3991891724350474,
+      "mean_probability_up": 0.4806696207195963,
+      "mean_real_return_percent": -0.04244637801733564
+    },
+    {
+      "company": "WEGE3",
+      "tests": 36,
+      "directional_accuracy": 50.0,
+      "mae_percent": 1.2321464452625983,
+      "mean_probability_up": 0.4734708287964039,
+      "mean_real_return_percent": 0.2545374722563029
+    },
+    {
+      "company": "TAEE11",
+      "tests": 36,
+      "directional_accuracy": 50.0,
+      "mae_percent": 0.9557002655448645,
+      "mean_probability_up": 0.4896028832434176,
+      "mean_real_return_percent": 0.17194196514691099
+    },
+    {
+      "company": "SBSP3",
+      "tests": 36,
+      "directional_accuracy": 50.0,
+      "mae_percent": 1.4438778727547186,
+      "mean_probability_up": 0.49482336598825566,
+      "mean_real_return_percent": 0.07139373001922486
+    },
+    {
+      "company": "ORVR3",
+      "tests": 36,
+      "directional_accuracy": 50.0,
+      "mae_percent": 1.2610980541020373,
+      "mean_probability_up": 0.49055334619780033,
+      "mean_real_return_percent": -0.012830188868899615
+    },
+    {
+      "company": "MOVI3",
+      "tests": 36,
+      "directional_accuracy": 50.0,
+      "mae_percent": 3.0100163927853156,
+      "mean_probability_up": 0.45043481938821706,
+      "mean_real_return_percent": 0.24812342962076991
+    },
+    {
+      "company": "ITUB4",
+      "tests": 36,
+      "directional_accuracy": 50.0,
+      "mae_percent": 1.2757247031325258,
+      "mean_probability_up": 0.4868482636892655,
+      "mean_real_return_percent": 0.03655832168862524
+    },
+    {
+      "company": "ENGI11",
+      "tests": 36,
+      "directional_accuracy": 50.0,
+      "mae_percent": 1.3604996790958257,
+      "mean_probability_up": 0.48310688305017213,
+      "mean_real_return_percent": 0.2194291691056705
+    },
+    {
+      "company": "DIRR3",
+      "tests": 36,
+      "directional_accuracy": 50.0,
+      "mae_percent": 1.9474989608077715,
+      "mean_probability_up": 0.45752914344087536,
+      "mean_real_return_percent": -0.30177174215974917
+    },
+    {
+      "company": "ALPA4",
+      "tests": 36,
+      "directional_accuracy": 50.0,
+      "mae_percent": 2.468870595571446,
+      "mean_probability_up": 0.45860082102608807,
+      "mean_real_return_percent": 0.3725557164400721
+    },
+    {
+      "company": "AURE3",
+      "tests": 36,
+      "directional_accuracy": 50.0,
+      "mae_percent": 1.5717415497437712,
+      "mean_probability_up": 0.47641253594742317,
+      "mean_real_return_percent": 0.3468691803813956
+    },
+    {
+      "company": "COGN3",
+      "tests": 36,
+      "directional_accuracy": 50.0,
+      "mae_percent": 2.0797070832463644,
+      "mean_probability_up": 0.45308605053789186,
+      "mean_real_return_percent": 0.10465278955400624
+    },
+    {
+      "company": "PETR4",
+      "tests": 36,
+      "directional_accuracy": 50.0,
+      "mae_percent": 1.540722735658009,
+      "mean_probability_up": 0.4721061593855326,
+      "mean_real_return_percent": 0.41954873481436844
+    },
+    {
+      "company": "CVCB3",
+      "tests": 36,
+      "directional_accuracy": 47.22222222222222,
+      "mae_percent": 4.164572059230728,
+      "mean_probability_up": 0.45208801298238577,
+      "mean_real_return_percent": 0.33824921112875944
+    },
+    {
+      "company": "ASAI3",
+      "tests": 36,
+      "directional_accuracy": 47.22222222222222,
+      "mae_percent": 2.291524359651348,
+      "mean_probability_up": 0.46171554012412397,
+      "mean_real_return_percent": 0.5881857515224999
+    },
+    {
+      "company": "YDUQ3",
+      "tests": 36,
+      "directional_accuracy": 47.22222222222222,
+      "mae_percent": 2.3259962169861215,
+      "mean_probability_up": 0.46659928694419534,
+      "mean_real_return_percent": 0.8579910619794021
+    },
+    {
+      "company": "SUZB3",
+      "tests": 36,
+      "directional_accuracy": 47.22222222222222,
+      "mae_percent": 1.4244500111218676,
+      "mean_probability_up": 0.48197878733642635,
+      "mean_real_return_percent": 0.29306832369420205
+    },
+    {
+      "company": "MGLU3",
+      "tests": 36,
+      "directional_accuracy": 47.22222222222222,
+      "mae_percent": 4.172493163489895,
+      "mean_probability_up": 0.45519426976939426,
+      "mean_real_return_percent": 0.6050340176287272
+    },
+    {
+      "company": "MRVE3",
+      "tests": 36,
+      "directional_accuracy": 47.22222222222222,
+      "mae_percent": 2.735760948362915,
+      "mean_probability_up": 0.4638543906447926,
+      "mean_real_return_percent": 0.35712386679489444
+    },
+    {
+      "company": "MULT3",
+      "tests": 36,
+      "directional_accuracy": 47.22222222222222,
+      "mae_percent": 1.4749408530159205,
+      "mean_probability_up": 0.4860090519949451,
+      "mean_real_return_percent": 0.3208144917558757
+    },
+    {
+      "company": "VBBR3",
+      "tests": 36,
+      "directional_accuracy": 47.22222222222222,
+      "mae_percent": 1.3358545888983213,
+      "mean_probability_up": 0.47447469411134136,
+      "mean_real_return_percent": 0.3088238708226332
+    },
+    {
+      "company": "BMOB3",
+      "tests": 36,
+      "directional_accuracy": 47.22222222222222,
+      "mae_percent": 1.7149220750786245,
+      "mean_probability_up": 0.4783174105811616,
+      "mean_real_return_percent": 0.46454188881301955
+    },
+    {
+      "company": "BRAP4",
+      "tests": 36,
+      "directional_accuracy": 47.22222222222222,
+      "mae_percent": 1.52085605270614,
+      "mean_probability_up": 0.4888295775211511,
+      "mean_real_return_percent": -0.09103117076380038
+    },
+    {
+      "company": "BPAC11",
+      "tests": 36,
+      "directional_accuracy": 44.44444444444444,
+      "mae_percent": 1.5887311438622136,
+      "mean_probability_up": 0.47492023497673724,
+      "mean_real_return_percent": 0.3787061577424786
+    },
+    {
+      "company": "TTEN3",
+      "tests": 36,
+      "directional_accuracy": 44.44444444444444,
+      "mae_percent": 2.4118942392069673,
+      "mean_probability_up": 0.46598211648037235,
+      "mean_real_return_percent": -0.32735641633884605
+    },
+    {
+      "company": "B3SA3",
+      "tests": 36,
+      "directional_accuracy": 44.44444444444444,
+      "mae_percent": 1.5442811450166838,
+      "mean_probability_up": 0.47451775655729683,
+      "mean_real_return_percent": 0.44594510869425275
+    },
+    {
+      "company": "BMGB4",
+      "tests": 36,
+      "directional_accuracy": 44.44444444444444,
+      "mae_percent": 1.8158064172503776,
+      "mean_probability_up": 0.4684532076587982,
+      "mean_real_return_percent": 0.516730356627478
+    },
+    {
+      "company": "ANIM3",
+      "tests": 36,
+      "directional_accuracy": 44.44444444444444,
+      "mae_percent": 3.022615140189512,
+      "mean_probability_up": 0.4675372953878041,
+      "mean_real_return_percent": 0.8782098245800254
+    },
+    {
+      "company": "ABEV3",
+      "tests": 36,
+      "directional_accuracy": 44.44444444444444,
+      "mae_percent": 0.9266893816978078,
+      "mean_probability_up": 0.48435194381184626,
+      "mean_real_return_percent": -0.07581489681060415
+    },
+    {
+      "company": "GMAT3",
+      "tests": 36,
+      "directional_accuracy": 44.44444444444444,
+      "mae_percent": 2.036660078767362,
+      "mean_probability_up": 0.4719847667621745,
+      "mean_real_return_percent": 0.6075803755561668
+    },
+    {
+      "company": "RAPT4",
+      "tests": 36,
+      "directional_accuracy": 44.44444444444444,
+      "mae_percent": 1.9875836375093208,
+      "mean_probability_up": 0.46648314840532773,
+      "mean_real_return_percent": 0.17540714028554674
+    },
+    {
+      "company": "DXCO3",
+      "tests": 36,
+      "directional_accuracy": 44.44444444444444,
+      "mae_percent": 1.6023133511464587,
+      "mean_probability_up": 0.4693344448177744,
+      "mean_real_return_percent": 0.332110222372331
+    },
+    {
+      "company": "BBSE3",
+      "tests": 36,
+      "directional_accuracy": 44.44444444444444,
+      "mae_percent": 1.3719525748084491,
+      "mean_probability_up": 0.494665448322648,
+      "mean_real_return_percent": 0.07878187198838058
+    },
+    {
+      "company": "INTB3",
+      "tests": 36,
+      "directional_accuracy": 44.44444444444444,
+      "mae_percent": 1.965906647106961,
+      "mean_probability_up": 0.47114967855914547,
+      "mean_real_return_percent": 0.157720194156074
+    },
+    {
+      "company": "RAIL3",
+      "tests": 36,
+      "directional_accuracy": 41.66666666666667,
+      "mae_percent": 1.6899370652800498,
+      "mean_probability_up": 0.4738672321547032,
+      "mean_real_return_percent": 0.22956426242354155
+    },
+    {
+      "company": "VULC3",
+      "tests": 36,
+      "directional_accuracy": 41.66666666666667,
+      "mae_percent": 1.1672939278843892,
+      "mean_probability_up": 0.4735194441472388,
+      "mean_real_return_percent": -0.07095185448379264
+    },
+    {
+      "company": "UGPA3",
+      "tests": 36,
+      "directional_accuracy": 41.66666666666667,
+      "mae_percent": 1.5090915909704479,
+      "mean_probability_up": 0.47556329883801446,
+      "mean_real_return_percent": 0.5577933140331353
     },
     {
       "company": "CXSE3",
-      "tests": 35,
-      "directional_accuracy": 34.285714285714285,
-      "mae_percent": 1.3390925865427439,
-      "mean_probability_up": 0.5106162054868425,
-      "mean_real_return_percent": 0.1052416285114753
+      "tests": 36,
+      "directional_accuracy": 41.66666666666667,
+      "mae_percent": 1.2628377371352175,
+      "mean_probability_up": 0.5107315557593366,
+      "mean_real_return_percent": 0.12566180749795622
     },
     {
-      "company": "LWSA3",
-      "tests": 35,
-      "directional_accuracy": 34.285714285714285,
-      "mae_percent": 2.0665542170120847,
-      "mean_probability_up": 0.4710734914008251,
-      "mean_real_return_percent": 0.22401226992549375
+      "company": "AMER3",
+      "tests": 36,
+      "directional_accuracy": 41.66666666666667,
+      "mae_percent": 3.609488427830156,
+      "mean_probability_up": 0.4535717425389357,
+      "mean_real_return_percent": 0.366316999875886
+    },
+    {
+      "company": "SIMH3",
+      "tests": 36,
+      "directional_accuracy": 41.66666666666667,
+      "mae_percent": 3.4075426710722305,
+      "mean_probability_up": 0.45923700582996296,
+      "mean_real_return_percent": 0.2778953862609312
+    },
+    {
+      "company": "SANB11",
+      "tests": 36,
+      "directional_accuracy": 41.66666666666667,
+      "mae_percent": 1.6612502597497993,
+      "mean_probability_up": 0.47632513022920353,
+      "mean_real_return_percent": 0.5026254511368237
+    },
+    {
+      "company": "LOGG3",
+      "tests": 36,
+      "directional_accuracy": 38.88888888888889,
+      "mae_percent": 1.8466368291476967,
+      "mean_probability_up": 0.4980809759142577,
+      "mean_real_return_percent": -0.043700019911393745
+    },
+    {
+      "company": "CURY3",
+      "tests": 36,
+      "directional_accuracy": 38.88888888888889,
+      "mae_percent": 2.36219714456412,
+      "mean_probability_up": 0.4711893664332568,
+      "mean_real_return_percent": -0.03509128630984312
     },
     {
       "company": "CYRE3",
-      "tests": 35,
-      "directional_accuracy": 31.428571428571427,
-      "mae_percent": 2.2061889709133102,
-      "mean_probability_up": 0.4666937697890624,
-      "mean_real_return_percent": 0.7438929395409136
+      "tests": 36,
+      "directional_accuracy": 38.88888888888889,
+      "mae_percent": 2.388770088021703,
+      "mean_probability_up": 0.46934716663001486,
+      "mean_real_return_percent": 0.7274388622653751
+    },
+    {
+      "company": "CBAV3",
+      "tests": 36,
+      "directional_accuracy": 38.88888888888889,
+      "mae_percent": 0.310310739518333,
+      "mean_probability_up": 0.48590998763683085,
+      "mean_real_return_percent": 0.05799938224624632
+    },
+    {
+      "company": "TOTS3",
+      "tests": 36,
+      "directional_accuracy": 38.88888888888889,
+      "mae_percent": 1.9523028491688221,
+      "mean_probability_up": 0.47533551489124787,
+      "mean_real_return_percent": 0.34534667894000154
+    },
+    {
+      "company": "LWSA3",
+      "tests": 36,
+      "directional_accuracy": 38.88888888888889,
+      "mae_percent": 2.0678909359310067,
+      "mean_probability_up": 0.4754512017943082,
+      "mean_real_return_percent": 0.22286285423953395
+    },
+    {
+      "company": "KLBN11",
+      "tests": 36,
+      "directional_accuracy": 38.88888888888889,
+      "mae_percent": 0.9742125367582987,
+      "mean_probability_up": 0.4834495231996498,
+      "mean_real_return_percent": 0.1779470615474257
+    },
+    {
+      "company": "ECOR3",
+      "tests": 36,
+      "directional_accuracy": 36.11111111111111,
+      "mae_percent": 2.866845244067794,
+      "mean_probability_up": 0.46236276719556024,
+      "mean_real_return_percent": 0.6555046471944754
+    },
+    {
+      "company": "CSMG3",
+      "tests": 36,
+      "directional_accuracy": 36.11111111111111,
+      "mae_percent": 1.4851450491843927,
+      "mean_probability_up": 0.4932338709024752,
+      "mean_real_return_percent": -0.2900333201013177
+    },
+    {
+      "company": "EZTC3",
+      "tests": 36,
+      "directional_accuracy": 36.11111111111111,
+      "mae_percent": 2.673529633167645,
+      "mean_probability_up": 0.45790664014308047,
+      "mean_real_return_percent": 0.587759302015929
+    },
+    {
+      "company": "EQTL3",
+      "tests": 36,
+      "directional_accuracy": 36.11111111111111,
+      "mae_percent": 1.362662905275185,
+      "mean_probability_up": 0.48666512028833847,
+      "mean_real_return_percent": 0.11958194819101282
+    },
+    {
+      "company": "RDOR3",
+      "tests": 36,
+      "directional_accuracy": 36.11111111111111,
+      "mae_percent": 1.6134838904307816,
+      "mean_probability_up": 0.4774854374241833,
+      "mean_real_return_percent": 0.30302393890398
+    },
+    {
+      "company": "ONCO3",
+      "tests": 36,
+      "directional_accuracy": 36.11111111111111,
+      "mae_percent": 10.73427696425341,
+      "mean_probability_up": 0.42436784762344143,
+      "mean_real_return_percent": 3.0317013902223815
+    },
+    {
+      "company": "VIVA3",
+      "tests": 36,
+      "directional_accuracy": 36.11111111111111,
+      "mae_percent": 1.734706036089808,
+      "mean_probability_up": 0.4870575447264644,
+      "mean_real_return_percent": 0.2210834934662074
+    },
+    {
+      "company": "ENEV3",
+      "tests": 36,
+      "directional_accuracy": 33.33333333333333,
+      "mae_percent": 1.53085463233326,
+      "mean_probability_up": 0.47289915104455954,
+      "mean_real_return_percent": 0.20013163080562688
     }
   ],
   "sector_metrics": [
     {
-      "sector": "Educacao",
-      "tests": 105,
-      "directional_accuracy": 55.23809523809524,
-      "mae_percent": 2.4834809743522075,
-      "mean_probability_up": 0.4642641051501666,
-      "mean_real_return_percent": 0.5534010575942437
-    },
-    {
-      "sector": "Industria",
-      "tests": 420,
-      "directional_accuracy": 54.52380952380952,
-      "mae_percent": 2.0412754557023733,
-      "mean_probability_up": 0.4736752315998435,
-      "mean_real_return_percent": 0.01268171099891464
+      "sector": "Agro",
+      "tests": 144,
+      "directional_accuracy": 58.333333333333336,
+      "mae_percent": 2.0083296032128213,
+      "mean_probability_up": 0.47214302302037825,
+      "mean_real_return_percent": 0.31828223129667005
     },
     {
       "sector": "Telecom",
-      "tests": 70,
-      "directional_accuracy": 52.85714285714286,
-      "mae_percent": 0.9715511554164136,
-      "mean_probability_up": 0.49772241596129263,
-      "mean_real_return_percent": -0.06131521492160008
-    },
-    {
-      "sector": "Transporte",
-      "tests": 70,
-      "directional_accuracy": 51.42857142857142,
-      "mae_percent": 2.395398180171771,
-      "mean_probability_up": 0.470783656508628,
-      "mean_real_return_percent": 0.007058161098395185
-    },
-    {
-      "sector": "Alimentos",
-      "tests": 70,
-      "directional_accuracy": 51.42857142857142,
-      "mae_percent": 1.667971300804014,
-      "mean_probability_up": 0.4773682723179097,
-      "mean_real_return_percent": 0.20895793118240064
-    },
-    {
-      "sector": "Consumo",
-      "tests": 105,
-      "directional_accuracy": 51.42857142857142,
-      "mae_percent": 1.2810589086699682,
-      "mean_probability_up": 0.48129021013307743,
-      "mean_real_return_percent": -0.1502172383829187
-    },
-    {
-      "sector": "Comercio",
-      "tests": 350,
-      "directional_accuracy": 50.857142857142854,
-      "mae_percent": 3.166493929606923,
-      "mean_probability_up": 0.45939463554555104,
-      "mean_real_return_percent": 0.3722216225183513
-    },
-    {
-      "sector": "Logistica",
-      "tests": 105,
-      "directional_accuracy": 50.476190476190474,
-      "mae_percent": 2.65958086422557,
-      "mean_probability_up": 0.45942778973218085,
-      "mean_real_return_percent": 0.18375389781538154
-    },
-    {
-      "sector": "Infraestrutura",
-      "tests": 70,
-      "directional_accuracy": 50.0,
-      "mae_percent": 2.051598404903131,
-      "mean_probability_up": 0.46532172950564077,
-      "mean_real_return_percent": 0.5457059480061717
+      "tests": 72,
+      "directional_accuracy": 58.333333333333336,
+      "mae_percent": 0.8387129526251758,
+      "mean_probability_up": 0.4914987847354826,
+      "mean_real_return_percent": -0.060513539702350086
     },
     {
       "sector": "ETF",
       "tests": 36,
-      "directional_accuracy": 50.0,
-      "mae_percent": 0.8587897510839861,
-      "mean_probability_up": 0.4878985207469922,
-      "mean_real_return_percent": 0.19366766882264957
+      "directional_accuracy": 55.55555555555556,
+      "mae_percent": 0.8168014743798304,
+      "mean_probability_up": 0.48841264445302035,
+      "mean_real_return_percent": 0.15495825424199977
+    },
+    {
+      "sector": "Alimentos",
+      "tests": 72,
+      "directional_accuracy": 52.77777777777778,
+      "mae_percent": 1.8123718483805904,
+      "mean_probability_up": 0.4778579576629369,
+      "mean_real_return_percent": 0.13474757624601588
+    },
+    {
+      "sector": "Industria",
+      "tests": 432,
+      "directional_accuracy": 52.31481481481482,
+      "mae_percent": 2.0480122263929825,
+      "mean_probability_up": 0.4667605201419259,
+      "mean_real_return_percent": 0.04218916639084553
+    },
+    {
+      "sector": "Transporte",
+      "tests": 72,
+      "directional_accuracy": 51.388888888888886,
+      "mae_percent": 2.467766656234983,
+      "mean_probability_up": 0.463766785530979,
+      "mean_real_return_percent": 0.10982281505181538
     },
     {
       "sector": "Mineracao",
-      "tests": 105,
-      "directional_accuracy": 48.57142857142857,
-      "mae_percent": 1.8592183684287789,
-      "mean_probability_up": 0.4830405210335578,
-      "mean_real_return_percent": -0.07206767398757442
-    },
-    {
-      "sector": "Saneamento",
-      "tests": 105,
-      "directional_accuracy": 47.61904761904761,
-      "mae_percent": 1.3394645838019938,
-      "mean_probability_up": 0.5004336143812995,
-      "mean_real_return_percent": -0.057988482028666646
+      "tests": 108,
+      "directional_accuracy": 50.92592592592593,
+      "mae_percent": 1.8537977001173107,
+      "mean_probability_up": 0.4763003035723737,
+      "mean_real_return_percent": -0.08427544004995204
     },
     {
       "sector": "Energia",
-      "tests": 525,
-      "directional_accuracy": 47.42857142857143,
-      "mae_percent": 1.5373598645577256,
-      "mean_probability_up": 0.4804012367190131,
-      "mean_real_return_percent": 0.2590117580717594
-    },
-    {
-      "sector": "Imobiliario",
-      "tests": 140,
-      "directional_accuracy": 47.14285714285714,
-      "mae_percent": 1.4855157402366241,
-      "mean_probability_up": 0.4885197006926368,
-      "mean_real_return_percent": 0.1997701495496601
-    },
-    {
-      "sector": "Construcao",
-      "tests": 210,
-      "directional_accuracy": 46.666666666666664,
-      "mae_percent": 2.3376977025677035,
-      "mean_probability_up": 0.4773969309501861,
-      "mean_real_return_percent": 0.31016890493317517
-    },
-    {
-      "sector": "Financeiro",
-      "tests": 350,
-      "directional_accuracy": 46.285714285714285,
-      "mae_percent": 1.5040096427399758,
-      "mean_probability_up": 0.48526045588998207,
-      "mean_real_return_percent": 0.28236204167533024
+      "tests": 540,
+      "directional_accuracy": 50.18518518518519,
+      "mae_percent": 1.50938332096472,
+      "mean_probability_up": 0.47762626594390867,
+      "mean_real_return_percent": 0.19431158415967073
     },
     {
       "sector": "Saude",
-      "tests": 210,
-      "directional_accuracy": 45.714285714285715,
-      "mae_percent": 3.5069295148055986,
-      "mean_probability_up": 0.4660549794120877,
-      "mean_real_return_percent": 0.6054751853347795
+      "tests": 216,
+      "directional_accuracy": 49.53703703703704,
+      "mae_percent": 3.537903654317052,
+      "mean_probability_up": 0.4632460196618918,
+      "mean_real_return_percent": 0.6204195921342559
     },
     {
-      "sector": "Agro",
-      "tests": 140,
-      "directional_accuracy": 44.285714285714285,
-      "mae_percent": 2.1332301458690566,
-      "mean_probability_up": 0.47517939682135363,
-      "mean_real_return_percent": 0.34055455222789704
+      "sector": "Consumo",
+      "tests": 108,
+      "directional_accuracy": 49.074074074074076,
+      "mae_percent": 1.3163259781569951,
+      "mean_probability_up": 0.47725577727652346,
+      "mean_real_return_percent": -0.10872877418859318
     },
     {
-      "sector": "Bebidas",
-      "tests": 35,
-      "directional_accuracy": 42.857142857142854,
-      "mae_percent": 0.9254209443413894,
-      "mean_probability_up": 0.4910840749412332,
-      "mean_real_return_percent": -0.08933179502873502
+      "sector": "Comercio",
+      "tests": 360,
+      "directional_accuracy": 48.61111111111111,
+      "mae_percent": 3.266342038684388,
+      "mean_probability_up": 0.4597708177703532,
+      "mean_real_return_percent": 0.402276189804015
     },
     {
-      "sector": "Tecnologia",
-      "tests": 175,
-      "directional_accuracy": 42.857142857142854,
-      "mae_percent": 2.207148038539703,
-      "mean_probability_up": 0.4697465528541162,
-      "mean_real_return_percent": 0.5061987373836901
+      "sector": "Imobiliario",
+      "tests": 144,
+      "directional_accuracy": 48.61111111111111,
+      "mae_percent": 1.5715844903431124,
+      "mean_probability_up": 0.48855772104565154,
+      "mean_real_return_percent": 0.19485872971119478
+    },
+    {
+      "sector": "Financeiro",
+      "tests": 360,
+      "directional_accuracy": 47.77777777777778,
+      "mae_percent": 1.522865250961483,
+      "mean_probability_up": 0.48418350298877905,
+      "mean_real_return_percent": 0.2793191890804807
     },
     {
       "sector": "Turismo",
-      "tests": 35,
-      "directional_accuracy": 42.857142857142854,
-      "mae_percent": 4.195627227997706,
-      "mean_probability_up": 0.4523824228793968,
-      "mean_real_return_percent": 0.3557861220215752
+      "tests": 36,
+      "directional_accuracy": 47.22222222222222,
+      "mae_percent": 4.164572059230728,
+      "mean_probability_up": 0.45208801298238577,
+      "mean_real_return_percent": 0.33824921112875944
+    },
+    {
+      "sector": "Educacao",
+      "tests": 108,
+      "directional_accuracy": 47.22222222222222,
+      "mae_percent": 2.4761061468073327,
+      "mean_probability_up": 0.4624075442899638,
+      "mean_real_return_percent": 0.6136178920378113
+    },
+    {
+      "sector": "Logistica",
+      "tests": 108,
+      "directional_accuracy": 46.2962962962963,
+      "mae_percent": 2.7909430201581156,
+      "mean_probability_up": 0.4610498568815242,
+      "mean_real_return_percent": 0.2644998184298744
+    },
+    {
+      "sector": "Saneamento",
+      "tests": 108,
+      "directional_accuracy": 45.370370370370374,
+      "mae_percent": 1.3967069920137163,
+      "mean_probability_up": 0.4928701943628437,
+      "mean_real_return_percent": -0.07715659298366415
+    },
+    {
+      "sector": "Tecnologia",
+      "tests": 180,
+      "directional_accuracy": 45.0,
+      "mae_percent": 2.1208658924862664,
+      "mean_probability_up": 0.4721636608709271,
+      "mean_real_return_percent": 0.3792081568947484
+    },
+    {
+      "sector": "Infraestrutura",
+      "tests": 72,
+      "directional_accuracy": 44.44444444444444,
+      "mae_percent": 2.0881205316001483,
+      "mean_probability_up": 0.46614074255785237,
+      "mean_real_return_percent": 0.5390127853918572
+    },
+    {
+      "sector": "Bebidas",
+      "tests": 36,
+      "directional_accuracy": 44.44444444444444,
+      "mae_percent": 0.9266893816978078,
+      "mean_probability_up": 0.48435194381184626,
+      "mean_real_return_percent": -0.07581489681060415
+    },
+    {
+      "sector": "Construcao",
+      "tests": 216,
+      "directional_accuracy": 43.98148148148148,
+      "mae_percent": 2.4329479175046322,
+      "mean_probability_up": 0.46506208185933295,
+      "mean_real_return_percent": 0.22602009800746667
     },
     {
       "sector": "Papel e Celulose",
-      "tests": 70,
-      "directional_accuracy": 41.42857142857143,
-      "mae_percent": 1.1776156238200237,
-      "mean_probability_up": 0.48411198290181484,
-      "mean_real_return_percent": 0.2772770587616591
+      "tests": 72,
+      "directional_accuracy": 43.05555555555556,
+      "mae_percent": 1.199331273940083,
+      "mean_probability_up": 0.48271415526803807,
+      "mean_real_return_percent": 0.23550769262081386
     }
   ],
   "signal_policy": {
@@ -1026,20 +1026,34 @@
     },
     "global": {
       "buy": {
-        "threshold": 0.65,
-        "precision": 64.60674157303372,
-        "signals": 356,
-        "edge_percent": 14.606741573033716
+        "threshold": 0.56,
+        "precision": 50.47120418848168,
+        "signals": 955,
+        "edge_percent": 0.47120418848167844
       },
       "sell": {
         "threshold": 0.35,
-        "precision": 52.572347266881025,
-        "signals": 622,
-        "edge_percent": 2.5723472668810246
+        "precision": 52.00617283950617,
+        "signals": 648,
+        "edge_percent": 2.0061728395061706
       }
     },
     "per_company": {
       "ABEV3": {
+        "buy": {
+          "threshold": 0.58,
+          "precision": 36.36363636363637,
+          "signals": 11,
+          "edge_percent": -13.636363636363633
+        },
+        "sell": {
+          "threshold": 0.4,
+          "precision": 60.0,
+          "signals": 10,
+          "edge_percent": 10.0
+        }
+      },
+      "ALOS3": {
         "buy": {
           "threshold": 0.56,
           "precision": 50.0,
@@ -1048,82 +1062,82 @@
         },
         "sell": {
           "threshold": 0.35,
-          "precision": 75.0,
-          "signals": 4,
-          "edge_percent": 25.0
-        }
-      },
-      "ALOS3": {
-        "buy": {
-          "threshold": 0.56,
-          "precision": 54.54545454545454,
-          "signals": 11,
-          "edge_percent": 4.54545454545454
-        },
-        "sell": {
-          "threshold": 0.35,
-          "precision": 66.66666666666666,
-          "signals": 6,
-          "edge_percent": 16.666666666666657
+          "precision": 80.0,
+          "signals": 5,
+          "edge_percent": 30.0
         }
       },
       "ALPA4": {
         "buy": {
-          "threshold": 0.6,
-          "precision": 75.0,
-          "signals": 4,
-          "edge_percent": 25.0
+          "threshold": 0.56,
+          "precision": 42.857142857142854,
+          "signals": 7,
+          "edge_percent": -7.142857142857146
         },
         "sell": {
-          "threshold": 0.38,
+          "threshold": 0.44,
           "precision": 60.0,
-          "signals": 10,
+          "signals": 20,
           "edge_percent": 10.0
         }
       },
       "AMER3": {
         "buy": {
           "threshold": 0.58,
-          "precision": 50.0,
+          "precision": 33.33333333333333,
           "signals": 6,
-          "edge_percent": 0.0
+          "edge_percent": -16.66666666666667
         },
         "sell": {
-          "threshold": 0.35,
-          "precision": 60.0,
-          "signals": 5,
-          "edge_percent": 10.0
+          "threshold": 0.38,
+          "precision": 45.45454545454545,
+          "signals": 11,
+          "edge_percent": -4.545454545454547
         }
       },
       "ANIM3": {
         "buy": {
-          "threshold": 0.6,
+          "threshold": 0.56,
           "precision": 50.0,
-          "signals": 4,
+          "signals": 10,
           "edge_percent": 0.0
         },
         "sell": {
-          "threshold": 0.42,
-          "precision": 28.57142857142857,
-          "signals": 14,
-          "edge_percent": -21.42857142857143
+          "threshold": 0.4,
+          "precision": 33.33333333333333,
+          "signals": 12,
+          "edge_percent": -16.66666666666667
         }
       },
       "ASAI3": {
         "buy": {
-          "threshold": 0.58,
-          "precision": 60.0,
-          "signals": 5,
-          "edge_percent": 10.0
+          "threshold": 0.6,
+          "precision": 83.33333333333334,
+          "signals": 6,
+          "edge_percent": 33.33333333333334
+        },
+        "sell": {
+          "threshold": 0.42,
+          "precision": 35.294117647058826,
+          "signals": 17,
+          "edge_percent": -14.705882352941174
+        }
+      },
+      "AURE3": {
+        "buy": {
+          "threshold": 0.56,
+          "precision": 62.5,
+          "signals": 8,
+          "edge_percent": 12.5
         },
         "sell": {
           "threshold": 0.38,
           "precision": 50.0,
-          "signals": 10,
+          "signals": 8,
           "edge_percent": 0.0
         }
       },
-      "AURE3": {
+      "B3SA3": {
         "buy": {
           "threshold": 0.62,
           "precision": 60.0,
@@ -1132,40 +1146,110 @@
         },
         "sell": {
           "threshold": 0.35,
-          "precision": 62.5,
-          "signals": 8,
-          "edge_percent": 12.5
-        }
-      },
-      "B3SA3": {
-        "buy": {
-          "threshold": 0.56,
-          "precision": 63.63636363636363,
-          "signals": 11,
-          "edge_percent": 13.636363636363633
-        },
-        "sell": {
-          "threshold": 0.35,
-          "precision": 85.71428571428571,
-          "signals": 7,
-          "edge_percent": 35.71428571428571
+          "precision": 75.0,
+          "signals": 4,
+          "edge_percent": 25.0
         }
       },
       "BBAS3": {
         "buy": {
-          "threshold": 0.58,
+          "threshold": 0.6,
+          "precision": 60.0,
+          "signals": 5,
+          "edge_percent": 10.0
+        },
+        "sell": {
+          "threshold": 0.38,
+          "precision": 70.0,
+          "signals": 10,
+          "edge_percent": 20.0
+        }
+      },
+      "BBDC4": {
+        "buy": {
+          "threshold": 0.56,
+          "precision": 60.0,
+          "signals": 10,
+          "edge_percent": 10.0
+        },
+        "sell": {
+          "threshold": 0.38,
+          "precision": 100.0,
+          "signals": 7,
+          "edge_percent": 50.0
+        }
+      },
+      "BBSE3": {
+        "buy": {
+          "threshold": 0.56,
+          "precision": 45.45454545454545,
+          "signals": 11,
+          "edge_percent": -4.545454545454547
+        },
+        "sell": {
+          "threshold": 0.38,
+          "precision": 40.0,
+          "signals": 5,
+          "edge_percent": -10.0
+        }
+      },
+      "BEEF3": {
+        "buy": {
+          "threshold": 0.62,
+          "precision": 40.0,
+          "signals": 5,
+          "edge_percent": -10.0
+        },
+        "sell": {
+          "threshold": 0.44,
+          "precision": 50.0,
+          "signals": 18,
+          "edge_percent": 0.0
+        }
+      },
+      "BHIA3": {
+        "buy": {
+          "threshold": 0.56,
+          "precision": 60.0,
+          "signals": 5,
+          "edge_percent": 10.0
+        },
+        "sell": {
+          "threshold": 0.4,
+          "precision": 75.0,
+          "signals": 16,
+          "edge_percent": 25.0
+        }
+      },
+      "BMGB4": {
+        "buy": {
+          "threshold": 0.56,
           "precision": 44.44444444444444,
           "signals": 9,
           "edge_percent": -5.555555555555557
         },
         "sell": {
-          "threshold": 0.4,
-          "precision": 60.0,
-          "signals": 10,
-          "edge_percent": 10.0
+          "threshold": 0.44,
+          "precision": 41.17647058823529,
+          "signals": 17,
+          "edge_percent": -8.82352941176471
         }
       },
-      "BBDC4": {
+      "BMOB3": {
+        "buy": {
+          "threshold": 0.56,
+          "precision": 50.0,
+          "signals": 10,
+          "edge_percent": 0.0
+        },
+        "sell": {
+          "threshold": 0.38,
+          "precision": 55.55555555555556,
+          "signals": 9,
+          "edge_percent": 5.555555555555557
+        }
+      },
+      "BOVA11": {
         "buy": {
           "threshold": 0.6,
           "precision": 66.66666666666666,
@@ -1173,13 +1257,69 @@
           "edge_percent": 16.666666666666657
         },
         "sell": {
-          "threshold": 0.35,
-          "precision": 85.71428571428571,
+          "threshold": 0.38,
+          "precision": 71.42857142857143,
           "signals": 7,
-          "edge_percent": 35.71428571428571
+          "edge_percent": 21.42857142857143
         }
       },
-      "BBSE3": {
+      "BPAC11": {
+        "buy": {
+          "threshold": 0.6,
+          "precision": 57.14285714285714,
+          "signals": 7,
+          "edge_percent": 7.142857142857139
+        },
+        "sell": {
+          "threshold": 0.38,
+          "precision": 62.5,
+          "signals": 8,
+          "edge_percent": 12.5
+        }
+      },
+      "BRAP4": {
+        "buy": {
+          "threshold": 0.65,
+          "precision": 50.0,
+          "signals": 4,
+          "edge_percent": 0.0
+        },
+        "sell": {
+          "threshold": 0.44,
+          "precision": 50.0,
+          "signals": 14,
+          "edge_percent": 0.0
+        }
+      },
+      "BRKM5": {
+        "buy": {
+          "threshold": 0.6,
+          "precision": 60.0,
+          "signals": 5,
+          "edge_percent": 10.0
+        },
+        "sell": {
+          "threshold": 0.4,
+          "precision": 64.70588235294117,
+          "signals": 17,
+          "edge_percent": 14.705882352941174
+        }
+      },
+      "CASH3": {
+        "buy": {
+          "threshold": 0.56,
+          "precision": 80.0,
+          "signals": 10,
+          "edge_percent": 30.0
+        },
+        "sell": {
+          "threshold": 0.38,
+          "precision": 50.0,
+          "signals": 14,
+          "edge_percent": 0.0
+        }
+      },
+      "CBAV3": {
         "buy": {
           "threshold": 0.56,
           "precision": 54.54545454545454,
@@ -1187,172 +1327,18 @@
           "edge_percent": 4.54545454545454
         },
         "sell": {
-          "threshold": 0.44,
-          "precision": 50.0,
-          "signals": 14,
-          "edge_percent": 0.0
-        }
-      },
-      "BEEF3": {
-        "buy": {
-          "threshold": 0.62,
-          "precision": 75.0,
-          "signals": 4,
-          "edge_percent": 25.0
-        },
-        "sell": {
-          "threshold": 0.44,
-          "precision": 52.94117647058824,
-          "signals": 17,
-          "edge_percent": 2.941176470588239
-        }
-      },
-      "BHIA3": {
-        "buy": {
-          "threshold": 0.56,
-          "precision": 37.5,
-          "signals": 8,
-          "edge_percent": -12.5
-        },
-        "sell": {
-          "threshold": 0.35,
-          "precision": 66.66666666666666,
-          "signals": 12,
-          "edge_percent": 16.666666666666657
-        }
-      },
-      "BMGB4": {
-        "buy": {
-          "threshold": 0.58,
-          "precision": 71.42857142857143,
-          "signals": 7,
-          "edge_percent": 21.42857142857143
-        },
-        "sell": {
-          "threshold": 0.44,
-          "precision": 58.333333333333336,
-          "signals": 12,
-          "edge_percent": 8.333333333333336
-        }
-      },
-      "BMOB3": {
-        "buy": {
-          "threshold": 0.58,
-          "precision": 100.0,
-          "signals": 4,
-          "edge_percent": 50.0
-        },
-        "sell": {
-          "threshold": 0.42,
-          "precision": 50.0,
-          "signals": 10,
-          "edge_percent": 0.0
-        }
-      },
-      "BOVA11": {
-        "buy": {
-          "threshold": 0.65,
-          "precision": 40.0,
-          "signals": 5,
-          "edge_percent": -10.0
-        },
-        "sell": {
           "threshold": 0.38,
-          "precision": 75.0,
-          "signals": 8,
-          "edge_percent": 25.0
-        }
-      },
-      "BPAC11": {
-        "buy": {
-          "threshold": 0.56,
-          "precision": 50.0,
-          "signals": 8,
-          "edge_percent": 0.0
-        },
-        "sell": {
-          "threshold": 0.4,
-          "precision": 45.45454545454545,
-          "signals": 11,
-          "edge_percent": -4.545454545454547
-        }
-      },
-      "BRAP4": {
-        "buy": {
-          "threshold": 0.6,
-          "precision": 75.0,
-          "signals": 8,
-          "edge_percent": 25.0
-        },
-        "sell": {
-          "threshold": 0.4,
-          "precision": 40.0,
-          "signals": 10,
-          "edge_percent": -10.0
-        }
-      },
-      "BRKM5": {
-        "buy": {
-          "threshold": 0.6,
-          "precision": 75.0,
-          "signals": 4,
-          "edge_percent": 25.0
-        },
-        "sell": {
-          "threshold": 0.35,
-          "precision": 71.42857142857143,
-          "signals": 7,
-          "edge_percent": 21.42857142857143
-        }
-      },
-      "CASH3": {
-        "buy": {
-          "threshold": 0.6,
-          "precision": 75.0,
-          "signals": 4,
-          "edge_percent": 25.0
-        },
-        "sell": {
-          "threshold": 0.44,
-          "precision": 31.57894736842105,
-          "signals": 19,
-          "edge_percent": -18.42105263157895
-        }
-      },
-      "CBAV3": {
-        "buy": {
-          "threshold": 0.62,
-          "precision": 75.0,
-          "signals": 4,
-          "edge_percent": 25.0
-        },
-        "sell": {
-          "threshold": 0.4,
-          "precision": 33.33333333333333,
+          "precision": 22.22222222222222,
           "signals": 9,
-          "edge_percent": -16.66666666666667
+          "edge_percent": -27.77777777777778
         }
       },
       "CEAB3": {
         "buy": {
-          "threshold": 0.62,
+          "threshold": 0.56,
           "precision": 50.0,
-          "signals": 4,
+          "signals": 6,
           "edge_percent": 0.0
-        },
-        "sell": {
-          "threshold": 0.42,
-          "precision": 69.23076923076923,
-          "signals": 13,
-          "edge_percent": 19.230769230769226
-        }
-      },
-      "CMIG4": {
-        "buy": {
-          "threshold": 0.62,
-          "precision": 40.0,
-          "signals": 5,
-          "edge_percent": -10.0
         },
         "sell": {
           "threshold": 0.35,
@@ -1361,82 +1347,110 @@
           "edge_percent": 37.5
         }
       },
+      "CMIG4": {
+        "buy": {
+          "threshold": 0.62,
+          "precision": 60.0,
+          "signals": 5,
+          "edge_percent": 10.0
+        },
+        "sell": {
+          "threshold": 0.38,
+          "precision": 80.0,
+          "signals": 10,
+          "edge_percent": 30.0
+        }
+      },
       "CMIN3": {
         "buy": {
-          "threshold": 0.58,
+          "threshold": 0.6,
           "precision": 66.66666666666666,
           "signals": 6,
           "edge_percent": 16.666666666666657
         },
         "sell": {
-          "threshold": 0.4,
+          "threshold": 0.44,
           "precision": 50.0,
-          "signals": 12,
+          "signals": 20,
           "edge_percent": 0.0
         }
       },
       "COGN3": {
         "buy": {
           "threshold": 0.56,
-          "precision": 66.66666666666666,
-          "signals": 6,
-          "edge_percent": 16.666666666666657
+          "precision": 50.0,
+          "signals": 8,
+          "edge_percent": 0.0
         },
         "sell": {
-          "threshold": 0.35,
-          "precision": 75.0,
-          "signals": 8,
-          "edge_percent": 25.0
+          "threshold": 0.38,
+          "precision": 72.72727272727273,
+          "signals": 11,
+          "edge_percent": 22.727272727272734
         }
       },
       "CPFE3": {
         "buy": {
-          "threshold": 0.65,
-          "precision": 60.0,
-          "signals": 5,
-          "edge_percent": 10.0
+          "threshold": 0.56,
+          "precision": 58.333333333333336,
+          "signals": 12,
+          "edge_percent": 8.333333333333336
         },
         "sell": {
           "threshold": 0.35,
-          "precision": 80.0,
+          "precision": 60.0,
           "signals": 5,
-          "edge_percent": 30.0
+          "edge_percent": 10.0
         }
       },
       "CSAN3": {
         "buy": {
           "threshold": 0.62,
-          "precision": 40.0,
-          "signals": 5,
-          "edge_percent": -10.0
+          "precision": 75.0,
+          "signals": 4,
+          "edge_percent": 25.0
         },
         "sell": {
-          "threshold": 0.42,
-          "precision": 64.28571428571429,
-          "signals": 14,
-          "edge_percent": 14.285714285714292
+          "threshold": 0.44,
+          "precision": 66.66666666666666,
+          "signals": 18,
+          "edge_percent": 16.666666666666657
         }
       },
       "CSMG3": {
         "buy": {
           "threshold": 0.62,
-          "precision": 55.55555555555556,
-          "signals": 9,
-          "edge_percent": 5.555555555555557
+          "precision": 37.5,
+          "signals": 8,
+          "edge_percent": -12.5
         },
         "sell": {
-          "threshold": 0.42,
-          "precision": 58.333333333333336,
-          "signals": 12,
-          "edge_percent": 8.333333333333336
+          "threshold": 0.35,
+          "precision": 66.66666666666666,
+          "signals": 6,
+          "edge_percent": 16.666666666666657
         }
       },
       "CSNA3": {
         "buy": {
-          "threshold": 0.58,
+          "threshold": 0.56,
           "precision": 50.0,
-          "signals": 4,
+          "signals": 6,
           "edge_percent": 0.0
+        },
+        "sell": {
+          "threshold": 0.4,
+          "precision": 56.25,
+          "signals": 16,
+          "edge_percent": 6.25
+        }
+      },
+      "CURY3": {
+        "buy": {
+          "threshold": 0.56,
+          "precision": 40.0,
+          "signals": 10,
+          "edge_percent": -10.0
         },
         "sell": {
           "threshold": 0.35,
@@ -1445,40 +1459,26 @@
           "edge_percent": -7.142857142857146
         }
       },
-      "CURY3": {
-        "buy": {
-          "threshold": 0.62,
-          "precision": 80.0,
-          "signals": 5,
-          "edge_percent": 30.0
-        },
-        "sell": {
-          "threshold": 0.4,
-          "precision": 70.0,
-          "signals": 10,
-          "edge_percent": 20.0
-        }
-      },
       "CVCB3": {
         "buy": {
-          "threshold": 0.56,
-          "precision": 50.0,
+          "threshold": 0.58,
+          "precision": 33.33333333333333,
           "signals": 6,
-          "edge_percent": 0.0
+          "edge_percent": -16.66666666666667
         },
         "sell": {
-          "threshold": 0.44,
-          "precision": 47.05882352941176,
-          "signals": 17,
-          "edge_percent": -2.941176470588239
+          "threshold": 0.35,
+          "precision": 55.55555555555556,
+          "signals": 9,
+          "edge_percent": 5.555555555555557
         }
       },
       "CXSE3": {
         "buy": {
-          "threshold": 0.56,
-          "precision": 61.53846153846154,
-          "signals": 13,
-          "edge_percent": 11.53846153846154
+          "threshold": 0.58,
+          "precision": 66.66666666666666,
+          "signals": 12,
+          "edge_percent": 16.666666666666657
         },
         "sell": {
           "threshold": 0.35,
@@ -1489,9 +1489,51 @@
       },
       "CYRE3": {
         "buy": {
-          "threshold": 0.62,
-          "precision": 50.0,
+          "threshold": 0.56,
+          "precision": 42.857142857142854,
+          "signals": 7,
+          "edge_percent": -7.142857142857146
+        },
+        "sell": {
+          "threshold": 0.35,
+          "precision": 75.0,
           "signals": 4,
+          "edge_percent": 25.0
+        }
+      },
+      "DIRR3": {
+        "buy": {
+          "threshold": 0.58,
+          "precision": 37.5,
+          "signals": 8,
+          "edge_percent": -12.5
+        },
+        "sell": {
+          "threshold": 0.35,
+          "precision": 70.0,
+          "signals": 10,
+          "edge_percent": 20.0
+        }
+      },
+      "DXCO3": {
+        "buy": {
+          "threshold": 0.56,
+          "precision": 55.55555555555556,
+          "signals": 9,
+          "edge_percent": 5.555555555555557
+        },
+        "sell": {
+          "threshold": 0.35,
+          "precision": 50.0,
+          "signals": 8,
+          "edge_percent": 0.0
+        }
+      },
+      "ECOR3": {
+        "buy": {
+          "threshold": 0.56,
+          "precision": 50.0,
+          "signals": 8,
           "edge_percent": 0.0
         },
         "sell": {
@@ -1501,23 +1543,23 @@
           "edge_percent": -16.66666666666667
         }
       },
-      "DIRR3": {
-        "buy": {
-          "threshold": 0.62,
-          "precision": 40.0,
-          "signals": 5,
-          "edge_percent": -10.0
-        },
-        "sell": {
-          "threshold": 0.38,
-          "precision": 63.63636363636363,
-          "signals": 11,
-          "edge_percent": 13.636363636363633
-        }
-      },
-      "DXCO3": {
+      "EGIE3": {
         "buy": {
           "threshold": 0.58,
+          "precision": 66.66666666666666,
+          "signals": 9,
+          "edge_percent": 16.666666666666657
+        },
+        "sell": {
+          "threshold": 0.44,
+          "precision": 50.0,
+          "signals": 14,
+          "edge_percent": 0.0
+        }
+      },
+      "ENEV3": {
+        "buy": {
+          "threshold": 0.6,
           "precision": 50.0,
           "signals": 6,
           "edge_percent": 0.0
@@ -1529,7 +1571,7 @@
           "edge_percent": -21.42857142857143
         }
       },
-      "ECOR3": {
+      "ENGI11": {
         "buy": {
           "threshold": 0.56,
           "precision": 55.55555555555556,
@@ -1537,60 +1579,18 @@
           "edge_percent": 5.555555555555557
         },
         "sell": {
-          "threshold": 0.4,
-          "precision": 46.15384615384615,
-          "signals": 13,
-          "edge_percent": -3.8461538461538467
-        }
-      },
-      "EGIE3": {
-        "buy": {
-          "threshold": 0.56,
-          "precision": 45.45454545454545,
-          "signals": 11,
-          "edge_percent": -4.545454545454547
-        },
-        "sell": {
-          "threshold": 0.35,
-          "precision": 75.0,
-          "signals": 4,
-          "edge_percent": 25.0
-        }
-      },
-      "ENEV3": {
-        "buy": {
-          "threshold": 0.62,
+          "threshold": 0.44,
           "precision": 50.0,
-          "signals": 4,
+          "signals": 16,
           "edge_percent": 0.0
-        },
-        "sell": {
-          "threshold": 0.35,
-          "precision": 40.0,
-          "signals": 5,
-          "edge_percent": -10.0
-        }
-      },
-      "ENGI11": {
-        "buy": {
-          "threshold": 0.65,
-          "precision": 60.0,
-          "signals": 5,
-          "edge_percent": 10.0
-        },
-        "sell": {
-          "threshold": 0.35,
-          "precision": 80.0,
-          "signals": 5,
-          "edge_percent": 30.0
         }
       },
       "EQTL3": {
         "buy": {
           "threshold": 0.56,
-          "precision": 50.0,
+          "precision": 40.0,
           "signals": 10,
-          "edge_percent": 0.0
+          "edge_percent": -10.0
         },
         "sell": {
           "threshold": 0.35,
@@ -1601,16 +1601,16 @@
       },
       "EZTC3": {
         "buy": {
-          "threshold": 0.6,
-          "precision": 25.0,
-          "signals": 4,
-          "edge_percent": -25.0
+          "threshold": 0.56,
+          "precision": 28.57142857142857,
+          "signals": 7,
+          "edge_percent": -21.42857142857143
         },
         "sell": {
-          "threshold": 0.4,
-          "precision": 40.0,
-          "signals": 10,
-          "edge_percent": -10.0
+          "threshold": 0.35,
+          "precision": 50.0,
+          "signals": 8,
+          "edge_percent": 0.0
         }
       },
       "FESA4": {
@@ -1621,10 +1621,10 @@
           "edge_percent": 0.0
         },
         "sell": {
-          "threshold": 0.44,
-          "precision": 60.0,
-          "signals": 15,
-          "edge_percent": 10.0
+          "threshold": 0.35,
+          "precision": 55.55555555555556,
+          "signals": 9,
+          "edge_percent": 5.555555555555557
         }
       },
       "FLRY3": {
@@ -1636,101 +1636,101 @@
         },
         "sell": {
           "threshold": 0.35,
-          "precision": 57.14285714285714,
-          "signals": 7,
-          "edge_percent": 7.142857142857139
-        }
-      },
-      "GGBR4": {
-        "buy": {
-          "threshold": 0.65,
-          "precision": 100.0,
-          "signals": 4,
-          "edge_percent": 50.0
-        },
-        "sell": {
-          "threshold": 0.38,
-          "precision": 75.0,
-          "signals": 8,
-          "edge_percent": 25.0
-        }
-      },
-      "GMAT3": {
-        "buy": {
-          "threshold": 0.62,
-          "precision": 50.0,
-          "signals": 4,
-          "edge_percent": 0.0
-        },
-        "sell": {
-          "threshold": 0.35,
-          "precision": 40.0,
-          "signals": 5,
-          "edge_percent": -10.0
-        }
-      },
-      "GOAU4": {
-        "buy": {
-          "threshold": 0.6,
-          "precision": 100.0,
-          "signals": 6,
-          "edge_percent": 50.0
-        },
-        "sell": {
-          "threshold": 0.42,
-          "precision": 63.63636363636363,
-          "signals": 11,
-          "edge_percent": 13.636363636363633
-        }
-      },
-      "GRND3": {
-        "buy": {
-          "threshold": 0.62,
-          "precision": 50.0,
-          "signals": 4,
-          "edge_percent": 0.0
-        },
-        "sell": {
-          "threshold": 0.38,
-          "precision": 55.55555555555556,
-          "signals": 9,
-          "edge_percent": 5.555555555555557
-        }
-      },
-      "HAPV3": {
-        "buy": {
-          "threshold": 0.6,
-          "precision": 50.0,
-          "signals": 4,
-          "edge_percent": 0.0
-        },
-        "sell": {
-          "threshold": 0.4,
-          "precision": 64.28571428571429,
-          "signals": 14,
-          "edge_percent": 14.285714285714292
-        }
-      },
-      "HYPE3": {
-        "buy": {
-          "threshold": 0.56,
-          "precision": 75.0,
-          "signals": 8,
-          "edge_percent": 25.0
-        },
-        "sell": {
-          "threshold": 0.35,
           "precision": 60.0,
           "signals": 5,
           "edge_percent": 10.0
         }
       },
+      "GGBR4": {
+        "buy": {
+          "threshold": 0.6,
+          "precision": 57.14285714285714,
+          "signals": 7,
+          "edge_percent": 7.142857142857139
+        },
+        "sell": {
+          "threshold": 0.38,
+          "precision": 60.0,
+          "signals": 10,
+          "edge_percent": 10.0
+        }
+      },
+      "GMAT3": {
+        "buy": {
+          "threshold": 0.56,
+          "precision": 44.44444444444444,
+          "signals": 9,
+          "edge_percent": -5.555555555555557
+        },
+        "sell": {
+          "threshold": 0.4,
+          "precision": 46.15384615384615,
+          "signals": 13,
+          "edge_percent": -3.8461538461538467
+        }
+      },
+      "GOAU4": {
+        "buy": {
+          "threshold": 0.62,
+          "precision": 80.0,
+          "signals": 5,
+          "edge_percent": 30.0
+        },
+        "sell": {
+          "threshold": 0.44,
+          "precision": 53.333333333333336,
+          "signals": 15,
+          "edge_percent": 3.3333333333333357
+        }
+      },
+      "GRND3": {
+        "buy": {
+          "threshold": 0.56,
+          "precision": 60.0,
+          "signals": 10,
+          "edge_percent": 10.0
+        },
+        "sell": {
+          "threshold": 0.4,
+          "precision": 63.63636363636363,
+          "signals": 11,
+          "edge_percent": 13.636363636363633
+        }
+      },
+      "HAPV3": {
+        "buy": {
+          "threshold": 0.56,
+          "precision": 37.5,
+          "signals": 8,
+          "edge_percent": -12.5
+        },
+        "sell": {
+          "threshold": 0.4,
+          "precision": 78.57142857142857,
+          "signals": 14,
+          "edge_percent": 28.57142857142857
+        }
+      },
+      "HYPE3": {
+        "buy": {
+          "threshold": 0.56,
+          "precision": 72.72727272727273,
+          "signals": 11,
+          "edge_percent": 22.727272727272734
+        },
+        "sell": {
+          "threshold": 0.35,
+          "precision": 66.66666666666666,
+          "signals": 6,
+          "edge_percent": 16.666666666666657
+        }
+      },
       "IGTI11": {
         "buy": {
-          "threshold": 0.65,
-          "precision": 100.0,
-          "signals": 4,
-          "edge_percent": 50.0
+          "threshold": 0.56,
+          "precision": 72.72727272727273,
+          "signals": 11,
+          "edge_percent": 22.727272727272734
         },
         "sell": {
           "threshold": 0.35,
@@ -1741,495 +1741,33 @@
       },
       "INTB3": {
         "buy": {
-          "threshold": 0.65,
-          "precision": 100.0,
-          "signals": 4,
-          "edge_percent": 50.0
+          "threshold": 0.56,
+          "precision": 60.0,
+          "signals": 10,
+          "edge_percent": 10.0
         },
         "sell": {
-          "threshold": 0.4,
-          "precision": 50.0,
-          "signals": 12,
-          "edge_percent": 0.0
+          "threshold": 0.35,
+          "precision": 57.14285714285714,
+          "signals": 7,
+          "edge_percent": 7.142857142857139
         }
       },
       "IRBR3": {
         "buy": {
-          "threshold": 0.58,
-          "precision": 77.77777777777779,
-          "signals": 9,
-          "edge_percent": 27.777777777777786
+          "threshold": 0.56,
+          "precision": 70.0,
+          "signals": 10,
+          "edge_percent": 20.0
         },
         "sell": {
-          "threshold": 0.38,
-          "precision": 62.5,
-          "signals": 8,
-          "edge_percent": 12.5
+          "threshold": 0.42,
+          "precision": 61.53846153846154,
+          "signals": 13,
+          "edge_percent": 11.53846153846154
         }
       },
       "ITUB4": {
-        "buy": {
-          "threshold": 0.56,
-          "precision": 63.63636363636363,
-          "signals": 11,
-          "edge_percent": 13.636363636363633
-        },
-        "sell": {
-          "threshold": 0.35,
-          "precision": 57.14285714285714,
-          "signals": 7,
-          "edge_percent": 7.142857142857139
-        }
-      },
-      "KEPL3": {
-        "buy": {
-          "threshold": 0.6,
-          "precision": 83.33333333333334,
-          "signals": 6,
-          "edge_percent": 33.33333333333334
-        },
-        "sell": {
-          "threshold": 0.35,
-          "precision": 57.14285714285714,
-          "signals": 7,
-          "edge_percent": 7.142857142857139
-        }
-      },
-      "KLBN11": {
-        "buy": {
-          "threshold": 0.56,
-          "precision": 50.0,
-          "signals": 12,
-          "edge_percent": 0.0
-        },
-        "sell": {
-          "threshold": 0.44,
-          "precision": 35.714285714285715,
-          "signals": 14,
-          "edge_percent": -14.285714285714285
-        }
-      },
-      "LEVE3": {
-        "buy": {
-          "threshold": 0.65,
-          "precision": 75.0,
-          "signals": 4,
-          "edge_percent": 25.0
-        },
-        "sell": {
-          "threshold": 0.38,
-          "precision": 66.66666666666666,
-          "signals": 6,
-          "edge_percent": 16.666666666666657
-        }
-      },
-      "LOGG3": {
-        "buy": {
-          "threshold": 0.65,
-          "precision": 75.0,
-          "signals": 4,
-          "edge_percent": 25.0
-        },
-        "sell": {
-          "threshold": 0.35,
-          "precision": 42.857142857142854,
-          "signals": 7,
-          "edge_percent": -7.142857142857146
-        }
-      },
-      "LREN3": {
-        "buy": {
-          "threshold": 0.62,
-          "precision": 40.0,
-          "signals": 5,
-          "edge_percent": -10.0
-        },
-        "sell": {
-          "threshold": 0.38,
-          "precision": 75.0,
-          "signals": 12,
-          "edge_percent": 25.0
-        }
-      },
-      "LWSA3": {
-        "buy": {
-          "threshold": 0.65,
-          "precision": 25.0,
-          "signals": 4,
-          "edge_percent": -25.0
-        },
-        "sell": {
-          "threshold": 0.35,
-          "precision": 50.0,
-          "signals": 6,
-          "edge_percent": 0.0
-        }
-      },
-      "MDIA3": {
-        "buy": {
-          "threshold": 0.65,
-          "precision": 75.0,
-          "signals": 4,
-          "edge_percent": 25.0
-        },
-        "sell": {
-          "threshold": 0.4,
-          "precision": 66.66666666666666,
-          "signals": 9,
-          "edge_percent": 16.666666666666657
-        }
-      },
-      "MGLU3": {
-        "buy": {
-          "threshold": 0.6,
-          "precision": 75.0,
-          "signals": 4,
-          "edge_percent": 25.0
-        },
-        "sell": {
-          "threshold": 0.42,
-          "precision": 68.75,
-          "signals": 16,
-          "edge_percent": 18.75
-        }
-      },
-      "MOTV3": {
-        "buy": {
-          "threshold": 0.65,
-          "precision": 75.0,
-          "signals": 4,
-          "edge_percent": 25.0
-        },
-        "sell": {
-          "threshold": 0.35,
-          "precision": 85.71428571428571,
-          "signals": 7,
-          "edge_percent": 35.71428571428571
-        }
-      },
-      "MOVI3": {
-        "buy": {
-          "threshold": 0.56,
-          "precision": 42.857142857142854,
-          "signals": 7,
-          "edge_percent": -7.142857142857146
-        },
-        "sell": {
-          "threshold": 0.38,
-          "precision": 50.0,
-          "signals": 14,
-          "edge_percent": 0.0
-        }
-      },
-      "MRVE3": {
-        "buy": {
-          "threshold": 0.62,
-          "precision": 75.0,
-          "signals": 4,
-          "edge_percent": 25.0
-        },
-        "sell": {
-          "threshold": 0.35,
-          "precision": 50.0,
-          "signals": 4,
-          "edge_percent": 0.0
-        }
-      },
-      "MULT3": {
-        "buy": {
-          "threshold": 0.62,
-          "precision": 60.0,
-          "signals": 5,
-          "edge_percent": 10.0
-        },
-        "sell": {
-          "threshold": 0.35,
-          "precision": 75.0,
-          "signals": 4,
-          "edge_percent": 25.0
-        }
-      },
-      "ONCO3": {
-        "buy": {
-          "threshold": 0.58,
-          "precision": 40.0,
-          "signals": 5,
-          "edge_percent": -10.0
-        },
-        "sell": {
-          "threshold": 0.38,
-          "precision": 41.66666666666667,
-          "signals": 12,
-          "edge_percent": -8.333333333333329
-        }
-      },
-      "ORVR3": {
-        "buy": {
-          "threshold": 0.58,
-          "precision": 60.0,
-          "signals": 10,
-          "edge_percent": 10.0
-        },
-        "sell": {
-          "threshold": 0.44,
-          "precision": 50.0,
-          "signals": 12,
-          "edge_percent": 0.0
-        }
-      },
-      "PCAR3": {
-        "buy": {
-          "threshold": 0.56,
-          "precision": 42.857142857142854,
-          "signals": 7,
-          "edge_percent": -7.142857142857146
-        },
-        "sell": {
-          "threshold": 0.44,
-          "precision": 61.111111111111114,
-          "signals": 18,
-          "edge_percent": 11.111111111111114
-        }
-      },
-      "PETR3": {
-        "buy": {
-          "threshold": 0.6,
-          "precision": 80.0,
-          "signals": 5,
-          "edge_percent": 30.0
-        },
-        "sell": {
-          "threshold": 0.4,
-          "precision": 50.0,
-          "signals": 10,
-          "edge_percent": 0.0
-        }
-      },
-      "PETR4": {
-        "buy": {
-          "threshold": 0.6,
-          "precision": 100.0,
-          "signals": 4,
-          "edge_percent": 50.0
-        },
-        "sell": {
-          "threshold": 0.4,
-          "precision": 50.0,
-          "signals": 10,
-          "edge_percent": 0.0
-        }
-      },
-      "POMO4": {
-        "buy": {
-          "threshold": 0.62,
-          "precision": 50.0,
-          "signals": 4,
-          "edge_percent": 0.0
-        },
-        "sell": {
-          "threshold": 0.44,
-          "precision": 60.0,
-          "signals": 15,
-          "edge_percent": 10.0
-        }
-      },
-      "PRIO3": {
-        "buy": {
-          "threshold": 0.6,
-          "precision": 66.66666666666666,
-          "signals": 6,
-          "edge_percent": 16.666666666666657
-        },
-        "sell": {
-          "threshold": 0.4,
-          "precision": 60.0,
-          "signals": 10,
-          "edge_percent": 10.0
-        }
-      },
-      "RADL3": {
-        "buy": {
-          "threshold": 0.62,
-          "precision": 60.0,
-          "signals": 5,
-          "edge_percent": 10.0
-        },
-        "sell": {
-          "threshold": 0.35,
-          "precision": 80.0,
-          "signals": 5,
-          "edge_percent": 30.0
-        }
-      },
-      "RAIL3": {
-        "buy": {
-          "threshold": 0.6,
-          "precision": 42.857142857142854,
-          "signals": 7,
-          "edge_percent": -7.142857142857146
-        },
-        "sell": {
-          "threshold": 0.35,
-          "precision": 42.857142857142854,
-          "signals": 7,
-          "edge_percent": -7.142857142857146
-        }
-      },
-      "RAPT4": {
-        "buy": {
-          "threshold": 0.6,
-          "precision": 75.0,
-          "signals": 4,
-          "edge_percent": 25.0
-        },
-        "sell": {
-          "threshold": 0.42,
-          "precision": 46.15384615384615,
-          "signals": 13,
-          "edge_percent": -3.8461538461538467
-        }
-      },
-      "RDOR3": {
-        "buy": {
-          "threshold": 0.62,
-          "precision": 75.0,
-          "signals": 4,
-          "edge_percent": 25.0
-        },
-        "sell": {
-          "threshold": 0.38,
-          "precision": 57.14285714285714,
-          "signals": 7,
-          "edge_percent": 7.142857142857139
-        }
-      },
-      "RECV3": {
-        "buy": {
-          "threshold": 0.56,
-          "precision": 75.0,
-          "signals": 8,
-          "edge_percent": 25.0
-        },
-        "sell": {
-          "threshold": 0.35,
-          "precision": 60.0,
-          "signals": 5,
-          "edge_percent": 10.0
-        }
-      },
-      "RENT3": {
-        "buy": {
-          "threshold": 0.56,
-          "precision": 54.54545454545454,
-          "signals": 11,
-          "edge_percent": 4.54545454545454
-        },
-        "sell": {
-          "threshold": 0.35,
-          "precision": 100.0,
-          "signals": 4,
-          "edge_percent": 50.0
-        }
-      },
-      "SANB11": {
-        "buy": {
-          "threshold": 0.6,
-          "precision": 40.0,
-          "signals": 5,
-          "edge_percent": -10.0
-        },
-        "sell": {
-          "threshold": 0.38,
-          "precision": 36.36363636363637,
-          "signals": 11,
-          "edge_percent": -13.636363636363633
-        }
-      },
-      "SBSP3": {
-        "buy": {
-          "threshold": 0.56,
-          "precision": 64.28571428571429,
-          "signals": 14,
-          "edge_percent": 14.285714285714292
-        },
-        "sell": {
-          "threshold": 0.35,
-          "precision": 60.0,
-          "signals": 5,
-          "edge_percent": 10.0
-        }
-      },
-      "SIMH3": {
-        "buy": {
-          "threshold": 0.62,
-          "precision": 40.0,
-          "signals": 5,
-          "edge_percent": -10.0
-        },
-        "sell": {
-          "threshold": 0.35,
-          "precision": 71.42857142857143,
-          "signals": 7,
-          "edge_percent": 21.42857142857143
-        }
-      },
-      "SLCE3": {
-        "buy": {
-          "threshold": 0.6,
-          "precision": 100.0,
-          "signals": 6,
-          "edge_percent": 50.0
-        },
-        "sell": {
-          "threshold": 0.35,
-          "precision": 33.33333333333333,
-          "signals": 6,
-          "edge_percent": -16.66666666666667
-        }
-      },
-      "SMFT3": {
-        "buy": {
-          "threshold": 0.56,
-          "precision": 45.45454545454545,
-          "signals": 11,
-          "edge_percent": -4.545454545454547
-        },
-        "sell": {
-          "threshold": 0.35,
-          "precision": 75.0,
-          "signals": 4,
-          "edge_percent": 25.0
-        }
-      },
-      "SMTO3": {
-        "buy": {
-          "threshold": 0.62,
-          "precision": 75.0,
-          "signals": 4,
-          "edge_percent": 25.0
-        },
-        "sell": {
-          "threshold": 0.35,
-          "precision": 50.0,
-          "signals": 4,
-          "edge_percent": 0.0
-        }
-      },
-      "SUZB3": {
-        "buy": {
-          "threshold": 0.56,
-          "precision": 66.66666666666666,
-          "signals": 12,
-          "edge_percent": 16.666666666666657
-        },
-        "sell": {
-          "threshold": 0.44,
-          "precision": 38.88888888888889,
-          "signals": 18,
-          "edge_percent": -11.111111111111107
-        }
-      },
-      "TAEE11": {
         "buy": {
           "threshold": 0.56,
           "precision": 58.333333333333336,
@@ -2238,40 +1776,180 @@
         },
         "sell": {
           "threshold": 0.35,
-          "precision": 80.0,
-          "signals": 5,
-          "edge_percent": 30.0
+          "precision": 66.66666666666666,
+          "signals": 6,
+          "edge_percent": 16.666666666666657
         }
       },
-      "TEND3": {
+      "KEPL3": {
         "buy": {
-          "threshold": 0.62,
-          "precision": 40.0,
+          "threshold": 0.56,
+          "precision": 55.55555555555556,
+          "signals": 9,
+          "edge_percent": 5.555555555555557
+        },
+        "sell": {
+          "threshold": 0.44,
+          "precision": 63.1578947368421,
+          "signals": 19,
+          "edge_percent": 13.157894736842103
+        }
+      },
+      "KLBN11": {
+        "buy": {
+          "threshold": 0.6,
+          "precision": 60.0,
+          "signals": 10,
+          "edge_percent": 10.0
+        },
+        "sell": {
+          "threshold": 0.4,
+          "precision": 30.76923076923077,
+          "signals": 13,
+          "edge_percent": -19.23076923076923
+        }
+      },
+      "LEVE3": {
+        "buy": {
+          "threshold": 0.6,
+          "precision": 66.66666666666666,
+          "signals": 6,
+          "edge_percent": 16.666666666666657
+        },
+        "sell": {
+          "threshold": 0.35,
+          "precision": 60.0,
           "signals": 5,
-          "edge_percent": -10.0
+          "edge_percent": 10.0
+        }
+      },
+      "LOGG3": {
+        "buy": {
+          "threshold": 0.58,
+          "precision": 33.33333333333333,
+          "signals": 9,
+          "edge_percent": -16.66666666666667
         },
         "sell": {
           "threshold": 0.42,
+          "precision": 50.0,
+          "signals": 12,
+          "edge_percent": 0.0
+        }
+      },
+      "LREN3": {
+        "buy": {
+          "threshold": 0.56,
+          "precision": 50.0,
+          "signals": 8,
+          "edge_percent": 0.0
+        },
+        "sell": {
+          "threshold": 0.35,
+          "precision": 77.77777777777779,
+          "signals": 9,
+          "edge_percent": 27.777777777777786
+        }
+      },
+      "LWSA3": {
+        "buy": {
+          "threshold": 0.58,
+          "precision": 25.0,
+          "signals": 8,
+          "edge_percent": -25.0
+        },
+        "sell": {
+          "threshold": 0.35,
+          "precision": 37.5,
+          "signals": 8,
+          "edge_percent": -12.5
+        }
+      },
+      "MDIA3": {
+        "buy": {
+          "threshold": 0.56,
+          "precision": 50.0,
+          "signals": 10,
+          "edge_percent": 0.0
+        },
+        "sell": {
+          "threshold": 0.44,
+          "precision": 58.82352941176471,
+          "signals": 17,
+          "edge_percent": 8.82352941176471
+        }
+      },
+      "MGLU3": {
+        "buy": {
+          "threshold": 0.56,
+          "precision": 42.857142857142854,
+          "signals": 7,
+          "edge_percent": -7.142857142857146
+        },
+        "sell": {
+          "threshold": 0.35,
+          "precision": 62.5,
+          "signals": 8,
+          "edge_percent": 12.5
+        }
+      },
+      "MOTV3": {
+        "buy": {
+          "threshold": 0.6,
+          "precision": 66.66666666666666,
+          "signals": 6,
+          "edge_percent": 16.666666666666657
+        },
+        "sell": {
+          "threshold": 0.38,
+          "precision": 77.77777777777779,
+          "signals": 9,
+          "edge_percent": 27.777777777777786
+        }
+      },
+      "MOVI3": {
+        "buy": {
+          "threshold": 0.58,
+          "precision": 83.33333333333334,
+          "signals": 6,
+          "edge_percent": 33.33333333333334
+        },
+        "sell": {
+          "threshold": 0.42,
+          "precision": 52.94117647058824,
+          "signals": 17,
+          "edge_percent": 2.941176470588239
+        }
+      },
+      "MRVE3": {
+        "buy": {
+          "threshold": 0.58,
+          "precision": 50.0,
+          "signals": 8,
+          "edge_percent": 0.0
+        },
+        "sell": {
+          "threshold": 0.44,
+          "precision": 45.0,
+          "signals": 20,
+          "edge_percent": -5.0
+        }
+      },
+      "MULT3": {
+        "buy": {
+          "threshold": 0.56,
+          "precision": 54.54545454545454,
+          "signals": 11,
+          "edge_percent": 4.54545454545454
+        },
+        "sell": {
+          "threshold": 0.4,
           "precision": 60.0,
           "signals": 10,
           "edge_percent": 10.0
         }
       },
-      "TIMS3": {
-        "buy": {
-          "threshold": 0.58,
-          "precision": 66.66666666666666,
-          "signals": 9,
-          "edge_percent": 16.666666666666657
-        },
-        "sell": {
-          "threshold": 0.35,
-          "precision": 25.0,
-          "signals": 4,
-          "edge_percent": -25.0
-        }
-      },
-      "TOTS3": {
+      "ONCO3": {
         "buy": {
           "threshold": 0.6,
           "precision": 25.0,
@@ -2279,38 +1957,360 @@
           "edge_percent": -25.0
         },
         "sell": {
-          "threshold": 0.35,
+          "threshold": 0.38,
+          "precision": 40.0,
+          "signals": 15,
+          "edge_percent": -10.0
+        }
+      },
+      "ORVR3": {
+        "buy": {
+          "threshold": 0.56,
+          "precision": 58.333333333333336,
+          "signals": 12,
+          "edge_percent": 8.333333333333336
+        },
+        "sell": {
+          "threshold": 0.38,
           "precision": 50.0,
-          "signals": 4,
+          "signals": 8,
           "edge_percent": 0.0
         }
       },
-      "TTEN3": {
+      "PCAR3": {
         "buy": {
-          "threshold": 0.6,
-          "precision": 40.0,
-          "signals": 5,
-          "edge_percent": -10.0
+          "threshold": 0.56,
+          "precision": 50.0,
+          "signals": 8,
+          "edge_percent": 0.0
         },
         "sell": {
-          "threshold": 0.42,
+          "threshold": 0.44,
+          "precision": 61.904761904761905,
+          "signals": 21,
+          "edge_percent": 11.904761904761905
+        }
+      },
+      "PETR3": {
+        "buy": {
+          "threshold": 0.6,
+          "precision": 100.0,
+          "signals": 6,
+          "edge_percent": 50.0
+        },
+        "sell": {
+          "threshold": 0.4,
           "precision": 46.666666666666664,
           "signals": 15,
           "edge_percent": -3.3333333333333357
         }
       },
-      "UGPA3": {
+      "PETR4": {
         "buy": {
-          "threshold": 0.62,
+          "threshold": 0.6,
+          "precision": 80.0,
+          "signals": 5,
+          "edge_percent": 30.0
+        },
+        "sell": {
+          "threshold": 0.4,
+          "precision": 46.666666666666664,
+          "signals": 15,
+          "edge_percent": -3.3333333333333357
+        }
+      },
+      "POMO4": {
+        "buy": {
+          "threshold": 0.6,
+          "precision": 33.33333333333333,
+          "signals": 6,
+          "edge_percent": -16.66666666666667
+        },
+        "sell": {
+          "threshold": 0.35,
+          "precision": 70.0,
+          "signals": 10,
+          "edge_percent": 20.0
+        }
+      },
+      "PRIO3": {
+        "buy": {
+          "threshold": 0.6,
+          "precision": 80.0,
+          "signals": 5,
+          "edge_percent": 30.0
+        },
+        "sell": {
+          "threshold": 0.44,
+          "precision": 61.111111111111114,
+          "signals": 18,
+          "edge_percent": 11.111111111111114
+        }
+      },
+      "RADL3": {
+        "buy": {
+          "threshold": 0.58,
+          "precision": 62.5,
+          "signals": 8,
+          "edge_percent": 12.5
+        },
+        "sell": {
+          "threshold": 0.35,
+          "precision": 57.14285714285714,
+          "signals": 7,
+          "edge_percent": 7.142857142857139
+        }
+      },
+      "RAIL3": {
+        "buy": {
+          "threshold": 0.56,
+          "precision": 54.54545454545454,
+          "signals": 11,
+          "edge_percent": 4.54545454545454
+        },
+        "sell": {
+          "threshold": 0.4,
+          "precision": 45.45454545454545,
+          "signals": 11,
+          "edge_percent": -4.545454545454547
+        }
+      },
+      "RAPT4": {
+        "buy": {
+          "threshold": 0.6,
+          "precision": 28.57142857142857,
+          "signals": 7,
+          "edge_percent": -21.42857142857143
+        },
+        "sell": {
+          "threshold": 0.35,
+          "precision": 50.0,
+          "signals": 8,
+          "edge_percent": 0.0
+        }
+      },
+      "RDOR3": {
+        "buy": {
+          "threshold": 0.56,
+          "precision": 40.0,
+          "signals": 10,
+          "edge_percent": -10.0
+        },
+        "sell": {
+          "threshold": 0.38,
+          "precision": 50.0,
+          "signals": 8,
+          "edge_percent": 0.0
+        }
+      },
+      "RECV3": {
+        "buy": {
+          "threshold": 0.58,
           "precision": 75.0,
-          "signals": 4,
+          "signals": 8,
           "edge_percent": 25.0
         },
         "sell": {
           "threshold": 0.44,
-          "precision": 31.25,
+          "precision": 55.55555555555556,
+          "signals": 18,
+          "edge_percent": 5.555555555555557
+        }
+      },
+      "RENT3": {
+        "buy": {
+          "threshold": 0.56,
+          "precision": 55.55555555555556,
+          "signals": 9,
+          "edge_percent": 5.555555555555557
+        },
+        "sell": {
+          "threshold": 0.44,
+          "precision": 62.5,
           "signals": 16,
-          "edge_percent": -18.75
+          "edge_percent": 12.5
+        }
+      },
+      "SANB11": {
+        "buy": {
+          "threshold": 0.62,
+          "precision": 25.0,
+          "signals": 4,
+          "edge_percent": -25.0
+        },
+        "sell": {
+          "threshold": 0.4,
+          "precision": 42.857142857142854,
+          "signals": 14,
+          "edge_percent": -7.142857142857146
+        }
+      },
+      "SBSP3": {
+        "buy": {
+          "threshold": 0.58,
+          "precision": 55.55555555555556,
+          "signals": 9,
+          "edge_percent": 5.555555555555557
+        },
+        "sell": {
+          "threshold": 0.35,
+          "precision": 40.0,
+          "signals": 5,
+          "edge_percent": -10.0
+        }
+      },
+      "SIMH3": {
+        "buy": {
+          "threshold": 0.58,
+          "precision": 42.857142857142854,
+          "signals": 7,
+          "edge_percent": -7.142857142857146
+        },
+        "sell": {
+          "threshold": 0.4,
+          "precision": 69.23076923076923,
+          "signals": 13,
+          "edge_percent": 19.230769230769226
+        }
+      },
+      "SLCE3": {
+        "buy": {
+          "threshold": 0.58,
+          "precision": 88.88888888888889,
+          "signals": 9,
+          "edge_percent": 38.888888888888886
+        },
+        "sell": {
+          "threshold": 0.44,
+          "precision": 43.75,
+          "signals": 16,
+          "edge_percent": -6.25
+        }
+      },
+      "SMFT3": {
+        "buy": {
+          "threshold": 0.56,
+          "precision": 27.27272727272727,
+          "signals": 11,
+          "edge_percent": -22.72727272727273
+        },
+        "sell": {
+          "threshold": 0.35,
+          "precision": 66.66666666666666,
+          "signals": 6,
+          "edge_percent": 16.666666666666657
+        }
+      },
+      "SMTO3": {
+        "buy": {
+          "threshold": 0.58,
+          "precision": 75.0,
+          "signals": 8,
+          "edge_percent": 25.0
+        },
+        "sell": {
+          "threshold": 0.35,
+          "precision": 50.0,
+          "signals": 6,
+          "edge_percent": 0.0
+        }
+      },
+      "SUZB3": {
+        "buy": {
+          "threshold": 0.62,
+          "precision": 80.0,
+          "signals": 5,
+          "edge_percent": 30.0
+        },
+        "sell": {
+          "threshold": 0.35,
+          "precision": 33.33333333333333,
+          "signals": 6,
+          "edge_percent": -16.66666666666667
+        }
+      },
+      "TAEE11": {
+        "buy": {
+          "threshold": 0.56,
+          "precision": 70.0,
+          "signals": 10,
+          "edge_percent": 20.0
+        },
+        "sell": {
+          "threshold": 0.35,
+          "precision": 75.0,
+          "signals": 4,
+          "edge_percent": 25.0
+        }
+      },
+      "TEND3": {
+        "buy": {
+          "threshold": 0.56,
+          "precision": 50.0,
+          "signals": 10,
+          "edge_percent": 0.0
+        },
+        "sell": {
+          "threshold": 0.44,
+          "precision": 52.94117647058824,
+          "signals": 17,
+          "edge_percent": 2.941176470588239
+        }
+      },
+      "TIMS3": {
+        "buy": {
+          "threshold": 0.65,
+          "precision": 80.0,
+          "signals": 5,
+          "edge_percent": 30.0
+        },
+        "sell": {
+          "threshold": 0.44,
+          "precision": 46.666666666666664,
+          "signals": 15,
+          "edge_percent": -3.3333333333333357
+        }
+      },
+      "TOTS3": {
+        "buy": {
+          "threshold": 0.62,
+          "precision": 50.0,
+          "signals": 4,
+          "edge_percent": 0.0
+        },
+        "sell": {
+          "threshold": 0.35,
+          "precision": 40.0,
+          "signals": 5,
+          "edge_percent": -10.0
+        }
+      },
+      "TTEN3": {
+        "buy": {
+          "threshold": 0.58,
+          "precision": 83.33333333333334,
+          "signals": 6,
+          "edge_percent": 33.33333333333334
+        },
+        "sell": {
+          "threshold": 0.38,
+          "precision": 66.66666666666666,
+          "signals": 9,
+          "edge_percent": 16.666666666666657
+        }
+      },
+      "UGPA3": {
+        "buy": {
+          "threshold": 0.62,
+          "precision": 80.0,
+          "signals": 5,
+          "edge_percent": 30.0
+        },
+        "sell": {
+          "threshold": 0.38,
+          "precision": 40.0,
+          "signals": 10,
+          "edge_percent": -10.0
         }
       },
       "USIM5": {
@@ -2321,7 +2321,7 @@
           "edge_percent": 30.0
         },
         "sell": {
-          "threshold": 0.42,
+          "threshold": 0.4,
           "precision": 78.57142857142857,
           "signals": 14,
           "edge_percent": 28.57142857142857
@@ -2329,47 +2329,33 @@
       },
       "VALE3": {
         "buy": {
-          "threshold": 0.6,
-          "precision": 62.5,
-          "signals": 8,
-          "edge_percent": 12.5
-        },
-        "sell": {
-          "threshold": 0.42,
-          "precision": 35.714285714285715,
-          "signals": 14,
-          "edge_percent": -14.285714285714285
-        }
-      },
-      "VAMO3": {
-        "buy": {
-          "threshold": 0.62,
+          "threshold": 0.65,
           "precision": 75.0,
           "signals": 4,
           "edge_percent": 25.0
         },
         "sell": {
-          "threshold": 0.44,
-          "precision": 65.0,
-          "signals": 20,
-          "edge_percent": 15.0
+          "threshold": 0.38,
+          "precision": 37.5,
+          "signals": 8,
+          "edge_percent": -12.5
+        }
+      },
+      "VAMO3": {
+        "buy": {
+          "threshold": 0.58,
+          "precision": 42.857142857142854,
+          "signals": 7,
+          "edge_percent": -7.142857142857146
+        },
+        "sell": {
+          "threshold": 0.42,
+          "precision": 68.75,
+          "signals": 16,
+          "edge_percent": 18.75
         }
       },
       "VBBR3": {
-        "buy": {
-          "threshold": 0.56,
-          "precision": 70.0,
-          "signals": 10,
-          "edge_percent": 20.0
-        },
-        "sell": {
-          "threshold": 0.35,
-          "precision": 60.0,
-          "signals": 5,
-          "edge_percent": 10.0
-        }
-      },
-      "VIVA3": {
         "buy": {
           "threshold": 0.62,
           "precision": 80.0,
@@ -2378,65 +2364,79 @@
         },
         "sell": {
           "threshold": 0.35,
-          "precision": 60.0,
-          "signals": 5,
-          "edge_percent": 10.0
+          "precision": 50.0,
+          "signals": 4,
+          "edge_percent": 0.0
+        }
+      },
+      "VIVA3": {
+        "buy": {
+          "threshold": 0.56,
+          "precision": 45.45454545454545,
+          "signals": 11,
+          "edge_percent": -4.545454545454547
+        },
+        "sell": {
+          "threshold": 0.35,
+          "precision": 50.0,
+          "signals": 6,
+          "edge_percent": 0.0
         }
       },
       "VIVT3": {
         "buy": {
           "threshold": 0.58,
-          "precision": 72.72727272727273,
-          "signals": 11,
-          "edge_percent": 22.727272727272734
-        },
-        "sell": {
-          "threshold": 0.4,
           "precision": 62.5,
           "signals": 8,
           "edge_percent": 12.5
+        },
+        "sell": {
+          "threshold": 0.38,
+          "precision": 75.0,
+          "signals": 8,
+          "edge_percent": 25.0
         }
       },
       "VULC3": {
         "buy": {
-          "threshold": 0.56,
-          "precision": 40.0,
-          "signals": 10,
-          "edge_percent": -10.0
+          "threshold": 0.58,
+          "precision": 50.0,
+          "signals": 8,
+          "edge_percent": 0.0
         },
         "sell": {
-          "threshold": 0.4,
-          "precision": 55.55555555555556,
-          "signals": 9,
-          "edge_percent": 5.555555555555557
+          "threshold": 0.35,
+          "precision": 83.33333333333334,
+          "signals": 6,
+          "edge_percent": 33.33333333333334
         }
       },
       "WEGE3": {
         "buy": {
-          "threshold": 0.65,
-          "precision": 75.0,
-          "signals": 4,
-          "edge_percent": 25.0
+          "threshold": 0.56,
+          "precision": 54.54545454545454,
+          "signals": 11,
+          "edge_percent": 4.54545454545454
         },
         "sell": {
-          "threshold": 0.42,
-          "precision": 46.15384615384615,
-          "signals": 13,
-          "edge_percent": -3.8461538461538467
+          "threshold": 0.44,
+          "precision": 41.17647058823529,
+          "signals": 17,
+          "edge_percent": -8.82352941176471
         }
       },
       "YDUQ3": {
         "buy": {
-          "threshold": 0.58,
-          "precision": 75.0,
-          "signals": 8,
-          "edge_percent": 25.0
+          "threshold": 0.62,
+          "precision": 60.0,
+          "signals": 5,
+          "edge_percent": 10.0
         },
         "sell": {
           "threshold": 0.35,
-          "precision": 62.5,
-          "signals": 8,
-          "edge_percent": 12.5
+          "precision": 66.66666666666666,
+          "signals": 9,
+          "edge_percent": 16.666666666666657
         }
       }
     }
