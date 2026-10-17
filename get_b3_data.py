@@ -96,7 +96,6 @@ CHEAP_CANDIDATES = {
     'MULT3.SA': {'name': 'Multiplan', 'sector': 'Imobiliario', 'segment': 'Shopping'},
     'HYPE3.SA': {'name': 'Hypera', 'sector': 'Saude', 'segment': 'Farmaceutico'},
     'JBSS3.SA': {'name': 'JBS', 'sector': 'Alimentos', 'segment': 'Proteinas'},
-    'MGLU3.SA': {'name': 'Magazine Luiza', 'sector': 'Comercio', 'segment': 'Varejo'},
 }
 
 # Tickers usados pela pagina de recomendacoes para swing trade.
@@ -422,6 +421,31 @@ for company_key, (ticker, data) in enumerate(all_data.items(), 1):
 df_fact_stocks = pd.DataFrame(fact_stocks_list)
 df_fact_stocks.to_csv(data_raw / "factStocks.csv", index=False)
 print(f"   ✅ factStocks.csv criado ({len(df_fact_stocks)} registros)")
+
+# 7️⃣ Baixar dados intraday para confirmação de sinais (últimos 30 dias)
+print("\nEtapa 7: Baixando dados intraday (15m) para confirmação de sinais...")
+intraday_dir = data_raw / "intraday"
+intraday_dir.mkdir(exist_ok=True)
+
+intraday_start = (datetime.now() - timedelta(days=30)).strftime("%Y-%m-%d")
+intraday_count = 0
+
+for ticker in list(all_data.keys())[:20]:  # Limitar aos 20 principais para não sobrecarregar
+    try:
+        print(f"   Baixando intraday {ticker}...", end=" ")
+        stock = yf.Ticker(ticker)
+        df_intraday = stock.history(start=intraday_start, interval=INTRADAY_INTERVAL)
+        
+        if not df_intraday.empty:
+            df_intraday.to_csv(intraday_dir / f"{ticker.split('.')[0]}_intraday.csv")
+            intraday_count += 1
+            print(f"OK ({len(df_intraday)} registros)")
+        else:
+            print("Sem dados")
+    except Exception as e:
+        print(f"Erro: {e}")
+
+print(f"   ✅ Dados intraday baixados para {intraday_count} ações")
 
 # Resumo
 print("\n" + "=" * 60)

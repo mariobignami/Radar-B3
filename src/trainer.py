@@ -25,6 +25,8 @@ class LinearRegressionTrainer(BaseTrainer):
 
 class NeuralNetworkTrainer(BaseTrainer):
     def build_model(self, input_dim):
+        if not TENSORFLOW_AVAILABLE:
+            raise ImportError("TensorFlow/Keras não está instalado. Instale com: pip install tensorflow")
         model = Sequential([
             Dense(64, input_dim=input_dim, activation='relu'),
             Dense(32, activation='relu'),
@@ -36,6 +38,8 @@ class NeuralNetworkTrainer(BaseTrainer):
         return model
 
     def train(self, X_train, y_train, X_val, y_val):
+        if not TENSORFLOW_AVAILABLE:
+            raise ImportError("TensorFlow/Keras não está instalado. Instale com: pip install tensorflow")
         print("Treinando Rede Neural...")
         history = self.model.fit(
             X_train, y_train,

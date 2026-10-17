@@ -198,13 +198,6 @@ class StockPredictor:
             print(f"Erro na predicao em lote: {e}")
             return None
 
-    def predict(self, input_data):
-        prepared_data = self._prepare_input(input_data)
-        prediction = self.model.predict(prepared_data, verbose=0)
-        
-        # Retorno tratado conforme o tipo de modelo
-        return float(prediction[0][0]) if self.model_type == 'neural_network' else float(prediction[0])
-
 if __name__ == "__main__":
     # Exemplo de uso com dados fictícios de uma ação
     try:

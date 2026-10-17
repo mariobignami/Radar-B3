@@ -32,9 +32,11 @@ python run_update_and_open.py
 
 1. Suba este projeto para o GitHub.
 2. Acesse https://streamlit.io/cloud.
-3. Crie um novo app usando o repositório `mariobignami/Radar-B3`.
+3. Crie um novo app usando o repositório.
 4. Defina o arquivo principal como `dashboard.py`.
 5. Faça o deploy.
+
+**Nota:** TA-Lib foi removido do requirements.txt para facilitar o deploy no Streamlit Cloud. Os indicadores técnicos usarão pandas/numpy como fallback.
 
 ## Aviso
 

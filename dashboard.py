@@ -30,6 +30,42 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+# Navegação principal
+st.sidebar.title("📈 B3 Swing Trade System")
+st.sidebar.markdown("---")
+
+page = st.sidebar.radio(
+    "Navegação",
+    [
+        "🏠 Início",
+        "🎯 Radar de Oportunidades",
+        "🔍 Análise Individual",
+        "💼 Portfolio",
+        "📊 Backtest Avançado",
+        "📝 Recomendações",
+        "ℹ️ Sobre"
+    ]
+)
+
+st.sidebar.markdown("---")
+st.sidebar.markdown("**Sistema de Swing Trade**")
+st.sidebar.markdown("- Modelo: XGBoost + SHAP")
+st.sidebar.markdown("- Capital: ~R$10k")
+st.sidebar.markdown("- Max Drawdown: 20%")
+st.sidebar.markdown("- Dados: Gratuitos")
+
+# Redirecionamento para páginas
+if page == "🎯 Radar de Oportunidades":
+    st.switch_page("pages/1_radar_oportunidades.py")
+elif page == "🔍 Análise Individual":
+    st.switch_page("pages/2_analise_individual.py")
+elif page == "💼 Portfolio":
+    st.switch_page("pages/3_portfolio.py")
+elif page == "📊 Backtest Avançado":
+    st.switch_page("pages/4_backtest_avancado.py")
+elif page == "📝 Recomendações":
+    st.switch_page("pages/4_recomendacoes_amanha.py")
+
 # CSS customizado
 st.markdown("""
     <style>
@@ -283,7 +319,7 @@ if page == "🔮 Predições":
                     hovermode='x unified',
                     height=400
                 )
-                st.plotly_chart(fig, use_container_width=True)
+                st.plotly_chart(fig, width='content')
             else:
                 st.error("❌ Erro ao fazer predição")
         except Exception as e:
@@ -373,8 +409,8 @@ elif page == "📊 Backtest":
             title="Acurácia Média por Ação"
         )
         fig.update_layout(height=400)
-        st.plotly_chart(fig, use_container_width=True)
-        
+        st.plotly_chart(fig, width='content')
+
         # Tabela de resultados
         st.subheader("📋 Detalhes do Backtest")
         display_cols = ['date', 'company', 'real', 'predicted', 'error', 'accuracy']
@@ -382,7 +418,7 @@ elif page == "📊 Backtest":
             display_cols.append('smape')
         st.dataframe(
             df[display_cols].sort_values('date', ascending=False),
-            use_container_width=True,
+            width='content',
             height=400
         )
     else:

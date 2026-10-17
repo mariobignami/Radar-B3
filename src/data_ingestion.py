@@ -9,7 +9,20 @@ class DataIngestor:
     def load_and_merge(self) -> pd.DataFrame:
         """Carrega os CSVs e realiza o merge relacional (Estrela/Floco de Neve)."""
         print("🚀 Iniciando ingestão de dados...")
-        
+
+        # Verificar se arquivos existem
+        required_files = {
+            "dimCompany.csv": self.path / "dimCompany.csv",
+            "dimCoin.csv": self.path / "dimCoin.csv",
+            "dimTime.csv": self.path / "dimTime.csv",
+            "factCoins.csv": self.path / "factCoins.csv",
+            "factStocks.csv": self.path / "factStocks.csv"
+        }
+
+        for name, path in required_files.items():
+            if not path.exists():
+                raise FileNotFoundError(f"Arquivo obrigatório não encontrado: {path}. Execute get_b3_data.py primeiro.")
+
         # Carregando tabelas
         dim_company = pd.read_csv(self.path / "dimCompany.csv")
         dim_coin = pd.read_csv(self.path / "dimCoin.csv")
