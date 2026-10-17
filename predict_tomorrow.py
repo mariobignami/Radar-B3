@@ -14,7 +14,6 @@ import pandas as pd
 from sklearn.compose import ColumnTransformer
 from sklearn.ensemble import HistGradientBoostingClassifier, HistGradientBoostingRegressor
 from sklearn.impute import SimpleImputer
-from sklearn.metrics import mean_absolute_error
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
@@ -54,6 +53,12 @@ NUMERIC_FEATURES = [
     "valueCoin",
 ]
 FEATURES = CATEGORICAL_FEATURES + NUMERIC_FEATURES
+DEFAULT_SIGNAL_POLICY = {
+    "buy_threshold": 0.58,
+    "sell_threshold": 0.42,
+    "min_edge_percent": 5.0,
+    "min_signals": 4,
+}
 
 
 def next_business_day(date_value):
@@ -236,54 +241,58 @@ def make_direction_model() -> Pipeline:
     return Pipeline(steps=[("preprocess", preprocessor), ("model", model)])
 
 
-def directional_backtest(dataset: pd.DataFrame, test_days: int = 80):
-    valid_dates = sorted(dataset["datetime"].dropna().unique())
-    if len(valid_dates) <= test_days + 80:
-        test_dates = valid_dates[max(0, int(len(valid_dates) * 0.75)) :]
-    else:
-        test_dates = valid_dates[-test_days:]
-
-    if not test_dates:
+def directional_backtest(dataset: pd.DataFrame, test_days: int = 80, min_train_days: int = 40):
+    valid_dates = sorted(pd.to_datetime(dataset["datetime"].dropna().unique()))
+    if len(valid_dates) <= min_train_days + 1:
         return pd.DataFrame(), {}
 
-    first_test_date = test_dates[0]
-    train = dataset[dataset["datetime"] < first_test_date].copy()
-    test = dataset[dataset["datetime"].isin(test_dates)].copy()
-    if len(train) < 500 or test.empty:
-        return pd.DataFrame(), {}
-
-    train["target_up"] = (train["target_return_next_day"] > 0).astype(int)
-    test["target_up"] = (test["target_return_next_day"] > 0).astype(int)
-
-    direction_model = make_direction_model()
-    direction_model.fit(train[FEATURES], train["target_up"])
-    prob_up = direction_model.predict_proba(test[FEATURES])[:, 1]
-    pred_return = ((prob_up - 0.5) * 2.0) * test["vol_20d"].fillna(test["vol_20d"].median()).to_numpy()
-    real_return = test["target_return_next_day"].to_numpy()
-
+    test_dates = valid_dates[-test_days:] if len(valid_dates) > test_days else valid_dates
     rows = []
-    for row, pred, real, prob in zip(test.to_dict("records"), pred_return, real_return, prob_up):
-        pred = float(pred)
-        real = float(real)
-        rows.append(
-            {
-                "date": str(pd.Timestamp(row["datetime"]).date()),
-                "target_date": str(pd.Timestamp(row["datetime"]).date()),
-                "company": row["stockCodeCompany"],
-                "real_return_percent": real * 100,
-                "predicted_return_percent": pred * 100,
-                "probability_up": float(prob),
-                "direction_hit": bool(np.sign(pred) == np.sign(real)) if abs(pred) > 1e-9 else False,
-                "absolute_error_percent": abs(real - pred) * 100,
-            }
-        )
+
+    for test_date in test_dates:
+        train = dataset[dataset["datetime"] < test_date].copy()
+        test = dataset[dataset["datetime"] == test_date].copy()
+        if train["datetime"].nunique() < min_train_days or test.empty:
+            continue
+
+        train["target_up"] = (train["target_return_next_day"] > 0).astype(int)
+        direction_model = make_direction_model()
+        direction_model.fit(train[FEATURES], train["target_up"])
+        prob_up = direction_model.predict_proba(test[FEATURES])[:, 1]
+
+        vol_proxy = test["vol_20d"].fillna(train["vol_20d"].median()).fillna(0.0).to_numpy()
+        pred_return = ((prob_up - 0.5) * 2.0) * vol_proxy
+        real_return = test["target_return_next_day"].to_numpy()
+
+        for row, pred, real, prob in zip(test.to_dict("records"), pred_return, real_return, prob_up):
+            pred = float(pred)
+            real = float(real)
+            trend_regime = classify_trend_regime(row)
+            rows.append(
+                {
+                    "date": str(pd.Timestamp(row["datetime"]).date()),
+                    "target_date": str(pd.Timestamp(row["datetime"]).date()),
+                    "company": str(row["stockCodeCompany"]),
+                    "sector": str(row.get("sectorCompany", "n/d")),
+                    "trend_regime": trend_regime,
+                    "real_return_percent": real * 100,
+                    "predicted_return_percent": pred * 100,
+                    "probability_up": float(prob),
+                    "direction_hit": bool(np.sign(pred) == np.sign(real)) if abs(pred) > 1e-9 else False,
+                    "absolute_error_percent": abs(real - pred) * 100,
+                }
+            )
 
     if not rows:
         return pd.DataFrame(), {}
 
     df_bt = pd.DataFrame(rows)
+    recent_20d_accuracy = _window_directional_accuracy(df_bt, days=20)
+    recent_60d_accuracy = _window_directional_accuracy(df_bt, days=60)
+
     summary = {
         "tests": int(len(df_bt)),
+        "test_days": int(df_bt["date"].nunique()),
         "directional_accuracy": float(df_bt["direction_hit"].mean() * 100),
         "mae_percent": float(df_bt["absolute_error_percent"].mean()),
         "buy_precision_55": float(
@@ -300,29 +309,174 @@ def directional_backtest(dataset: pd.DataFrame, test_days: int = 80):
         "sell_signals_45": int((df_bt["probability_up"] <= 0.45).sum()),
         "mean_predicted_return_percent": float(df_bt["predicted_return_percent"].mean()),
         "mean_real_return_percent": float(df_bt["real_return_percent"].mean()),
+        "recent_accuracy_20d": recent_20d_accuracy,
+        "recent_accuracy_60d": recent_60d_accuracy,
+        "regime_metrics": _group_metrics(df_bt, "trend_regime"),
+        "company_metrics": _group_metrics(df_bt, "company"),
+        "sector_metrics": _group_metrics(df_bt, "sector"),
     }
     return df_bt, summary
 
 
-def recommendation_from_signal(probability_up, buy_precision, sell_precision, rsi_14, trend_regime):
-    # Cortes conservadores calibrados no holdout temporal recente.
-    # A faixa intermediaria vira ANALISAR para evitar "sinal" em ruido.
-    if probability_up >= 0.57 and buy_precision >= 55:
+def classify_trend_regime(row: dict) -> str:
+    sma_20 = row.get("sma_20_ratio")
+    sma_50 = row.get("sma_50_ratio")
+    if pd.isna(sma_20) or pd.isna(sma_50):
+        return "Indefinido"
+    if sma_20 > 0 and sma_50 > 0:
+        return "Alta"
+    if sma_20 < 0 and sma_50 < 0:
+        return "Baixa"
+    return "Lateral"
+
+
+def _window_directional_accuracy(df_bt: pd.DataFrame, days: int) -> float:
+    if df_bt.empty:
+        return 0.0
+    unique_dates = sorted(df_bt["date"].dropna().unique())
+    if not unique_dates:
+        return 0.0
+    selected_dates = set(unique_dates[-days:])
+    window = df_bt[df_bt["date"].isin(selected_dates)]
+    if window.empty:
+        return 0.0
+    return float(window["direction_hit"].mean() * 100)
+
+
+def _group_metrics(frame: pd.DataFrame, key: str) -> list[dict]:
+    if frame.empty or key not in frame.columns:
+        return []
+    grouped = (
+        frame.groupby(key)
+        .agg(
+            tests=("direction_hit", "count"),
+            directional_accuracy=("direction_hit", lambda s: float(s.mean() * 100)),
+            mae_percent=("absolute_error_percent", "mean"),
+            mean_probability_up=("probability_up", "mean"),
+            mean_real_return_percent=("real_return_percent", "mean"),
+        )
+        .reset_index()
+        .sort_values("directional_accuracy", ascending=False)
+    )
+    grouped[key] = grouped[key].astype(str)
+    return grouped.to_dict("records")
+
+
+def _evaluate_threshold(frame: pd.DataFrame, threshold: float, side: str) -> tuple[float, int]:
+    if frame.empty:
+        return 0.0, 0
+    if side == "buy":
+        selected = frame[frame["probability_up"] >= threshold]
+        if selected.empty:
+            return 0.0, 0
+        precision = float((selected["real_return_percent"] > 0).mean() * 100)
+        return precision, int(len(selected))
+
+    selected = frame[frame["probability_up"] <= threshold]
+    if selected.empty:
+        return 0.0, 0
+    precision = float((selected["real_return_percent"] < 0).mean() * 100)
+    return precision, int(len(selected))
+
+
+def _best_threshold(frame: pd.DataFrame, side: str, min_signals: int):
+    if side == "buy":
+        candidates = [0.56, 0.58, 0.60, 0.62, 0.65]
+        fallback_threshold = DEFAULT_SIGNAL_POLICY["buy_threshold"]
+    else:
+        candidates = [0.44, 0.42, 0.40, 0.38, 0.35]
+        fallback_threshold = DEFAULT_SIGNAL_POLICY["sell_threshold"]
+
+    best = {
+        "threshold": fallback_threshold,
+        "precision": 0.0,
+        "signals": 0,
+        "edge_percent": -50.0,
+    }
+    for threshold in candidates:
+        precision, signals = _evaluate_threshold(frame, threshold, side)
+        if signals <= 0:
+            continue
+        edge = precision - 50.0
+        score = edge * np.log1p(signals)
+        best_score = best["edge_percent"] * np.log1p(max(best["signals"], 1))
+        is_better = (
+            signals >= min_signals and score > best_score
+        ) or (
+            best["signals"] < min_signals and signals > best["signals"]
+        )
+        if is_better:
+            best = {
+                "threshold": float(threshold),
+                "precision": float(precision),
+                "signals": int(signals),
+                "edge_percent": float(edge),
+            }
+    return best
+
+
+def calibrate_signal_policy(df_bt: pd.DataFrame) -> dict:
+    policy = {"defaults": dict(DEFAULT_SIGNAL_POLICY), "global": {}, "per_company": {}}
+    if df_bt.empty:
+        return policy
+
+    min_signals = int(DEFAULT_SIGNAL_POLICY["min_signals"])
+    global_buy = _best_threshold(df_bt, "buy", min_signals)
+    global_sell = _best_threshold(df_bt, "sell", min_signals)
+    policy["global"] = {"buy": global_buy, "sell": global_sell}
+
+    for company, frame_company in df_bt.groupby("company"):
+        company_buy = _best_threshold(frame_company, "buy", min_signals)
+        company_sell = _best_threshold(frame_company, "sell", min_signals)
+        policy["per_company"][str(company)] = {
+            "buy": company_buy,
+            "sell": company_sell,
+        }
+    return policy
+
+
+def recommendation_from_signal(probability_up, rsi_14, trend_regime, signal_policy):
+    prob = float(probability_up)
+    defaults = signal_policy.get("defaults", DEFAULT_SIGNAL_POLICY)
+    buy_cfg = signal_policy.get("buy", {})
+    sell_cfg = signal_policy.get("sell", {})
+
+    buy_threshold = float(buy_cfg.get("threshold", defaults["buy_threshold"]))
+    sell_threshold = float(sell_cfg.get("threshold", defaults["sell_threshold"]))
+    buy_edge = float(buy_cfg.get("edge_percent", 0.0))
+    sell_edge = float(sell_cfg.get("edge_percent", 0.0))
+    buy_signals = int(buy_cfg.get("signals", 0))
+    sell_signals = int(sell_cfg.get("signals", 0))
+    min_signals = int(defaults["min_signals"])
+    min_edge = float(defaults["min_edge_percent"])
+
+    if 0.47 <= prob <= 0.53:
+        return "NEUTRO", True, "Probabilidade muito próxima de 50% (zona neutra ampliada)."
+
+    if (
+        prob >= buy_threshold
+        and buy_edge >= min_edge
+        and buy_signals >= min_signals
+    ):
         if rsi_14 > 72:
-            return "ANALISAR"
-        if trend_regime == "Baixa" and probability_up < 0.60:
-            return "ANALISAR"
-        return "COMPRA"
+            return "ANALISAR", True, "RSI elevado para compra imediata."
+        if trend_regime == "Baixa" and prob < (buy_threshold + 0.03):
+            return "ANALISAR", True, "Tendência ainda de baixa para confirmar compra."
+        return "COMPRA", False, "Sinal de compra com edge estatístico positivo."
 
-    if probability_up <= 0.40 and sell_precision >= 55:
+    if (
+        prob <= sell_threshold
+        and sell_edge >= min_edge
+        and sell_signals >= min_signals
+    ):
         if rsi_14 < 28 and trend_regime != "Baixa":
-            return "ANALISAR"
-        return "VENDA"
+            return "ANALISAR", True, "RSI muito baixo sugere possível repique técnico."
+        return "VENDA", False, "Sinal de venda com edge estatístico positivo."
 
-    if 0.485 <= probability_up <= 0.515:
-        return "NEUTRO"
+    if buy_edge < min_edge and sell_edge < min_edge:
+        return "ANALISAR", True, "Sem edge estatístico mínimo no histórico recente."
 
-    return "ANALISAR"
+    return "ANALISAR", True, "Sem vantagem estatística suficiente para operar."
 
 
 def _old_recommendation_from_signal(pred_return, direction_accuracy, rsi_14, trend_regime, vol_20d):
@@ -351,9 +505,9 @@ def _old_recommendation_from_signal(pred_return, direction_accuracy, rsi_14, tre
 
 
 def confidence_from_accuracy(direction_accuracy, mae_percent):
-    if direction_accuracy >= 58 and mae_percent <= 2.0:
+    if direction_accuracy >= 57 and mae_percent <= 2.0:
         return "Alta", 0.80
-    if direction_accuracy >= 53:
+    if direction_accuracy >= 53 and mae_percent <= 3.5:
         return "Media", 0.65
     return "Baixa", 0.45
 
@@ -384,6 +538,8 @@ def predict_tomorrow():
 
     backtest_df, backtest_summary = directional_backtest(train_data, test_days=60)
     if not backtest_df.empty:
+        signal_policy = calibrate_signal_policy(backtest_df)
+        backtest_summary["signal_policy"] = signal_policy
         backtest_df.to_json(
             "backtest_directional_results.json",
             orient="records",
@@ -400,10 +556,14 @@ def predict_tomorrow():
             f"MAE: {backtest_summary['mae_percent']:.2f}%"
         )
     else:
+        signal_policy = {"defaults": dict(DEFAULT_SIGNAL_POLICY), "global": {}, "per_company": {}}
         backtest_summary = {
             "directional_accuracy": 0.0,
             "mae_percent": 0.0,
             "tests": 0,
+            "recent_accuracy_20d": 0.0,
+            "recent_accuracy_60d": 0.0,
+            "signal_policy": signal_policy,
         }
         print("[BACKTEST] Dados insuficientes para backtest direcional.")
 
@@ -416,7 +576,18 @@ def predict_tomorrow():
     mae_percent = float(backtest_summary.get("mae_percent", 0.0))
     buy_precision = float(backtest_summary.get("buy_precision_55", 0.0))
     sell_precision = float(backtest_summary.get("sell_precision_45", 0.0))
+    recent_accuracy_20d = float(backtest_summary.get("recent_accuracy_20d", 0.0))
+    recent_accuracy_60d = float(backtest_summary.get("recent_accuracy_60d", 0.0))
     confidence, confidence_score = confidence_from_accuracy(direction_accuracy, mae_percent)
+
+    company_metrics = {
+        str(item.get("company")): item
+        for item in backtest_summary.get("company_metrics", [])
+        if item.get("company") is not None
+    }
+    signal_policy = backtest_summary.get("signal_policy", {"defaults": dict(DEFAULT_SIGNAL_POLICY), "global": {}, "per_company": {}})
+    global_policy = signal_policy.get("global", {})
+    per_company_policy = signal_policy.get("per_company", {})
 
     print("\n[PREDICAO] Sinais para o proximo pregao")
     print("=" * 70)
@@ -453,12 +624,21 @@ def predict_tomorrow():
         else:
             trend_regime = "Lateral"
 
-        recommendation = recommendation_from_signal(
+        stock_policy = per_company_policy.get(stock_code, {})
+        if not stock_policy:
+            stock_policy = {
+                "buy": global_policy.get("buy", {}),
+                "sell": global_policy.get("sell", {}),
+            }
+        recommendation, no_trade_flag, no_trade_reason = recommendation_from_signal(
             float(probability_up),
-            buy_precision,
-            sell_precision,
             rsi_14,
             trend_regime,
+            {
+                "defaults": signal_policy.get("defaults", dict(DEFAULT_SIGNAL_POLICY)),
+                "buy": stock_policy.get("buy", {}),
+                "sell": stock_policy.get("sell", {}),
+            },
         )
 
         stock_backtest = (
@@ -481,6 +661,11 @@ def predict_tomorrow():
             last_backtest_date = None
             last_backtest_accuracy = None
             last_backtest_error = None
+
+        company_metric = company_metrics.get(stock_code, {})
+        buy_cfg = stock_policy.get("buy", {})
+        sell_cfg = stock_policy.get("sell", {})
+        min_edge_required = float(signal_policy.get("defaults", dict(DEFAULT_SIGNAL_POLICY)).get("min_edge_percent", 5.0))
 
         predictions.append(
             {
@@ -522,11 +707,24 @@ def predict_tomorrow():
                 "mae_percent_global": mae_percent,
                 "buy_precision_55": buy_precision,
                 "sell_precision_45": sell_precision,
+                "recent_accuracy_20d": recent_accuracy_20d,
+                "recent_accuracy_60d": recent_accuracy_60d,
+                "asset_directional_accuracy": float(company_metric.get("directional_accuracy", direction_accuracy)),
+                "asset_backtest_tests": int(company_metric.get("tests", 0)),
                 "last_backtest_date": last_backtest_date,
                 "last_backtest_accuracy": last_backtest_accuracy,
                 "last_backtest_error": last_backtest_error,
                 "confidence": confidence,
                 "confidence_score": float(confidence_score),
+                "buy_threshold_percent": float(buy_cfg.get("threshold", DEFAULT_SIGNAL_POLICY["buy_threshold"])) * 100,
+                "sell_threshold_percent": float(sell_cfg.get("threshold", DEFAULT_SIGNAL_POLICY["sell_threshold"])) * 100,
+                "buy_edge_percent": float(buy_cfg.get("edge_percent", 0.0)),
+                "sell_edge_percent": float(sell_cfg.get("edge_percent", 0.0)),
+                "buy_signals_used": int(buy_cfg.get("signals", 0)),
+                "sell_signals_used": int(sell_cfg.get("signals", 0)),
+                "min_edge_required_percent": min_edge_required,
+                "no_trade_flag": bool(no_trade_flag),
+                "no_trade_reason": str(no_trade_reason),
                 "prediction_status": "ok",
                 "raw_predicted_close": predicted_close,
                 "fallback_return_percent": 0.0,
